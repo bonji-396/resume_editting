@@ -1,0 +1,165 @@
+
+
+    PERSONAL DATA(氏名や連絡先)
+    OBJECTIVE(履歴書送付の目的)
+    SUMMARY(経験の要約)
+    CAREER HISTORY(職歴)
+    EDUCATION(学歴)
+    QUALIFICATIONS･SPECIAL SKILLS(資格、認定された技術)
+    REFERENCE(紹介状)
+/Users/bonji/職業訓練/訓練校/課題/フェリカ-クライアントワーク/クライアントワーク（印刷を意識した履歴書作成ページ）/雛形/resume.md
+
+personal Data（個人の基本情報）：メールアドレスも記載
+
+    生年月日（Birth date）：日/月/年の順番で記入します
+    （例文）01/01/1980
+
+    言語（Language）：母国語を初めに、語学力の高い順に記入します
+    （例文）Japanese – native, English – fluent
+
+    住所（Resides）：番地、市区町村、都道府県、郵便番号、国名の順に記入します
+    （例文）Shibuya Minami Tokyu Bldg. 14F 3-12-18 Shibuya, Shibuya-ku, Tokyo, Japan 150-0002
+
+---
+accesskey
+tabindex
+contenteditable
+---
+
+Education（学歴）：英語・英文履歴書には最終学歴だけ書く
+
+	特別に求められない限り、応募する仕事に関係のある学歴および最終学歴だけを記入します。
+	入学年-卒業年、学校名称、学位、学科、専攻の順に記入します
+
+	（例文）Apr 1997 – Mar 2001 XXXXX University, Japan Bachelor of Economics
+
+	学位に関しては以下を使い分けましょう
+
+	    学士号: Bachelor of 学部 or 専攻 
+	    修士号: Master of 学部 or 専攻 
+	    博士号: Doctor of 学部 or 専攻 
+
+	在学中の人は学歴をどう書く？
+
+	入学年- current と記載し、在学中であることを伝えましょう。
+
+	（例文）Apr 1997 – current XXXXX University, Japan Bachelor of Economics
+	卒業見込みの書き方
+
+	expectedを使用して、卒業見込みであることを伝えましょう。
+
+	（例文）Apr 1997 – Mar 2018（expected） XXXXX University, Japan Bachelor of Economics
+	新卒・学生は英文履歴書をどう書く？
+
+	新卒や学生のインターンシップは英語の履歴書は転職用の英語の履歴書とどう違うのかですが、一般的には大きく変わりません。
+
+	異なる部分としては学歴部分に海外留学などがあれば記載する、職歴部分にはボランティアやインターンシップ、アルバイトを記載するようにしましょう。
+
+	最も違う部分はSummaryで、転職の場合は就業経験からアピールポイントを記載しますが、学生の場合は自己PRを記載することになります。
+
+
+
+資格（Qualifications）：取得年、正式名称を記載する
+
+	希望職種に関係ある検定資格や免許などを記入します
+	検定資格の場合は取得年、正式名称を忘れずに記入しましょう
+
+	（例文）TOEIC 700 (2005)
+	Systems Administrator Examination (2006)
+
+コンピュータスキル（Computer Skills）
+
+	プログラミング言語やソフトウェア試験などを記入します
+
+	（例文）MS Word, Excel (advanced), PowerPoint
+
+職歴（Career History）
+
+	履歴書でもっとも大事な部分です。役職及び職務内容が重要視されます
+	原則として最新の職歴から順に古いものへさかのぼります
+	以下の順で簡潔に且つ具体的にまとめましょう（専門用語・省略後は避けること）
+
+	・在籍期間
+	・会社名、都市名
+	・会社事業内容
+	・ポジションとその職務内容
+	・業績（プロジェクトとその結果）
+
+	（例文）Oct 2011 – Present
+
+	Company 1, Tokyo, Japan
+	Company Description, 450 employees in Japan. Global IT company
+	(Dec 2013 – Present)
+
+	Central HR Department
+	Human Resource Development
+	Senior Manager
+
+	・Reporting to Japan CEO and Human Resources Director
+	・Responsible for experienced and campus hiring
+
+Summary（自分のキャリアの要約）
+
+	職歴とは違い、自分のキャリアを端的にまとめて説明するためのものです。特に職歴が長い方は以下のようにシンプルにまとめてアピールしましょう。
+
+	（マーケティング職の方の場合の例文）
+	・Strong branding knowledge and experience across various categories
+	・Successful management of brand management teams 
+
+	マーケティング以外にも「経理・財務」「人事」「サプライチェーン」「営業」「IT」の職種別サンプルにSummaryの例が記載されていますので参考にしてみてください。
+
+	応募するポジションが明確に決まっている場合は、求人情報を読み込み、先方が求めている人材に自分が見合っているということを記載し、応募先企業の担当者が興味を引くように書くことが重要です。
+
+	採用担当マネージャーは、履歴書のこのセクションをすばやく読むことによって、候補者がどのようなスキル・経験を提供できるか、応募している役割にふさわしいかどうかを判断します。
+	英文履歴書を書く上でのワンポイントアドバイス
+
+	可能な限り、求人広告で使用する形容詞と同じ形容詞を使用することを心がけましょう。
+	職歴や自分のキャリアを書くときに使える表現
+
+	はじめて英文履歴書を書く方は以下の表現を用いて書いてみるといいでしょう。
+
+	チームをマネジメントした経験
+
+	    Managed ~
+
+	自分の上司と業務を行っていた場合
+
+	    Support ~
+	    Assist ~
+
+	自分で仕事を進めた、改善するなどを説明したい
+
+	    In charge of ~
+	    Responsible for ~
+	    Planned ~
+	    Proposed ~
+	    Developed ~
+
+	CEOなどレポートラインが実績になる場合
+
+	    Reported to ~
+
+	目標に対しての達成率や社内表彰などを述べたい場合
+
+	    Achieved ~
+	    Awarded ~
+	    Won ~ award
+
+	成果を発表する
+
+	履歴書は、自分自身を売り込む手段であり、なぜあなたが応募している役割に最も適しているのかをアピールする場所です。あなたが期待される以上に貢献し、成果を上げたエピソードを書きましょう。
+
+	成果達成度が測定可能な場合は、「売上高目標を10%上回る増加率を達成した」など、必ず実際の数値を記載しましょう。また面接の際に、自分なりに工夫した点は聞かれる可能性が高いので考えておくようにしましょう。
+
+Objective（応募するポジション・希望職種）
+
+	職歴のない新卒やキャリアチェンジにより職種を変更する方は書きましょう。近年書く人が少なくなってきているため、記載しなくても問題ありません。
+	記載する場合は端的にわかりやすく記載しましょう。
+
+興味・趣味の記載（任意）
+
+	仕事以外の趣味や興味で、自分の個性について言及することができます。なお、履歴書に興味・趣味について書くことは任意で、トラブルにつながる可能性のあるものや特にない場合は記述しなくても問題ありません。
+
+リファレンスは、要求に応じて入手可能
+
+	外資系企業や日系企業でも採用プロセスにおいて、リファレンスチェックが行われることが増えてきています。後のステージに至るまでリファレンスの連絡先の開示を気軽に行いたくない場合は、履歴書に「リファレンスは要求に応じて入手可能です」と記載しましょう。採用担当者から要請があればすぐに開示できるようにし、準備しておくことが重要です。
