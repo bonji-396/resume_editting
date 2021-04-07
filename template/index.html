@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="ja">
   <!--
-    1. CSS定義用の雛形のHMTLを作る           3/17  + 4h
-    2. CSS定義(@media print A4, B5)       3/18  + 4h +
-  ※ 3. SASSの勉強                          3/22
-    4. JS 要素生成のロジックを考え決める(MVC?) 3/22
-    5. JS オブジェクト定義                  3/22
-    6. JS コーディング                     3/23 
-    7. テスト                             3/24~25
-    8. CSS定義(スマートフォン対応)           3/26
-    9. GitHub Pagesへ実装、GitHubコード公開 3/27
-    10. Qiitaへ記事投稿 3/26
-    11. ポートフォリオ用詳細ページ作成        3/27
-    12. ポートフォリオへ反映                 4/12
+    1. CSS定義用の雛形のHMTLを作る           4/7
+    2. CSS定義(@media print A4, B5)       4/7
+    3. JS 要素生成のロジックを考え決める(MVC?) 4/8
+    4. JS オブジェクト定義                  4/8
+    5. JS コーディング                     4/9 
+    6. テスト                             4/10
+    7. CSS定義(スマートフォン対応)           4/11
+    8. GitHub Pagesへ実装、GitHubコード公開 4/11
+    9. Qiitaへ記事投稿 4/11
+    10. ポートフォリオ用詳細ページ作成        4/11
+    11. ポートフォリオへ反映                 4/12
   -->
 <head>
   <meta charset="UTF-8">
@@ -24,10 +23,11 @@
 </head>
 <body>
   <header>
-    <h1>hage!!!</h1>
-    <p>hagehage</p>
-    <!-- ナビゲーション -->
-    <!-- 
+    <div class="title">
+      <h1>履歴書 Editor</h1>
+      <p>ブラウザで経歴書を作成します。</p>  
+    </div>
+    <!-- メニュー
     - 完了：localStorageに保存 contenteditable=false
     - 編集：contenteditable=true
     - クリア：localStrageのクリア
@@ -35,12 +35,21 @@
     - エクスポート：JSONファイルにエクスポート
     - 自動保存を行うべきか（sessonStorage）？
     -->
+    <div class="menu">
+      <p>クリア</p>
+      <p>インポート</p>
+      <div class="editing-switch">
+        <p>編集</p>
+        <input id="toggle" type="checkbox">
+        <label for="toggle" class="toggle-background"></label>  
+      </div>  
+    </div>
   </header>
   <main>
     <section id="left-page" class="page">
 
       <section id="resume-header">
-        <h1>履　歴　書</h1>
+        <h2>履　歴　書</h2>
         <!-- 本日日付を取得して自動で入力される。編集は可能で、データ読み込みの場合はその値を反映 -->
         <div id="creataion-date">
           <!-- ↓ 年号、西暦と年チェック -->
