@@ -37,52 +37,171 @@ body * {
 }
 
 header {
+  width: 100%;
   height: 50px;
+  padding: 0 10px;
+  margin-bottom: 10px;
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 300px 1fr;
+  align-items: bottom;
   border-bottom: 1px solid #333;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  z-index: 1;
 }
 
-header menu {
+header .menu {
   display: grid;
-  grid-template-columns: repeat(6 1fr);
+  grid-template-columns: repeat(auto-fill, 40px);
+  column-gap: 10px;
+  grid-auto-flow: column;
+  justify-items: center;
+  justify-self: end;
+  align-items: center;
 }
 
-header input {
+header .menu .editing-switch {
+  width: 40px;
+  height: 40px;
+}
+
+header .menu .editing-switch input {
   display: none;
 }
 
-header input:checked + label {
+header .menu .editing-switch input:checked + label {
   background-color: #4BD865;
 }
 
-header input:checked + label::after {
+header .menu .editing-switch input:checked + label::before {
+  content: 'edit';
+}
+
+header .menu .editing-switch input:checked + label::after {
   left: 22px;
 }
 
-header label {
-  width: 50px;
-  height: 28px;
+header .menu .editing-switch label {
+  width: 40px;
+  height: 20px;
   background-color: #ccc;
   position: relative;
+  top: 20px;
   display: inline-block;
-  border-radius: 30px;
+  border-radius: 20px;
   transition: 0.4s;
   box-sizing: border-box;
+  text-align: center;
 }
 
-header label::after {
-  content: '';
+header .menu .editing-switch label::before {
+  content: 'done';
   position: absolute;
-  width: 28px;
-  height: 28px;
-  border-radius: 100%;
   left: 0;
   right: 0;
+  top: -20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+header .menu .editing-switch label::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
   z-index: 2;
   background-color: #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   transition: 0.4s;
   cursor: pointer;
+}
+
+header .menu button {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+main #resume {
+  width: 364mm;
+  margin: 60px 10px 10px;
+  display: grid;
+  grid-template-columns: 182mm 182mm;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+main #resume .page {
+  width: 182mm;
+  height: 257mm;
+  padding: 17mm;
+}
+
+main #resume #left-page {
+  position: relative;
+}
+
+main #resume #left-page #resume-header {
+  width: 148mm;
+  height: 7.5mm;
+  display: grid;
+  grid-template-columns: 35mm 78mm 35mm;
+  align-items: center;
+}
+
+main #resume #left-page #resume-header h2 {
+  font-size: 17pt;
+  text-align: center;
+}
+
+main #resume #left-page #resume-header #creataion-date {
+  display: grid;
+  grid-template-columns: 15mm 3mm 5.5mm 3mm 5.5mm 9mm;
+  justify-self: end;
+}
+
+main #resume #left-page #resume-header #creataion-date p {
+  font-size: 8pt;
+  text-align: center;
+}
+
+main #resume #left-page #resume-header #creataion-date p.input-field {
+  text-align: right;
+}
+
+main #resume #left-page #id-photo {
+  width: 30mm;
+  height: 40mm;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0.2mm solid #000;
+}
+
+main #resume .education-and-career-history .resume-line {
+  width: 148mm;
+  height: 7.5mm;
+  display: grid;
+  grid-template-columns: 22.5mm 12.5mm 111mm;
+  text-align: center;
+  border-left: 1mm solid #000;
+  border-right: 1mm solid #000;
+  border-bottom: 0.2mm solid #000;
+}
+
+main #resume .education-and-career-history .resume-line p {
+  border-right: 0.2mm solid #000;
+}
+
+main #resume .education-and-career-history .resume-line p:last-of-type {
+  border-right: none;
+}
+
+footer {
+  height: 50px;
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */

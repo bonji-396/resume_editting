@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <!-- Author : bonji@mikuro.net (Shuji Narumi) 
+    start: 4/28
+    total: 4h last 4/30
+    Completion : 5/10
+  -->
   <!--
-    1. CSS定義用の雛形のHMTLを作る           4/7
-    2. CSS定義(@media print A4, B5)       4/7
-    3. JS 要素生成のロジックを考え決める(MVC?) 4/8
-    4. JS オブジェクト定義                  4/8
-    5. JS コーディング                     4/9 
-    6. テスト                             4/10
-    7. CSS定義(スマートフォン対応)           4/11
-    8. GitHub Pagesへ実装、GitHubコード公開 4/11
-    9. Qiitaへ記事投稿 4/11
-    10. ポートフォリオ用詳細ページ作成        4/11
-    11. ポートフォリオへ反映                 4/12
+    1. CSS定義用の雛形のHMTLを作る           4/28
+    2. CSS定義(@media print A4, B5)       5/1
+    3. JS 要素生成のロジックを考え決める(MVC?) 5/1
+    4. JS オブジェクト定義                  5/1
+    5. JS コーディング                     5/1, 5/2
+    6. テスト                             5/2
+    7. CSS定義(スマートフォン対応)           5/3
+    8. GitHub Pagesへ実装、GitHubコード公開 5/4
+    9. Qiitaへ記事投稿                      4/5
+    10. ポートフォリオ用詳細ページ作成         5/6
+    11. ポートフォリオへ反映                 5/6
   -->
 <head>
   <meta charset="UTF-8">
@@ -28,393 +33,397 @@
       <p>ブラウザで経歴書を作成します。</p>  
     </div>
     <!-- メニュー
-    - 完了：localStorageに保存 contenteditable=false
-    - 編集：contenteditable=true
-    - クリア：localStrageのクリア
-    - インポート：JSONファイルからインポート
-    - エクスポート：JSONファイルにエクスポート
-    - 自動保存を行うべきか（sessonStorage）？
+      保存（エクスポート）：JSON形式でデータを保存
+      読み込み（インポート）：JSON形式のデータを読み込み
+      モード切り替え：編集・完了の2つのモードを切り替える。完了モードに移行した場合、session strage(local strage)にデータを一時的に保存する。
+      閉じるボタン：ブラウザで表示しているウィンドを閉じる。その際は以下の動作を行う（onbeforeunload時にも以下の動作が必要）。
+      　　　　　　　・閉じる前に時保存済みか確認する。
+      　　　　　　　・session strage(local strage)のデータを破棄する
     -->
     <div class="menu">
-      <p>クリア</p>
-      <p>インポート</p>
       <div class="editing-switch">
-        <p>編集</p>
-        <input id="toggle" type="checkbox">
-        <label for="toggle" class="toggle-background"></label>  
+        <input id="isEditing" type="checkbox">
+        <label for="isEditing" class="toggle-background"></label>  
       </div>  
+      <button type="button"><img src="img/reset.svg" alt="reset" title="リセット"></button>
+      <button type="button"><img src="img/import.svg" alt="import" title="インポート"></button>
+      <button type="button"><img src="img/export.svg" alt="export" title="エクスポート"></button>
+      <button type="button"><img src="img/close.svg" alt="close" title="閉じる"></button>
     </div>
   </header>
   <main>
-    <section id="left-page" class="page">
+    <section id="resume">
+      <section id="left-page" class="page">
 
-      <section id="resume-header">
-        <h2>履　歴　書</h2>
-        <!-- 本日日付を取得して自動で入力される。編集は可能で、データ読み込みの場合はその値を反映 -->
-        <div id="creataion-date">
-          <!-- ↓ 年号、西暦と年チェック -->
-          <p class="input-field" contenteditable="true" autofocus></p>
-          <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
-          <p class="label">年</p> 
-          <!-- ↓ 数値範囲１〜１２チェック -->
-          <p class="input-field" contenteditable="true"></p>
-          <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
-          <p class="label">月</p> 
-          <!-- ↓ 数値範囲１〜３１チェック -->
-          <p class="input-field" contenteditable="true"></p>
-          <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
-          <p class="label">日現在</p> 
-        </div>
-      </section><!-- /#resume-header -->
-
-      <section id="id-photo">
-        <!-- ドラックアンドドロップ + ＋ -->
-        <!-- TODO:画像データはBase64のインラインイメージか？ 別ファイルで参照にするか？ -->
-        <p>写真を貼る位置</p>
-        <p>写真を貼る必要がある場合</p>
-        <p>1.縦 36～40mm<br>
-          横 24～30mm<br>
-          2.本人単身から上</p>
-      </section><!-- /#id-photo -->
-
-      <section id="personal-data">
-        <div id="basic-data">
-          <div id="name-furigana">
-            <p class="label">ふりがな</p> 
-            <p class='input-field' contenteditable="true"></p>
-          </div> 
-          <div id="name">
-            <p class="label">氏 名</p> 
-            <p class='input-field' contenteditable="true"></p>
+        <section id="resume-header">
+          <h2>履　歴　書</h2>
+          <!-- 本日日付を取得して自動で入力される。編集は可能で、データ読み込みの場合はその値を反映 -->
+          <div id="creataion-date">
+            <!-- ↓ 年号、西暦と年チェック -->
+            <p class="input-field" autofocus></p>
+            <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
+            <p class="label">年</p> 
+            <!-- ↓ 数値範囲１〜１２チェック -->
+            <p class="input-field"></p>
+            <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
+            <p class="label">月</p> 
+            <!-- ↓ 数値範囲１〜３１チェック -->
+            <p class="input-field"></p>
+            <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
+            <p class="label">日現在</p> 
           </div>
-          <div id="gender">
-            <p class="input-field" contenteditable="true">男・女</p>
+        </section><!-- /#resume-header -->
+  
+        <section id="id-photo">
+          <!-- ドラックアンドドロップ + ＋ -->
+          <!-- TODO:画像データはBase64のインラインイメージか？ 別ファイルで参照にするか？ -->
+          <p>写真を貼る位置</p>
+          <p>写真を貼る必要がある場合</p>
+          <p>1.縦 36～40mm<br>
+            横 24～30mm<br>
+            2.本人単身から上</p>
+        </section><!-- /#id-photo -->
+  
+        <section id="personal-data">
+          <div id="basic-data">
+            <div id="name-furigana">
+              <p class="label">ふりがな</p> 
+              <p class='input-field'></p>
+            </div> 
+            <div id="name">
+              <p class="label">氏 名</p> 
+              <p class='input-field'></p>
+            </div>
+            <div id="gender">
+              <p class="input-field">男・女</p>
+            </div>
+          </div><!-- #basic-data -->
+          
+          <div id="birthday">
+            <p class="label">生年月日</p>
+            <!-- ↓ 数値チェック -->
+            <p class="input-field"></p>
+            <p class="label">年</p>
+            <!-- ↓ 数値チェック -->
+            <p class="input-field"></p>
+            <p class="label">月</p>
+            <!-- ↓ 数値チェック -->
+            <p class="input-field"></p>
+            <!-- ↓ 自動で満年齢を取得表示 -->
+            <p class="label">日生（満</p>
+            <p class="input-field"></p>
+            <p class="label">歳）</p>
+            <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
+          </div><!-- /#birthday -->
+  
+          <div id="contact-info">
+            <div class="resides-furigana">
+              <p class="label">ふりがな</p>
+              <p class="input-field"></p>
+            </div>
+            <div class="postal-code">
+              <p class="label">連絡先</p>
+              <p class="label">（〒</p>
+              <p class="input-field"></p>
+              <p class="label">ー</p>
+              <p class="input-field"></p>
+              <p class="label">）</p>
+            </div>
+            <div class="resides">
+              <p class="input-field"></p>
+            </div>
+            <div class="phone-number">
+              <p class="label">電話</p>
+              <p class="input-field"></p>
+            </div>
+            <div class="e-mail">
+              <p class="label">E-mail</p>
+              <p class="input-field"></p>
+            </div>
+          </div><!-- /#contact-info -->
+  
+          <div id="emergency-contact">
+            <div class="resides-furigana">
+              <p class="label">ふりがな</p>
+              <p class="input-field"></p>
+            </div>
+            <div class="postal-code">
+              <p class="label">連絡先</p>
+              <p class="label">（〒</p>
+              <p class="input-field"></p>
+              <p class="label">ー</p>
+              <p class="input-field"></p>
+              <p class="label">）</p>
+            </div>
+            <div class="resides">
+              <p class="input-field"></p>
+            </div>
+            <div class="phone-number">
+              <p class="label">電話</p>
+              <p class="input-field"></p>
+            </div>
+            <div class="e-mail">
+              <p class="label">E-mail</p>
+              <p class="input-field"></p>
+            </div>
+          </div><!-- /#emergency-contact -->
+  
+        </section><!-- /#personal-data -->
+  
+        <section class="education-and-career-history">
+          <div class="resume-line resume-line-header">
+            <p>年</p>
+            <p>月</p>
+            <p>学歴・職歴</p>
           </div>
-        </div><!-- #basic-data -->
-        
-        <div id="birthday">
-          <p class="label">生年月日</p>
-          <!-- ↓ 数値チェック -->
-          <p class="input-field" contenteditable="true"></p>
-          <p class="label">年</p>
-          <!-- ↓ 数値チェック -->
-          <p class="input-field" contenteditable="true"></p>
-          <p class="label">月</p>
-          <!-- ↓ 数値チェック -->
-          <p class="input-field" contenteditable="true"></p>
-          <!-- ↓ 自動で満年齢を取得表示 -->
-          <p class="label">日生（満</p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="label">歳）</p>
-          <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
-        </div><!-- /#birthday -->
-
-        <div id="contact-info">
-          <div class="resides-furigana">
-            <p class="label">ふりがな</p>
-            <p class="input-field" contenteditable="true"></p>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
           </div>
-          <div class="postal-code">
-            <p class="label">連絡先</p>
-            <p class="label">（〒</p>
-            <p class="input-field" contenteditable="true"></p>
-            <p class="label">ー</p>
-            <p class="input-field" contenteditable="true"></p>
-            <p class="label">）</p>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
           </div>
-          <div class="resides">
-            <p class="input-field" contenteditable="true"></p>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
           </div>
-          <div class="phone-number">
-            <p class="label">電話</p>
-            <p class="input-field" contenteditable="true"></p>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
           </div>
-          <div class="e-mail">
-            <p class="label">E-mail</p>
-            <p class="input-field" contenteditable="true"></p>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
           </div>
-        </div><!-- /#contact-info -->
-
-        <div id="emergency-contact">
-          <div class="resides-furigana">
-            <p class="label">ふりがな</p>
-            <p class="input-field" contenteditable="true"></p>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
           </div>
-          <div class="postal-code">
-            <p class="label">連絡先</p>
-            <p class="label">（〒</p>
-            <p class="input-field" contenteditable="true"></p>
-            <p class="label">ー</p>
-            <p class="input-field" contenteditable="true"></p>
-            <p class="label">）</p>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
           </div>
-          <div class="resides">
-            <p class="input-field" contenteditable="true"></p>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
           </div>
-          <div class="phone-number">
-            <p class="label">電話</p>
-            <p class="input-field" contenteditable="true"></p>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
           </div>
-          <div class="e-mail">
-            <p class="label">E-mail</p>
-            <p class="input-field" contenteditable="true"></p>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
           </div>
-        </div><!-- /#emergency-contact -->
-
-      </section><!-- /#personal-data -->
-
-      <section class="education-and-career-history">
-        <div class="resume-line resume-line-header">
-          <p>年</p>
-          <p>月</p>
-          <p>学歴・職歴</p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-      </section>
-    </section><!-- /#left-page -->
-
-    <section id="right-page" class="page">
-
-      <section class="education-and-career-history">
-        <div class="resume-line resume-line-header">
-          <p>年</p>
-          <p>月</p>
-          <p>学歴・職歴</p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="resume-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-      </section><!-- /.education-and-career-history -->
-
-      <section id="qualifications">
-        <div class="qualifications-line qualifications-line-header">
-          <p>年</p>
-          <p>月</p>
-          <p>免許・資格</p>
-        </div>
-        <div class="qualifications-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="qualifications-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="qualifications-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="qualifications-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="qualifications-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-        <div class="qualifications-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="input-field" contenteditable="true"></p>
-        </div>
-      </section><!-- /#qualifications -->
-
-      <section id="motivation" class="entry-field">
-      </section><!-- /#motivation -->
-
-      <section id="self-promotion" class="entry-field">
-        <p class="label">志望の動機、自己PR、趣味、特技など</p>
-        <p class="input-field multiple-lines " contenteditable="true"></p>
-      </section><!-- /#self-promotion -->
-
-      <section id="commuting-time">
-        <p class="label">通勤時間</p>
-        <div class="commuting-time-line">
-          <p class="label">約</p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="label">時間</p>
-          <p class="input-field" contenteditable="true"></p>
-          <p class="label">分</p>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
           </div>
-      </section><!-- /#commuting-time -->
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+        </section>
+      </section><!-- /#left-page -->
+  
+      <section id="right-page" class="page">
+  
+        <section class="education-and-career-history">
+          <div class="resume-line resume-line-header">
+            <p>年</p>
+            <p>月</p>
+            <p>学歴・職歴</p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="resume-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+        </section><!-- /.education-and-career-history -->
+  
+        <section id="qualifications">
+          <div class="qualifications-line qualifications-line-header">
+            <p>年</p>
+            <p>月</p>
+            <p>免許・資格</p>
+          </div>
+          <div class="qualifications-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="qualifications-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="qualifications-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="qualifications-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="qualifications-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+          <div class="qualifications-line">
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+            <p class="input-field"></p>
+          </div>
+        </section><!-- /#qualifications -->
+  
+        <section id="motivation" class="entry-field">
+        </section><!-- /#motivation -->
+  
+        <section id="self-promotion" class="entry-field">
+          <p class="label">志望の動機、自己PR、趣味、特技など</p>
+          <p class="input-field multiple-lines "></p>
+        </section><!-- /#self-promotion -->
+  
+        <section id="commuting-time">
+          <p class="label">通勤時間</p>
+          <div class="commuting-time-line">
+            <p class="label">約</p>
+            <p class="input-field"></p>
+            <p class="label">時間</p>
+            <p class="input-field"></p>
+            <p class="label">分</p>
+            </div>
+        </section><!-- /#commuting-time -->
+  
+        <section id="dependents">
+          <p class="label">扶養家族（配偶者を除く）</p>
+          <div class="dependents-line">
+            <p class="input-field"></p>
+            <p class="label">人</p>  
+          </div>
+        </section><!-- /#dependents -->
+          
+        <section id="marital-status">
+          <p class="label">配偶者</p>
+          <div class="marital-status-line">
+            <p class="input-field">有・無</p>
+          </div>
+        </section><!-- /#marital-status -->
+  
+        <section id="obligation-to-support-spouse">
+          <p class="label">配偶者の扶養義務</p>
+          <div class="obligation-to-support-spouse-line">
+            <p class="input-field">有・無</p>
+          </div>
+        </section><!-- /#obligation-to-support-spouse -->
+  
+        <section id="objective" class="entry-field">
+          <p class="label">本人希望記入欄（特に待遇・職種・勤務時間・その他についての希望などがあれば記入）</p>
+          <p class="input-field multiple-lines"></p>
+        </section><!-- /#objective -->
+  
+      </section><!-- /#right-page -->
+    </section>
 
-      <section id="dependents">
-        <p class="label">扶養家族（配偶者を除く）</p>
-        <div class="dependents-line">
-          <p class="input-field" contenteditable="true"></p>
-          <p class="label">人</p>  
-        </div>
-      </section><!-- /#dependents -->
-        
-      <section id="marital-status">
-        <p class="label">配偶者</p>
-        <div class="marital-status-line">
-          <p class="input-field" contenteditable="true">有・無</p>
-        </div>
-      </section><!-- /#marital-status -->
-
-      <section id="obligation-to-support-spouse">
-        <p class="label">配偶者の扶養義務</p>
-        <div class="obligation-to-support-spouse-line">
-          <p class="input-field" contenteditable="true">有・無</p>
-        </div>
-      </section><!-- /#obligation-to-support-spouse -->
-
-      <section id="objective" class="entry-field">
-        <p class="label">本人希望記入欄（特に待遇・職種・勤務時間・その他についての希望などがあれば記入）</p>
-        <p class="input-field multiple-lines" contenteditable="true"></p>
-      </section><!-- /#objective -->
-
-    </section><!-- /#right-page -->
   </main>
   <footer>
-    <p>footer hoge~~</p>
+    <p><small>&copy; 2021 mikuro.net</small></p>
   </footer>
 </body>
 </html>
