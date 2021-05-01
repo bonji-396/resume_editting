@@ -97,6 +97,7 @@ header {
 // 履歴書（B5サイズ: 182mm×257mm x 2（左右ページ合わせてB4:364mmx257mm）, 余白: 上下左右17mm）
 // 履歴書（A4サイズ: 210mm×297mm x 2（左右ページ合わせてA3:420mmx297mm）, 余白: 上下左右17mm）
 main {
+  font-size: 11pt;
   #resume {
     width: 364mm;
     margin: 60px 10px 10px;
@@ -106,13 +107,14 @@ main {
     .page {
       width: 182mm;
       height: 257mm;
-      padding: 17mm;
+      padding: 14mm 17mm;
     }
     #left-page {
       position: relative;
       #resume-header {
         width: 148mm;
-        height: 7.5mm;
+        height: 7.3mm;
+        margin-top: 1mm;
         display: grid;
         grid-template-columns: 35mm 78mm 35mm;
         align-items: center;
@@ -134,19 +136,188 @@ main {
         }
       }
       #id-photo {
-        width: 30mm;
-        height: 40mm;
+        width: 28mm;
+        height: 36.5mm;
+        padding: 10pt;
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 14mm;
+        right: 21mm;
         border: $print-line-default;
+        p {
+          font-size: 8pt;
+          text-align: center;
+          line-height: 10pt;
+          margin-bottom: 10pt;
+        }
+      }
+      #personal-data {
+        #basic-data {
+          display: grid;
+          grid-template-columns: 94mm 19mm 35mm;
+          #name-furigana {
+            height: 7.3mm;
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+            display: grid;
+            grid-template-columns: 15mm 79mm;
+            border: {
+              top: $print-line-bold;
+              right: $print-line-default;
+              bottom: $print-line-default;
+              left: $print-line-bold;
+            }
+            .label {
+              grid-column: 1 / 2;
+              font-size: 9pt;
+            }
+            .input-field {
+              grid-column: 2 / 3;
+              font-size: 9pt;
+            }
+          }
+          #name {
+            height: 15mm;
+            grid-column: 1 / 2;
+            grid-row: 2 / 3;
+            display: grid;
+            grid-template-columns: 15mm 79mm;
+            border: {
+              right: $print-line-default;
+              bottom: $print-line-default;
+              left: $print-line-bold;
+            }
+            .label {
+              grid-column: 1 / 2;
+            }
+            .input-field {
+              grid-column: 2 / 3;
+            }
+          }
+          #gender {
+            grid-row: 1 / 3;
+            grid-column: 2 / 3;
+            border: {
+              top: $print-line-bold;
+              right: $print-line-bold;
+              bottom: $print-line-default;
+            }
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            text-align: center;
+            p {
+              text-align: center;
+            }
+          }
+        }
+        #birthday {
+          display: grid;
+          grid-template-columns: 19mm 94mm 35mm;
+          >.label {
+            grid-column: 1 / 2;
+            height: 7.3mm;
+            width: 19mm;
+            border: {
+              bottom: $print-line-default;
+              left: $print-line-bold;
+            }
+          }
+          .date {
+            grid-column: 2 / 3;
+            height: 7.3mm;
+            width: 94mm;
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns:  30mm 5mm 9mm 5mm 9mm 16mm 9mm 10mm;
+            border: {
+              right: $print-line-bold;
+              bottom: $print-line-default;
+            }
+          }
+        }
+        #contact-info, 
+        #emergency-contact{
+          display: grid;
+          grid-template-columns: 19mm 94mm 35mm;
+          grid-template-rows: 7.3mm 6mm 9mm;
+          .resides-furigana {
+            grid-row: 1 / 2;
+            grid-column: 1 / 3;
+            border: {
+              right: $print-line-default;
+              bottom: $print-line-default;
+              left: $print-line-bold;
+            }
+            display: grid;
+            grid-template-columns: 18mm 94mm;
+          }
+          .postal-code {
+            grid-row: 2 / 3;
+            grid-column: 1 / 3;
+            border: {
+              right: $print-line-default;
+              left: $print-line-bold;
+            }
+            display: grid;
+            grid-template-columns: 18mm 9mm 12mm 5mm 16mm 5mm;
+          }
+          .resides {
+            grid-row: 3 / 4;
+            grid-column: 1 / 3;
+            font-size: 11pt;
+            border: {
+              right: $print-line-default;
+              bottom: $print-line-default;
+              left: $print-line-bold;
+            }
+          }
+          .phone-number {
+            grid-row: 1 / 2;
+            grid-column: 3 / 4;
+            border: {
+              top: $print-line-bold;
+              right: $print-line-bold;
+              bottom: $print-line-default;
+            }
+            display: grid;
+            grid-template-columns: 9mm 25mm;
+          }
+          .e-mail {
+            grid-row: 2 / 4;
+            grid-column: 3 / 4;
+            border: {
+              right: $print-line-bold;
+              bottom: $print-line-default;
+            }
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 6mm 9mm;
+
+          }
+        }
+        #emergency-contact {
+          .phone-number {
+            border: {
+              top: none;
+              right: $print-line-bold;
+            }
+          }
+        }
+      }
+      .education-and-career-history {
+        .resume-line {
+          &:last-of-type {
+            border: {
+              bottom: $print-line-bold;
+            }
+          }
+        }
       }
     }
     .education-and-career-history {
-
       .resume-line {
         width: 148mm;
-        height: 7.5mm;
+        height: 7.3mm;
         display: grid;
         grid-template-columns: 22.5mm 12.5mm 111mm; // 両脇枠線分2mm引き
         text-align: center;
@@ -154,6 +325,11 @@ main {
           left: $print-line-bold;
           right: $print-line-bold;
           bottom: $print-line-default ;
+        }
+        &:first-of-type {
+          border: {
+            bottom: $print-line-double;
+          }
         }
         p {
           border: {
@@ -166,13 +342,113 @@ main {
           }
         }
       }
-      .resume-line-header {
-
-      }
-
     }
     #right-page {
-
+      .education-and-career-history {
+        margin-top: 8.5mm;
+        .resume-line-header {
+          border: {
+            top: $print-line-bold;
+          }
+        }
+      }
+      #qualifications {
+        .qualifications-line {
+          width: 148mm;
+          height: 7.3mm;
+          display: grid;
+          grid-template-columns: 22.5mm 12.5mm 111mm; // 両脇枠線分2mm引き
+          text-align: center;
+          border: {
+            left: $print-line-bold;
+            right: $print-line-bold;
+            bottom: $print-line-default ;
+          }
+          &:first-of-type {
+            border: {
+              bottom: $print-line-double;
+            }
+          }
+          p {
+            border: {
+              right: $print-line-default ;
+            }
+            &:last-of-type {
+              border: {
+                right: none;
+              }
+            }
+          }
+        }
+      }
+      #motivation{
+        display: grid;
+        grid-template-columns: 89mm 29mm 30mm;
+        grid-template-rows: repeat(3, 14.6mm);
+        .label {
+          font-size: 10pt;
+        }
+        #self-promotion {
+          grid-row: 1 / 4;
+          grid-column: 1 / 2;
+          border: {
+            right: $print-line-default;
+            bottom: $print-line-default;
+            left: $print-line-bold;
+          }
+        }
+        #commuting-time {
+          grid-row: 1 / 2;
+          grid-column: 2 / 4;
+          border: {
+            right: $print-line-bold;
+            bottom: $print-line-default;
+          }
+        }
+        #dependents{
+          grid-row: 2 / 3;
+          grid-column: 2 / 4;
+          border: {
+            bottom: $print-line-default;
+            right: $print-line-bold;
+          }
+        }
+        #marital-status {
+          grid-row: 3 / 4;
+          grid-column: 2 / 3;
+          border: {
+            right: $print-line-default;
+            bottom: $print-line-default;
+          }
+        }
+        #obligation-to-support-spouse {
+          grid-row: 3 / 4;
+          grid-column: 3 / 4;
+          border: {
+            right: $print-line-bold;
+            bottom: $print-line-default;
+          }
+        }
+      }
+      #objective {
+        display: grid;
+        grid-template-columns: 1fr;
+        border: {
+          right: $print-line-bold;
+          bottom: $print-line-bold;
+          left: $print-line-bold;
+        }
+        .label {
+          height: 7.3mm;
+          font-size: 10pt;
+          border: {
+            bottom: $print-line-double;
+          }
+        }
+        .input-field {
+          height: 43.8mm;
+        }
+      }
     }
   }
 }

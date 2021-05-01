@@ -2,7 +2,7 @@
 <html lang="ja">
   <!-- Author : bonji@mikuro.net (Shuji Narumi) 
     start: 4/28
-    total: 4h last 4/30
+    total: 8h last 5/2
     Completion : 5/10
   -->
   <!--
@@ -101,19 +101,17 @@
           
           <div id="birthday">
             <p class="label">生年月日</p>
-            <!-- ↓ 数値チェック -->
-            <p class="input-field"></p>
-            <p class="label">年</p>
-            <!-- ↓ 数値チェック -->
-            <p class="input-field"></p>
-            <p class="label">月</p>
-            <!-- ↓ 数値チェック -->
-            <p class="input-field"></p>
-            <!-- ↓ 自動で満年齢を取得表示 -->
-            <p class="label">日生（満</p>
-            <p class="input-field"></p>
-            <p class="label">歳）</p>
-            <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
+            <div class="date">
+              <p class="input-field"></p>
+              <p class="label">年</p>
+              <p class="input-field"></p>
+              <p class="label">月</p>
+              <p class="input-field"></p>
+              <p class="label">日生（満</p>
+              <p class="input-field"></p>
+              <p class="label">歳）</p>
+              <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
+            </div>
           </div><!-- /#birthday -->
   
           <div id="contact-info">
@@ -175,11 +173,6 @@
             <p>年</p>
             <p>月</p>
             <p>学歴・職歴</p>
-          </div>
-          <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
           </div>
           <div class="resume-line">
             <p class="input-field"></p>
@@ -373,45 +366,45 @@
         </section><!-- /#qualifications -->
   
         <section id="motivation" class="entry-field">
-        </section><!-- /#motivation -->
-  
-        <section id="self-promotion" class="entry-field">
-          <p class="label">志望の動機、自己PR、趣味、特技など</p>
-          <p class="input-field multiple-lines "></p>
-        </section><!-- /#self-promotion -->
-  
-        <section id="commuting-time">
-          <p class="label">通勤時間</p>
-          <div class="commuting-time-line">
-            <p class="label">約</p>
-            <p class="input-field"></p>
-            <p class="label">時間</p>
-            <p class="input-field"></p>
-            <p class="label">分</p>
+
+          <section id="self-promotion" class="entry-field">
+            <p class="label">志望の動機、自己PR、趣味、特技など</p>
+            <p class="input-field multiple-lines "></p>
+          </section><!-- /#self-promotion -->
+    
+          <section id="commuting-time">
+            <p class="label">通勤時間</p>
+            <div class="commuting-time-line">
+              <p class="label">約</p>
+              <p class="input-field"></p>
+              <p class="label">時間</p>
+              <p class="input-field"></p>
+              <p class="label">分</p>
+              </div>
+          </section><!-- /#commuting-time -->
+    
+          <section id="dependents">
+            <p class="label">扶養家族（配偶者を除く）</p>
+            <div class="dependents-line">
+              <p class="input-field"></p>
+              <p class="label">人</p>  
             </div>
-        </section><!-- /#commuting-time -->
-  
-        <section id="dependents">
-          <p class="label">扶養家族（配偶者を除く）</p>
-          <div class="dependents-line">
-            <p class="input-field"></p>
-            <p class="label">人</p>  
-          </div>
-        </section><!-- /#dependents -->
-          
-        <section id="marital-status">
-          <p class="label">配偶者</p>
-          <div class="marital-status-line">
-            <p class="input-field">有・無</p>
-          </div>
-        </section><!-- /#marital-status -->
-  
-        <section id="obligation-to-support-spouse">
-          <p class="label">配偶者の扶養義務</p>
-          <div class="obligation-to-support-spouse-line">
-            <p class="input-field">有・無</p>
-          </div>
-        </section><!-- /#obligation-to-support-spouse -->
+          </section><!-- /#dependents -->
+            
+          <section id="marital-status">
+            <p class="label">配偶者</p>
+            <div class="marital-status-line">
+              <p class="input-field">有・無</p>
+            </div>
+          </section><!-- /#marital-status -->
+
+          <section id="obligation-to-support-spouse">
+            <p class="label">配偶者の扶養義務</p>
+            <div class="obligation-to-support-spouse-line">
+              <p class="input-field">有・無</p>
+            </div>
+          </section><!-- /#obligation-to-support-spouse -->
+        </section><!-- /#motivation -->
   
         <section id="objective" class="entry-field">
           <p class="label">本人希望記入欄（特に待遇・職種・勤務時間・その他についての希望などがあれば記入）</p>
