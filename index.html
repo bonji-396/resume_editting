@@ -11,12 +11,12 @@
     3. JS 要素生成のロジックを考え決める(MVC?) 5/1
     4. JS オブジェクト定義                  5/5
     5. JS コーディング                     5/5,5/6
-    6. テスト                             5/6
-    7. CSS定義(スマートフォン対応)           5/7
-    8. GitHub Pagesへ実装、GitHubコード公開 5/8
-    9. Qiitaへ記事投稿                      4/8
-    10. ポートフォリオ用詳細ページ作成         5/9
-    11. ポートフォリオへ反映                 5/9
+    6. テスト                             5/7
+    7. GitHub Pagesへ実装、GitHubコード公開 5/8
+    8. Qiitaへ記事投稿                      4/8
+    9. ポートフォリオ用詳細ページ作成         5/9
+    10. ポートフォリオへ反映                 5/9
+    11. CSS定義(スマートフォン対応)           5/11
   -->
 <head>
   <meta charset="UTF-8">
@@ -52,23 +52,23 @@
     </div>
   </header>
   <main>
-    <section id="resume">
-      <section id="left-page" class="page">
+    <section class="resume">
+      <section class="page left-page">
 
-        <section id="resume-header">
+        <section class="resume-header">
           <h2>履　歴　書</h2>
           <!-- 本日日付を取得して自動で入力される。編集は可能で、データ読み込みの場合はその値を反映 -->
-          <div id="creataion-date">
+          <div class="creataion-date">
             <!-- ↓ 年号、西暦と年チェック -->
-            <p class="input-field" autofocus></p>
+            <p id="creatation-year" class="input-field" autofocus></p>
             <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
             <p class="label">年</p> 
             <!-- ↓ 数値範囲１〜１２チェック -->
-            <p class="input-field"></p>
+            <p id="creatation-month" class="input-field"></p>
             <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
             <p class="label">月</p> 
             <!-- ↓ 数値範囲１〜３１チェック -->
-            <p class="input-field"></p>
+            <p id="creatation-day"  class="input-field"></p>
             <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
             <p class="label">日現在</p> 
           </div>
@@ -84,8 +84,8 @@
             2.本人単身から上</p>
         </section><!-- /#id-photo -->
   
-        <section id="personal-data">
-          <div id="basic-data">
+        <section class="personal-data">
+          <div class="basic-data">
             <div id="name-furigana">
               <p class="label">ふりがな</p> 
               <p class='input-field'></p>
@@ -110,7 +110,7 @@
             </div><!-- /#birthday -->
           </div><!-- #basic-data -->
 
-          <div id="contact-info">
+          <div class="contact-info">
             <div class="resides-furigana">
               <p class="label">ふりがな</p>
               <p class="input-field"></p>
@@ -136,7 +136,7 @@
             </div>
           </div><!-- /#contact-info -->
   
-          <div id="emergency-contact">
+          <div class="emergency-contact">
             <div class="resides-furigana">
               <p class="label">ふりがな</p>
               <p class="input-field"></p>
@@ -266,9 +266,9 @@
             <p class="input-field"></p>
           </div>
         </section>
-      </section><!-- /#left-page -->
+      </section><!-- /.left-page -->
   
-      <section id="right-page" class="page">
+      <section class="page right-page">
   
         <section class="education-and-career-history">
           <div class="resume-line resume-line-header">
@@ -407,7 +407,7 @@
           <p class="input-field multiple-lines"></p>
         </section><!-- /#objective -->
   
-      </section><!-- /#right-page -->
+      </section><!-- /.right-page -->
     </section>
 
   </main>

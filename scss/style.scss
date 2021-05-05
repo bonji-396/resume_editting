@@ -98,7 +98,7 @@ header {
 // 履歴書（A4サイズ: 210mm×297mm x 2（左右ページ合わせてA3:420mmx297mm）, 余白: 上下左右17mm）
 main {
   font-size: 11pt;
-  #resume {
+  .resume {
     width: 364mm;
     margin: 60px 10px 10px;
     display: grid;
@@ -109,9 +109,9 @@ main {
       height: 257mm;
       padding: 14mm 17mm;
     }
-    #left-page {
+    .left-page {
       position: relative;
-      #resume-header {
+      .resume-header {
         width: 148mm;
         height: 7.3mm;
         margin-top: 1mm;
@@ -122,7 +122,7 @@ main {
           font-size: 17pt;
           text-align: center;
         }
-        #creataion-date {
+        .creataion-date {
           padding: 1mm;
           display: grid;
           grid-template-columns: 13mm 3mm 5.5mm 3mm 5.5mm 8.5mm;
@@ -154,7 +154,7 @@ main {
           margin-bottom: 8pt;
         }
       }
-      #personal-data {
+      .personal-data {
         p {
           &.label {
             text-align: left;
@@ -166,7 +166,7 @@ main {
             padding: 0 1mm;
           }
         }
-      #basic-data {
+        .basic-data {
           display: grid;
           grid-template-columns: 94mm 19mm 35mm;
           grid-template-rows: 7.3mm 15mm 7.3mm;
@@ -249,8 +249,8 @@ main {
             }
           }
         }
-        #contact-info, 
-        #emergency-contact{
+        .contact-info, 
+        .emergency-contact{
           display: grid;
           grid-template-columns: 19mm 92.5mm 35.5mm;
           grid-template-rows: 7.3mm 6mm 9mm;
@@ -324,7 +324,7 @@ main {
             }
           }
         }
-        #emergency-contact {
+        .emergency-contact {
           .phone-number {
             border: {
               top: none;
@@ -371,7 +371,7 @@ main {
         }
       }
     }
-    #right-page {
+    .right-page {
       .education-and-career-history {
         margin-top: 8.5mm;
         .resume-line {

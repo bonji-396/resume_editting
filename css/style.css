@@ -130,7 +130,7 @@ main {
   font-size: 11pt;
 }
 
-main #resume {
+main .resume {
   width: 364mm;
   margin: 60px 10px 10px;
   display: grid;
@@ -138,17 +138,17 @@ main #resume {
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-main #resume .page {
+main .resume .page {
   width: 182mm;
   height: 257mm;
   padding: 14mm 17mm;
 }
 
-main #resume #left-page {
+main .resume .left-page {
   position: relative;
 }
 
-main #resume #left-page #resume-header {
+main .resume .left-page .resume-header {
   width: 148mm;
   height: 7.3mm;
   margin-top: 1mm;
@@ -157,32 +157,32 @@ main #resume #left-page #resume-header {
   align-items: center;
 }
 
-main #resume #left-page #resume-header h2 {
+main .resume .left-page .resume-header h2 {
   font-size: 17pt;
   text-align: center;
 }
 
-main #resume #left-page #resume-header #creataion-date {
+main .resume .left-page .resume-header .creataion-date {
   padding: 1mm;
   display: grid;
   grid-template-columns: 13mm 3mm 5.5mm 3mm 5.5mm 8.5mm;
   justify-self: end;
 }
 
-main #resume #left-page #resume-header #creataion-date p {
+main .resume .left-page .resume-header .creataion-date p {
   vertical-align: middle;
   font-size: 8pt;
 }
 
-main #resume #left-page #resume-header #creataion-date p.label {
+main .resume .left-page .resume-header .creataion-date p.label {
   text-align: center;
 }
 
-main #resume #left-page #resume-header #creataion-date p.input-field {
+main .resume .left-page .resume-header .creataion-date p.input-field {
   text-align: right;
 }
 
-main #resume #left-page #id-photo {
+main .resume .left-page #id-photo {
   width: 28mm;
   height: 36.5mm;
   padding: 10pt;
@@ -192,31 +192,31 @@ main #resume #left-page #id-photo {
   border: 0.2mm solid #000;
 }
 
-main #resume #left-page #id-photo p {
+main .resume .left-page #id-photo p {
   font-size: 8pt;
   text-align: center;
   line-height: 8pt;
   margin-bottom: 8pt;
 }
 
-main #resume #left-page #personal-data p.label {
+main .resume .left-page .personal-data p.label {
   text-align: left;
   align-self: center;
   padding: 0 1mm;
 }
 
-main #resume #left-page #personal-data p.input-field {
+main .resume .left-page .personal-data p.input-field {
   align-self: center;
   padding: 0 1mm;
 }
 
-main #resume #left-page #personal-data #basic-data {
+main .resume .left-page .personal-data .basic-data {
   display: grid;
   grid-template-columns: 94mm 19mm 35mm;
   grid-template-rows: 7.3mm 15mm 7.3mm;
 }
 
-main #resume #left-page #personal-data #basic-data #name-furigana {
+main .resume .left-page .personal-data .basic-data #name-furigana {
   height: 7.3mm;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
@@ -228,17 +228,17 @@ main #resume #left-page #personal-data #basic-data #name-furigana {
   border-left: 1mm solid #000;
 }
 
-main #resume #left-page #personal-data #basic-data #name-furigana p.label {
+main .resume .left-page .personal-data .basic-data #name-furigana p.label {
   grid-column: 1 / 2;
   font-size: 9pt;
 }
 
-main #resume #left-page #personal-data #basic-data #name-furigana p.input-field {
+main .resume .left-page .personal-data .basic-data #name-furigana p.input-field {
   grid-column: 2 / 3;
   font-size: 9pt;
 }
 
-main #resume #left-page #personal-data #basic-data #name {
+main .resume .left-page .personal-data .basic-data #name {
   height: 15mm;
   grid-column: 1 / 2;
   grid-row: 2 / 3;
@@ -249,17 +249,17 @@ main #resume #left-page #personal-data #basic-data #name {
   border-left: 1mm solid #000;
 }
 
-main #resume #left-page #personal-data #basic-data #name p.label {
+main .resume .left-page .personal-data .basic-data #name p.label {
   grid-column: 1 / 2;
 }
 
-main #resume #left-page #personal-data #basic-data #name p.input-field {
+main .resume .left-page .personal-data .basic-data #name p.input-field {
   grid-column: 2 / 3;
   text-align: center;
   font-size: 16pt;
 }
 
-main #resume #left-page #personal-data #basic-data #gender {
+main .resume .left-page .personal-data .basic-data #gender {
   grid-row: 1 / 3;
   grid-column: 2 / 3;
   border-top: 1mm solid #000;
@@ -271,11 +271,11 @@ main #resume #left-page #personal-data #basic-data #gender {
   text-align: center;
 }
 
-main #resume #left-page #personal-data #basic-data #gender p {
+main .resume .left-page .personal-data .basic-data #gender p {
   text-align: center;
 }
 
-main #resume #left-page #personal-data #basic-data #birthday {
+main .resume .left-page .personal-data .basic-data #birthday {
   grid-row: 3 / 4;
   grid-column: 1 / 3;
   border-right: 1mm solid #000;
@@ -286,12 +286,12 @@ main #resume #left-page #personal-data #basic-data #birthday {
   align-items: center;
 }
 
-main #resume #left-page #personal-data #basic-data #birthday p.input-field {
+main .resume .left-page .personal-data .basic-data #birthday p.input-field {
   text-align: right;
 }
 
-main #resume #left-page #personal-data #contact-info,
-main #resume #left-page #personal-data #emergency-contact {
+main .resume .left-page .personal-data .contact-info,
+main .resume .left-page .personal-data .emergency-contact {
   display: grid;
   grid-template-columns: 19mm 92.5mm 35.5mm;
   grid-template-rows: 7.3mm 6mm 9mm;
@@ -299,8 +299,8 @@ main #resume #left-page #personal-data #emergency-contact {
   border-right: 1mm solid #000;
 }
 
-main #resume #left-page #personal-data #contact-info .resides-furigana,
-main #resume #left-page #personal-data #emergency-contact .resides-furigana {
+main .resume .left-page .personal-data .contact-info .resides-furigana,
+main .resume .left-page .personal-data .emergency-contact .resides-furigana {
   grid-row: 1 / 2;
   grid-column: 1 / 3;
   border-right: 0.2mm solid #000;
@@ -310,8 +310,8 @@ main #resume #left-page #personal-data #emergency-contact .resides-furigana {
   font-size: 9pt;
 }
 
-main #resume #left-page #personal-data #contact-info .postal-code,
-main #resume #left-page #personal-data #emergency-contact .postal-code {
+main .resume .left-page .personal-data .contact-info .postal-code,
+main .resume .left-page .personal-data .emergency-contact .postal-code {
   grid-row: 2 / 3;
   grid-column: 1 / 3;
   border-right: 0.2mm solid #000;
@@ -319,13 +319,13 @@ main #resume #left-page #personal-data #emergency-contact .postal-code {
   grid-template-columns: 18mm 9mm 12mm 5mm 16mm 5mm;
 }
 
-main #resume #left-page #personal-data #contact-info .postal-code p.input-field,
-main #resume #left-page #personal-data #emergency-contact .postal-code p.input-field {
+main .resume .left-page .personal-data .contact-info .postal-code p.input-field,
+main .resume .left-page .personal-data .emergency-contact .postal-code p.input-field {
   text-align: center;
 }
 
-main #resume #left-page #personal-data #contact-info .resides,
-main #resume #left-page #personal-data #emergency-contact .resides {
+main .resume .left-page .personal-data .contact-info .resides,
+main .resume .left-page .personal-data .emergency-contact .resides {
   height: 9mm;
   grid-row: 3 / 4;
   grid-column: 1 / 3;
@@ -335,13 +335,13 @@ main #resume #left-page #personal-data #emergency-contact .resides {
   align-self: center;
 }
 
-main #resume #left-page #personal-data #contact-info .resides p.input-field,
-main #resume #left-page #personal-data #emergency-contact .resides p.input-field {
+main .resume .left-page .personal-data .contact-info .resides p.input-field,
+main .resume .left-page .personal-data .emergency-contact .resides p.input-field {
   line-height: 9mm;
 }
 
-main #resume #left-page #personal-data #contact-info .phone-number,
-main #resume #left-page #personal-data #emergency-contact .phone-number {
+main .resume .left-page .personal-data .contact-info .phone-number,
+main .resume .left-page .personal-data .emergency-contact .phone-number {
   grid-row: 1 / 2;
   grid-column: 3 / 4;
   border-top: 1mm solid #000;
@@ -350,8 +350,8 @@ main #resume #left-page #personal-data #emergency-contact .phone-number {
   grid-template-columns: 10mm 24mm;
 }
 
-main #resume #left-page #personal-data #contact-info .e-mail,
-main #resume #left-page #personal-data #emergency-contact .e-mail {
+main .resume .left-page .personal-data .contact-info .e-mail,
+main .resume .left-page .personal-data .emergency-contact .e-mail {
   height: 15mm;
   grid-row: 2 / 4;
   grid-column: 3 / 4;
@@ -361,20 +361,20 @@ main #resume #left-page #personal-data #emergency-contact .e-mail {
   grid-template-rows: 6mm 9mm;
 }
 
-main #resume #left-page #personal-data #contact-info .e-mail p.input-field,
-main #resume #left-page #personal-data #emergency-contact .e-mail p.input-field {
+main .resume .left-page .personal-data .contact-info .e-mail p.input-field,
+main .resume .left-page .personal-data .emergency-contact .e-mail p.input-field {
   height: 9mm;
 }
 
-main #resume #left-page #personal-data #emergency-contact .phone-number {
+main .resume .left-page .personal-data .emergency-contact .phone-number {
   border-top: none;
 }
 
-main #resume #left-page .education-and-career-history .resume-line:last-of-type {
+main .resume .left-page .education-and-career-history .resume-line:last-of-type {
   border-bottom: 1mm solid #000;
 }
 
-main #resume .education-and-career-history .resume-line {
+main .resume .education-and-career-history .resume-line {
   width: 148mm;
   height: 7.3mm;
   display: grid;
@@ -385,32 +385,32 @@ main #resume .education-and-career-history .resume-line {
   border-bottom: 0.2mm solid #000;
 }
 
-main #resume .education-and-career-history .resume-line:first-of-type {
+main .resume .education-and-career-history .resume-line:first-of-type {
   border-bottom: 1mm double #000;
 }
 
-main #resume .education-and-career-history .resume-line p {
+main .resume .education-and-career-history .resume-line p {
   border-right: 0.2mm solid #000;
 }
 
-main #resume .education-and-career-history .resume-line p:last-of-type {
+main .resume .education-and-career-history .resume-line p:last-of-type {
   border-right: none;
 }
 
-main #resume #right-page .education-and-career-history {
+main .resume .right-page .education-and-career-history {
   margin-top: 8.5mm;
 }
 
-main #resume #right-page .education-and-career-history .resume-line:first-of-type {
+main .resume .right-page .education-and-career-history .resume-line:first-of-type {
   border-top: 1mm solid #000;
 }
 
-main #resume #right-page .education-and-career-history .resume-line p {
+main .resume .right-page .education-and-career-history .resume-line p {
   height: 100%;
   line-height: 7.3mm;
 }
 
-main #resume #right-page #qualifications .qualifications-line {
+main .resume .right-page #qualifications .qualifications-line {
   width: 148mm;
   height: 7.3mm;
   display: grid;
@@ -421,29 +421,29 @@ main #resume #right-page #qualifications .qualifications-line {
   border-bottom: 0.2mm solid #000;
 }
 
-main #resume #right-page #qualifications .qualifications-line:first-of-type {
+main .resume .right-page #qualifications .qualifications-line:first-of-type {
   border-bottom: 1mm double #000;
 }
 
-main #resume #right-page #qualifications .qualifications-line p {
+main .resume .right-page #qualifications .qualifications-line p {
   border-right: 0.2mm solid #000;
 }
 
-main #resume #right-page #qualifications .qualifications-line p:last-of-type {
+main .resume .right-page #qualifications .qualifications-line p:last-of-type {
   border-right: none;
 }
 
-main #resume #right-page #motivation {
+main .resume .right-page #motivation {
   display: grid;
   grid-template-columns: 89mm 29mm 30mm;
   grid-template-rows: repeat(3, 14.6mm);
 }
 
-main #resume #right-page #motivation .label {
+main .resume .right-page #motivation .label {
   font-size: 10pt;
 }
 
-main #resume #right-page #motivation #self-promotion {
+main .resume .right-page #motivation #self-promotion {
   grid-row: 1 / 4;
   grid-column: 1 / 2;
   border-right: 0.2mm solid #000;
@@ -451,35 +451,35 @@ main #resume #right-page #motivation #self-promotion {
   border-left: 1mm solid #000;
 }
 
-main #resume #right-page #motivation #commuting-time {
+main .resume .right-page #motivation #commuting-time {
   grid-row: 1 / 2;
   grid-column: 2 / 4;
   border-right: 1mm solid #000;
   border-bottom: 0.2mm solid #000;
 }
 
-main #resume #right-page #motivation #dependents {
+main .resume .right-page #motivation #dependents {
   grid-row: 2 / 3;
   grid-column: 2 / 4;
   border-bottom: 0.2mm solid #000;
   border-right: 1mm solid #000;
 }
 
-main #resume #right-page #motivation #marital-status {
+main .resume .right-page #motivation #marital-status {
   grid-row: 3 / 4;
   grid-column: 2 / 3;
   border-right: 0.2mm solid #000;
   border-bottom: 0.2mm solid #000;
 }
 
-main #resume #right-page #motivation #obligation-to-support-spouse {
+main .resume .right-page #motivation #obligation-to-support-spouse {
   grid-row: 3 / 4;
   grid-column: 3 / 4;
   border-right: 1mm solid #000;
   border-bottom: 0.2mm solid #000;
 }
 
-main #resume #right-page #objective {
+main .resume .right-page #objective {
   display: grid;
   grid-template-columns: 1fr;
   border-right: 1mm solid #000;
@@ -487,13 +487,13 @@ main #resume #right-page #objective {
   border-left: 1mm solid #000;
 }
 
-main #resume #right-page #objective .label {
+main .resume .right-page #objective .label {
   height: 7.3mm;
   font-size: 10pt;
   border-bottom: 1mm double #000;
 }
 
-main #resume #right-page #objective .input-field {
+main .resume .right-page #objective .input-field {
   height: 43.8mm;
 }
 
