@@ -1,3 +1,5 @@
+/* 定数を定義
+---------------------------------------------------------------------------- */
 DEFAULT_IS_EDITTING = true;
 
 /* DOM解析終了イベント時の処理を定義
@@ -57,20 +59,18 @@ class AutoSessionSave{
   constructor(){
     this.inputFields = document.querySelectorAll('.input-field');
     this.inputFields.forEach(inputField=>{
+      // 入力した時に保存する
+      // TODO:場合によっては'change'や'keyup'を検討する
       inputField.addEventListener('input', ()=>{this.save()});
-      // 場合によっては'change'やkeyup
     });
   }
   save(){
-    console.log('save()');
-    console.log(document.activeElement.id ,document.activeElement.innerText);
     if(document.activeElement.id) {
       console.log('hage');
       sessionStorage.setItem(document.activeElement.id, document.activeElement.innerText);
     } 
   }
 }
-
 /* AutoLoad
  各入力領域の内容を自動読み込みする
 ---------------------------------------------------------------------------- */

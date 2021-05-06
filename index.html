@@ -5,12 +5,14 @@
     total: 12h last 5/5
     Completion : 5/10
   -->
+<!--   TOOD: 
+ -->
   <!--
     1. CSS定義用の雛形のHMTLを作る           4/28
     2. CSS定義(@media print A4, B5)       5/1
     3. JS 要素生成のロジックを考え決める(MVC?) 5/1
     4. JS オブジェクト定義                  5/5
-    5. JS コーディング                     5/5,5/6
+    5. JS コーディング（リファクタリング）       5/5,5/6
     6. テスト                             5/7
     7. GitHub Pagesへ実装、GitHubコード公開 5/8
     8. Qiitaへ記事投稿                      4/8
@@ -72,7 +74,7 @@
             <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
             <p class="label">日現在</p> 
           </div>
-        </section><!-- /#resume-header -->
+        </section><!-- /.resume-header -->
   
         <section id="id-photo">
           <!-- ドラックアンドドロップ + ＋ -->
@@ -86,79 +88,80 @@
   
         <section class="personal-data">
           <div class="basic-data">
-            <div id="name-furigana">
+            <div class="name-furigana">
               <p class="label">ふりがな</p> 
-              <p class='input-field'></p>
+              <p id="name-furigana" class='input-field'></p>
             </div> 
-            <div id="name">
+            <div class="name">
               <p class="label">氏 名</p> 
-              <p class='input-field'></p>
+              <p id="name" class='input-field'></p>
             </div>
-            <div id="gender">
-              <p class="input-field">男・女</p>
+            <div class="gender">
+              <p id="gender" class="input-field">男・女</p>
             </div>
-            <div id="birthday">
+            <div class="birthday">
               <p class="label">生年月日</p>
-              <p class="input-field"></p>
+              <p id="birthday-year" class="input-field"></p>
               <p class="label">年</p>
-              <p class="input-field"></p>
+              <p id="birthday-month" class="input-field"></p>
               <p class="label">月</p>
-              <p class="input-field"></p>
+              <p id="birthday-day" class="input-field"></p>
               <p class="label">日生（満</p>
-              <p class="input-field"></p>
+              <p id="old-years" class="input-field"></p>
               <p class="label">歳）</p>
-            </div><!-- /#birthday -->
-          </div><!-- #basic-data -->
+            </div><!-- /.birthday -->
+          </div><!-- /.basic-data -->
 
           <div class="contact-info">
             <div class="resides-furigana">
               <p class="label">ふりがな</p>
-              <p class="input-field"></p>
+              <p id="resides-furigana" class="input-field"></p>
             </div>
             <div class="postal-code">
               <p class="label">連絡先</p>
               <p class="label">（〒</p>
-              <p class="input-field"></p>
+              <p id="postal-code-first3" class="input-field"></p>
               <p class="label">ー</p>
-              <p class="input-field"></p>
+              <p id="postal-code-last4" class="input-field"></p>
               <p class="label">）</p>
             </div>
             <div class="resides">
-              <p class="input-field"></p>
+              <p id="resides-address" class="input-field"></p>
             </div>
             <div class="phone-number">
               <p class="label">電話</p>
-              <p class="input-field" type="number"></p>
+              <p id="phone-number" class="input-field" type="number"></p>
             </div>
             <div class="e-mail">
               <p class="label">E-mail</p>
-              <p class="input-field"></p>
+              <p id="e-mail" class="input-field"></p>
             </div>
-          </div><!-- /#contact-info -->
+          </div><!-- /.contact-info -->
   
           <div class="emergency-contact">
             <div class="resides-furigana">
               <p class="label">ふりがな</p>
-              <p class="input-field"></p>
+              <p id="emergency-furigana" class="input-field"></p>
             </div>
             <div class="postal-code">
               <p class="label">連絡先</p>
               <p class="label">（〒</p>
-              <p class="input-field"></p>
+              <p id="emergency-postal-code-first3" class="input-field"></p>
               <p class="label">ー</p>
-              <p class="input-field"></p>
+              <p id="emergency-postal-code-last4" class="input-field"></p>
               <p class="label">）</p>
             </div>
             <div class="resides">
-              <p class="input-field"></p>
+              <p id="emergency-address" class="input-field"></p>
             </div>
             <div class="phone-number">
               <p class="label">電話</p>
-              <p class="input-field"></p>
+              <p id="emergency-phone-number" class="input-field" type="number"></p>
             </div>
             <div class="e-mail">
               <p class="label">E-mail</p>
-              <p class="input-field"></p>
+              <p id="emergency-e-mail" class="input-field"></p>
+            </div>
             </div>
           </div><!-- /#emergency-contact -->
   
@@ -171,99 +174,99 @@
             <p>学歴・職歴</p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-1" class="input-field"></p>
+            <p id="career-month-1" class="input-field"></p>
+            <p id="career-1" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-2" class="input-field"></p>
+            <p id="career-month-2" class="input-field"></p>
+            <p id="career-2" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-3" class="input-field"></p>
+            <p id="career-month-3" class="input-field"></p>
+            <p id="career-3" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-4" class="input-field"></p>
+            <p id="career-month-4" class="input-field"></p>
+            <p id="career-4" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-5" class="input-field"></p>
+            <p id="career-month-5" class="input-field"></p>
+            <p id="career-5" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-6" class="input-field"></p>
+            <p id="career-month-6" class="input-field"></p>
+            <p id="career-6" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-7" class="input-field"></p>
+            <p id="career-month-7" class="input-field"></p>
+            <p id="career-7" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-8" class="input-field"></p>
+            <p id="career-month-8" class="input-field"></p>
+            <p id="career-8" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-9" class="input-field"></p>
+            <p id="career-month-9" class="input-field"></p>
+            <p id="career-9" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-10" class="input-field"></p>
+            <p id="career-month-10" class="input-field"></p>
+            <p id="career-10" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-11" class="input-field"></p>
+            <p id="career-month-11" class="input-field"></p>
+            <p id="career-11" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-12" class="input-field"></p>
+            <p id="career-month-12" class="input-field"></p>
+            <p id="career-12" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-13" class="input-field"></p>
+            <p id="career-month-13" class="input-field"></p>
+            <p id="career-13" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-14" class="input-field"></p>
+            <p id="career-month-14" class="input-field"></p>
+            <p id="career-14" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-15" class="input-field"></p>
+            <p id="career-month-15" class="input-field"></p>
+            <p id="career-15" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-16" class="input-field"></p>
+            <p id="career-month-16" class="input-field"></p>
+            <p id="career-16" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-17" class="input-field"></p>
+            <p id="career-month-17" class="input-field"></p>
+            <p id="career-17" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-18" class="input-field"></p>
+            <p id="career-month-18" class="input-field"></p>
+            <p id="career-18" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-19" class="input-field"></p>
+            <p id="career-month-19" class="input-field"></p>
+            <p id="career-19" class="input-field"></p>
           </div>
         </section>
       </section><!-- /.left-page -->
@@ -277,115 +280,115 @@
             <p>学歴・職歴</p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-20" class="input-field"></p>
+            <p id="career-month-20" class="input-field"></p>
+            <p id="career-20" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-21" class="input-field"></p>
+            <p id="career-month-21" class="input-field"></p>
+            <p id="career-21" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-22" class="input-field"></p>
+            <p id="career-month-22" class="input-field"></p>
+            <p id="career-22" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-23" class="input-field"></p>
+            <p id="career-month-23" class="input-field"></p>
+            <p id="career-23" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-24" class="input-field"></p>
+            <p id="career-month-24" class="input-field"></p>
+            <p id="career-24" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-25" class="input-field"></p>
+            <p id="career-month-25" class="input-field"></p>
+            <p id="career-25" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-26" class="input-field"></p>
+            <p id="career-month-26" class="input-field"></p>
+            <p id="career-26" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-27" class="input-field"></p>
+            <p id="career-month-27" class="input-field"></p>
+            <p id="career-27" class="input-field"></p>
           </div>
           <div class="resume-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="career-year-28" class="input-field"></p>
+            <p id="career-month-28" class="input-field"></p>
+            <p id="career-28" class="input-field"></p>
           </div>
         </section><!-- /.education-and-career-history -->
   
-        <section id="qualifications">
+        <section class="qualifications">
           <div class="qualifications-line qualifications-line-header">
             <p>年</p>
             <p>月</p>
             <p>免許・資格</p>
           </div>
           <div class="qualifications-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="qualifications-year-1" class="input-field"></p>
+            <p id="qualifications-month-1" class="input-field"></p>
+            <p id="qualifications-1" class="input-field"></p>
           </div>
           <div class="qualifications-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="qualifications-year-2" class="input-field"></p>
+            <p id="qualifications-month-2" class="input-field"></p>
+            <p id="qualifications-2" class="input-field"></p>
           </div>
           <div class="qualifications-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="qualifications-year-3" class="input-field"></p>
+            <p id="qualifications-month-3" class="input-field"></p>
+            <p id="qualifications-3" class="input-field"></p>
           </div>
           <div class="qualifications-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="qualifications-year-4" class="input-field"></p>
+            <p id="qualifications-month-4" class="input-field"></p>
+            <p id="qualifications-4" class="input-field"></p>
           </div>
           <div class="qualifications-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="qualifications-year-5" class="input-field"></p>
+            <p id="qualifications-month-5" class="input-field"></p>
+            <p id="qualifications-5" class="input-field"></p>
           </div>
           <div class="qualifications-line">
-            <p class="input-field"></p>
-            <p class="input-field"></p>
-            <p class="input-field"></p>
+            <p id="qualifications-year-6" class="input-field"></p>
+            <p id="qualifications-month-6" class="input-field"></p>
+            <p id="qualifications-6" class="input-field"></p>
           </div>
-        </section><!-- /#qualifications -->
+        </section><!-- /.qualifications -->
   
-        <section id="motivation" class="entry-field">
+        <section class="motivation entry-field">
 
-          <section id="self-promotion" class="entry-field">
+          <section class="self-promotion entry-field">
             <p class="label">志望の動機、自己PR、趣味、特技など</p>
-            <p class="input-field multiple-lines "></p>
-          </section><!-- /#self-promotion -->
+            <p id="self-promotion" class="input-field multiple-lines "></p>
+          </section><!-- /.self-promotion -->
     
-          <section id="commuting-time">
+          <section class="commuting-time">
             <p class="label">通勤時間</p>
             <div class="commuting-time-line">
               <p class="label">約</p>
-              <p class="input-field"></p>
+              <p id="commuting-hour" class="input-field"></p>
               <p class="label">時間</p>
-              <p class="input-field"></p>
+              <p id="commuting-minutes" class="input-field"></p>
               <p class="label">分</p>
               </div>
-          </section><!-- /#commuting-time -->
+          </section><!-- /.commuting-time -->
     
-          <section id="dependents">
+          <section class="dependents">
             <p class="label">扶養家族（配偶者を除く）</p>
             <div class="dependents-line">
               <p class="input-field"></p>
               <p class="label">人</p>  
             </div>
-          </section><!-- /#dependents -->
+          </section><!-- /.dependents -->
             
           <section id="marital-status">
             <p class="label">配偶者</p>
