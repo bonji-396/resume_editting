@@ -34,7 +34,8 @@ avaScriptを勉強がてら作りました。
 
 ## 制作目的
 - 以下の部分においてのJavaScriptの勉強
-  - Web Storage APIを利用した永続的なデータ保存
+  - Web Storage APIを利用した永続的なデータの活用
+  - File APIを利用した永続的なデータの活用
   - contenteditableの活用方法
   - @media printの活用
 
