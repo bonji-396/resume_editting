@@ -87,10 +87,31 @@ header {
         }
       } 
     }
+    >label {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      border-radius: 3px;
+      border:1px solid rgb(118, 118, 118);
+      background-color: #EFEFEF;
+      img {
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        margin: 7px;
+      }
+      input {
+        display: none;
+      }
+    }
     button {
       width: 40px;
       height: 40px;
       cursor: pointer;
+      img{
+        width: 24px;
+        height: 24px;
+      }
     }
   }
 }
@@ -385,7 +406,13 @@ main {
       }
     }
     .right-page {
+      p {
+        padding: 1mm;
+      }
       .education-and-career-history {
+        p{
+          padding: 0 1mm;
+        }  
         margin-top: 8.5mm;
         .resume-line {
           &:first-of-type {
@@ -400,6 +427,9 @@ main {
         }
       }
       .qualifications {
+        p{
+          padding: 0 1mm;
+        }  
         .qualifications-line {
           width: 148mm;
           height: 7.3mm;
@@ -445,7 +475,6 @@ main {
           }
           p {
             &.input-field{
-              padding: 1mm;
               height: 40mm;
             }
           }
@@ -457,6 +486,11 @@ main {
             right: $print-line-bold;
             bottom: $print-line-default;
           }
+          .commuting-time-line {
+            text-align: center;
+            display: grid;
+            grid-template-columns: 19mm 10mm 10mm 10mm 10mm;
+          }        
         }
         .dependents{
           grid-row: 2 / 3;
@@ -465,8 +499,17 @@ main {
             bottom: $print-line-default;
             right: $print-line-bold;
           }
+          .dependents-line {
+            display: grid;
+            grid-template-columns: 40mm 19mm;
+            p {
+              &.input-field {
+                text-align: right;
+              }
+            }
+          }
         }
-        #marital-status {
+        .marital-status {
           grid-row: 3 / 4;
           grid-column: 2 / 3;
           border: {
@@ -474,7 +517,7 @@ main {
             bottom: $print-line-default;
           }
         }
-        #obligation-to-support-spouse {
+        .obligation-to-support-spouse {
           grid-row: 3 / 4;
           grid-column: 3 / 4;
           border: {
@@ -483,7 +526,7 @@ main {
           }
         }
       }
-      #objective {
+      .objective {
         display: grid;
         grid-template-columns: 1fr;
         border: {
@@ -491,15 +534,17 @@ main {
           bottom: $print-line-bold;
           left: $print-line-bold;
         }
-        .label {
-          height: 7.3mm;
-          font-size: 10pt;
-          border: {
-            bottom: $print-line-double;
+        p {
+          &.label {
+            height: 7.3mm;
+            font-size: 10pt;
+            border: {
+              bottom: $print-line-double;
+            }
           }
-        }
-        .input-field {
-          height: 43.8mm;
+          &.input-field {
+            height: 43.8mm;
+          }  
         }
       }
     }

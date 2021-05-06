@@ -2,18 +2,31 @@
 <html lang="ja">
   <!-- Author : bonji@mikuro.net (Shuji Narumi) 
     start: 4/28
-    total: 12h last 5/5
+    total: 17h last 5/7
     Completion : 5/10
   -->
-<!--   TOOD: 
+<!--   TOOD: 機能ごとのインスタンスをまとめる
  -->
   <!--
     1. CSS定義用の雛形のHMTLを作る           4/28
     2. CSS定義(@media print A4, B5)       5/1
     3. JS 要素生成のロジックを考え決める(MVC?) 5/1
     4. JS オブジェクト定義                  5/5
-    5. JS コーディング（リファクタリング）       5/5,5/6
-    6. テスト                             5/7
+    5. JS コーディング（テスト)       5/5,5/6
+     . import export　OK
+     . image（300px x 400px）解像度、サイズを変換
+     . print
+     . help
+     . ドラックアンドドロップ（JSON, image）
+     . date制作日付（
+      . 起動時は制作日時にデータが入ってない場合は、自動的に日時を取得し反映する。
+      . リロード時に本日日付と制作日付が異なる場合、更新するか確認する。
+        . OKだと更新する
+     ）
+     . tel, e-mail
+    6. リファクタリング（HTML,CSS,JavaScript） 5/7
+    7. ショーカットキー割り当て               5/7
+    8. ヘルプ表示                           5/7
     7. GitHub Pagesへ実装、GitHubコード公開 5/8
     8. Qiitaへ記事投稿                      4/8
     9. ポートフォリオ用詳細ページ作成         5/9
@@ -34,22 +47,18 @@
       <h1>履歴書 Editor</h1>
       <p>ブラウザで経歴書を作成します。</p>  
     </div>
-    <!-- メニュー
-      保存（エクスポート）：JSON形式でデータを保存
-      読み込み（インポート）：JSON形式のデータを読み込み
-      モード切り替え：編集・完了の2つのモードを切り替える。完了モードに移行した場合、session strage(local strage)にデータを一時的に保存する。
-      閉じるボタン：ブラウザで表示しているウィンドを閉じる。その際は以下の動作を行う（onbeforeunload時にも以下の動作が必要）。
-      　　　　　　　・閉じる前に時保存済みか確認する。
-      　　　　　　　・session strage(local strage)のデータを破棄する
-    -->
     <div class="menu">
       <div class="editing-switch">
         <input id="isEditing" type="checkbox">
         <label for="isEditing"></label>  
       </div>  
       <button id="reset" type="button"><img src="img/reset.svg" alt="reset" title="リセット"></button>
-      <button id="import" type="button"><img src="img/import.svg" alt="import" title="インポート"></button>
+      <label for="import">
+        <img src="img/import.svg" alt="import" title="インポート">
+        <input type="file" id="import" accept=".json">
+      </label>
       <button id="export" type="button"><img src="img/export.svg" alt="export" title="エクスポート"></button>
+      <button id="help" type="button"><img src="img/help.svg" alt="help" title="ヘルプ"></button>
       <button id="close" type="button"><img src="img/close.svg" alt="close" title="閉じる"></button>
     </div>
   </header>
@@ -385,30 +394,30 @@
           <section class="dependents">
             <p class="label">扶養家族（配偶者を除く）</p>
             <div class="dependents-line">
-              <p class="input-field"></p>
+              <p id="dependents" class="input-field"></p>
               <p class="label">人</p>  
             </div>
           </section><!-- /.dependents -->
             
-          <section id="marital-status">
+          <section class="marital-status">
             <p class="label">配偶者</p>
             <div class="marital-status-line">
-              <p class="input-field">有・無</p>
+              <p id="marital-status" class="input-field">有・無</p>
             </div>
-          </section><!-- /#marital-status -->
+          </section><!-- /.marital-status -->
 
-          <section id="obligation-to-support-spouse">
+          <section class="obligation-to-support-spouse">
             <p class="label">配偶者の扶養義務</p>
             <div class="obligation-to-support-spouse-line">
-              <p class="input-field">有・無</p>
+              <p id="obligation-to-support-spouse" class="input-field">有・無</p>
             </div>
           </section><!-- /#obligation-to-support-spouse -->
         </section><!-- /#motivation -->
   
-        <section id="objective" class="entry-field">
+        <section class="objective entry-field">
           <p class="label">本人希望記入欄（特に待遇・職種・勤務時間・その他についての希望などがあれば記入）</p>
           <p class="input-field multiple-lines"></p>
-        </section><!-- /#objective -->
+        </section><!-- /.objective -->
   
       </section><!-- /.right-page -->
     </section>

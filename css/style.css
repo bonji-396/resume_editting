@@ -120,10 +120,35 @@ header .menu .editing-switch label::after {
   cursor: pointer;
 }
 
+header .menu > label {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid #767676;
+  background-color: #EFEFEF;
+}
+
+header .menu > label img {
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  margin: 7px;
+}
+
+header .menu > label input {
+  display: none;
+}
+
 header .menu button {
   width: 40px;
   height: 40px;
   cursor: pointer;
+}
+
+header .menu button img {
+  width: 24px;
+  height: 24px;
 }
 
 main {
@@ -414,8 +439,16 @@ main .resume .education-and-career-history .resume-line p:last-of-type {
   border-right: none;
 }
 
+main .resume .right-page p {
+  padding: 1mm;
+}
+
 main .resume .right-page .education-and-career-history {
   margin-top: 8.5mm;
+}
+
+main .resume .right-page .education-and-career-history p {
+  padding: 0 1mm;
 }
 
 main .resume .right-page .education-and-career-history .resume-line:first-of-type {
@@ -425,6 +458,10 @@ main .resume .right-page .education-and-career-history .resume-line:first-of-typ
 main .resume .right-page .education-and-career-history .resume-line p {
   height: 100%;
   line-height: 7.3mm;
+}
+
+main .resume .right-page .qualifications p {
+  padding: 0 1mm;
 }
 
 main .resume .right-page .qualifications .qualifications-line {
@@ -469,7 +506,6 @@ main .resume .right-page .motivation .self-promotion {
 }
 
 main .resume .right-page .motivation .self-promotion p.input-field {
-  padding: 1mm;
   height: 40mm;
 }
 
@@ -480,6 +516,12 @@ main .resume .right-page .motivation .commuting-time {
   border-bottom: 0.2mm solid #000;
 }
 
+main .resume .right-page .motivation .commuting-time .commuting-time-line {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 19mm 10mm 10mm 10mm 10mm;
+}
+
 main .resume .right-page .motivation .dependents {
   grid-row: 2 / 3;
   grid-column: 2 / 4;
@@ -487,21 +529,30 @@ main .resume .right-page .motivation .dependents {
   border-right: 1mm solid #000;
 }
 
-main .resume .right-page .motivation #marital-status {
+main .resume .right-page .motivation .dependents .dependents-line {
+  display: grid;
+  grid-template-columns: 40mm 19mm;
+}
+
+main .resume .right-page .motivation .dependents .dependents-line p.input-field {
+  text-align: right;
+}
+
+main .resume .right-page .motivation .marital-status {
   grid-row: 3 / 4;
   grid-column: 2 / 3;
   border-right: 0.2mm solid #000;
   border-bottom: 0.2mm solid #000;
 }
 
-main .resume .right-page .motivation #obligation-to-support-spouse {
+main .resume .right-page .motivation .obligation-to-support-spouse {
   grid-row: 3 / 4;
   grid-column: 3 / 4;
   border-right: 1mm solid #000;
   border-bottom: 0.2mm solid #000;
 }
 
-main .resume .right-page #objective {
+main .resume .right-page .objective {
   display: grid;
   grid-template-columns: 1fr;
   border-right: 1mm solid #000;
@@ -509,13 +560,13 @@ main .resume .right-page #objective {
   border-left: 1mm solid #000;
 }
 
-main .resume .right-page #objective .label {
+main .resume .right-page .objective p.label {
   height: 7.3mm;
   font-size: 10pt;
   border-bottom: 1mm double #000;
 }
 
-main .resume .right-page #objective .input-field {
+main .resume .right-page .objective p.input-field {
   height: 43.8mm;
 }
 
