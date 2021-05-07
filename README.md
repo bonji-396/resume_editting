@@ -1,9 +1,17 @@
 # Resume Editor
 
-履歴書をウェブブラウザで作成編集します。  
-ゴールデンウィーク(4/28〜5/9)中にJavaScriptの勉強がてら履歴書作成ウェブアプリを作ってみました。
+（職業訓練校でWebデザインとAIを学習したばかりの）素人が、ゴールデンウィーク(4/28〜5/9)中に勉強がてら、履歴書作成ウェブアプリを作ってみました。
 
 HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロントエンドのみで収束」します。
+
+## 概要
+下記ページにアクセスすれば利用できます。
+
+- [提供ページ](https://www.mikuro.works/resume_editting/editor)
+- [説明ページ](https://www.mikuro.works/resume_editting)
+- [GitHub](https://github.com/bonji-396/resume_editting)
+
+
 
 ## 特徴と機能
 
