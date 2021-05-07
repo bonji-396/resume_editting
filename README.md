@@ -1,7 +1,5 @@
 # Resume Editor
-
-（職業訓練校でWebデザインとAIを学習したばかりの）素人が、ゴールデンウィーク(4/28〜5/9)中に勉強がてら、履歴書作成ウェブアプリを作ってみました。
-
+履歴書作成ウェブアプリです。
 HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロントエンドのみで収束」します。
 
 ## 概要
@@ -10,8 +8,6 @@ HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロント�
 - [提供ページ](https://www.mikuro.works/resume_editting/editor)
 - [説明ページ](https://www.mikuro.works/resume_editting)
 - [GitHub](https://github.com/bonji-396/resume_editting)
-
-
 
 ## 特徴と機能
 
@@ -52,26 +48,3 @@ localStorageでも良かったんですが、扱うデータが個人情報な�
 インポートボタンで保存したJSONファイルを指定してインポートしてください。
 出力したJSONファイルはご自身で管理してください。
 
-## 制作目的
-
-- 以下の部分においての、HTML、CSS（SASS）、JavaScriptの勉強
-  - contenteditableの活用
-  - Web Storage APIを利用した永続的なデータの活用
-  - File APIを利用した永続的なデータの活用
-  - @media printの活用
-  - SCSSでの制作
-  - 標準ライブラリ内で作ってみる
- 
-## 制作時間
-
-1ヶ月前からこういったアプリを作ってみようという構想はありました。
-その時のメモとCSSで一旦レイアウトしたものが初期に残ってあります。
-そこからのスタートなので、構想や仕様設計はほぼ以下の時間に入っていません。
-
-### 期間 4/28 ~ 5/9
-|工程|時間|
-|---|---|
-|total| 30時間|
-|(*HTML*)|(*1時間*)|
-|(*SCSS*)|(*4時間*)|
-|(*JavaScript*)|(*25時間*)|
