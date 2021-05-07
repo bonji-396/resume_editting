@@ -169,6 +169,20 @@ main .resume .page {
   padding: 14mm 17mm;
 }
 
+main .resume .page .input-field {
+  overflow: hidden;
+}
+
+main .resume .page .input-field br {
+  white-space: nowrap;
+  display: none;
+}
+
+main .resume .page .input-field.multiple-lines br {
+  white-space: normal;
+  display: inline;
+}
+
 main .resume .left-page {
   position: relative;
 }
@@ -207,21 +221,42 @@ main .resume .left-page .resume-header .creataion-date p.input-field {
   text-align: right;
 }
 
-main .resume .left-page #id-photo {
+main .resume .left-page .id-photo {
   width: 28mm;
   height: 36.5mm;
-  padding: 10pt;
+  padding: 8pt;
   position: absolute;
   top: 14mm;
   right: 21mm;
   border: 0.2mm solid #000;
+  text-align: center;
 }
 
-main .resume .left-page #id-photo p {
+main .resume .left-page .id-photo p {
   font-size: 8pt;
   text-align: center;
   line-height: 8pt;
   margin-bottom: 8pt;
+}
+
+main .resume .left-page .id-photo label {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+main .resume .left-page .id-photo label input {
+  display: none;
+}
+
+main .resume .left-page .id-photo label img {
+  width: 100%;
+  height: 100%;
 }
 
 main .resume .left-page .personal-data p.label {

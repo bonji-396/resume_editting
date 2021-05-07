@@ -129,6 +129,19 @@ main {
       width: 182mm;
       height: 257mm;
       padding: 14mm 17mm;
+      .input-field {
+        overflow: hidden;
+        br { // 表示自体はなんとかなるが、もともとJavaScriptで入力時に改行を制限する必要がある。
+          white-space: nowrap; //　空白は詰める（改行もされない）
+          display: none; // 改行すると<div><br></div>が生成されるので非表示にする
+        }
+        &.multiple-lines {
+          br {
+            white-space:normal;
+            display: inline;
+          }
+        }
+      }
     }
     .left-page {
       position: relative;
@@ -160,20 +173,40 @@ main {
           }
         }
       }
-      #id-photo {
+      .id-photo {
         width: 28mm;
         height: 36.5mm;
-        padding: 10pt;
+        padding: 8pt;
         position: absolute;
         top: 14mm;
         right: 21mm;
         border: $print-line-default;
-        p {
+        text-align: center;
+        p{
           font-size: 8pt;
           text-align: center;
           line-height: 8pt;
           margin-bottom: 8pt;
         }
+
+        label {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 1;
+          input {
+            display: none;
+          }
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
       }
       .personal-data {
         p {

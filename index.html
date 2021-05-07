@@ -2,7 +2,7 @@
 <html lang="ja">
   <!-- Author : bonji@mikuro.net (Shuji Narumi) 
     start: 4/28
-    total: 17h last 5/7
+    total: 20h last 5/8
     Completion : 5/10
   -->
 <!--   TOOD: 機能ごとのインスタンスをまとめる
@@ -14,7 +14,9 @@
     4. JS オブジェクト定義                  5/5
     5. JS コーディング（テスト)       5/5,5/6
      . import export　OK
-     . image（300px x 400px）解像度、サイズを変換
+     .　改行させない　OK
+     . image OK
+     （300px x 400px）解像度、サイズを変換 
      . print
      . help
      . ドラックアンドドロップ（JSON, image）
@@ -23,10 +25,10 @@
       . リロード時に本日日付と制作日付が異なる場合、更新するか確認する。
         . OKだと更新する
      ）
-     . tel, e-mail
-    6. リファクタリング（HTML,CSS,JavaScript） 5/7
-    7. ショーカットキー割り当て               5/7
-    8. ヘルプ表示                           5/7
+     . tel:, e-mail:
+    6. リファクタリング（HTML,CSS,JavaScript） 5/8
+    7. ショーカットキー割り当て               5/8
+    8. ヘルプ表示                           5/8
     7. GitHub Pagesへ実装、GitHubコード公開 5/8
     8. Qiitaへ記事投稿                      4/8
     9. ポートフォリオ用詳細ページ作成         5/9
@@ -52,8 +54,9 @@
       <div class="editing-switch">
         <input id="isEditing" type="checkbox">
         <label for="isEditing"></label>  
-      </div>  
+      </div>
       <button id="reset" type="button"><img src="img/reset.svg" alt="reset" title="リセット"></button>
+      <button id="print" type="button"><img src="img/print.svg" alt="print" title="プリント"></button>
       <label for="import">
         <img src="img/import.svg" alt="import" title="インポート">
         <input type="file" id="import" accept=".json">
@@ -86,14 +89,18 @@
           </div>
         </section><!-- /.resume-header -->
   
-        <section id="id-photo">
-          <!-- ドラックアンドドロップ + ＋ -->
-          <!-- TODO:画像データはBase64のインラインイメージか？ 別ファイルで参照にするか？ -->
+        <section class="id-photo">
           <p>写真を貼る位置</p>
           <p>写真を貼る必要がある場合</p>
           <p>1.縦 36～40mm<br>
-            横 24～30mm<br>
-            2.本人単身から上</p>
+            横 24～30mm</p>
+          <p>2.本人単身から上</p>
+          <label for="id-photo">
+            <input type="file" id="id-photo" accept="image/gif,image/jpeg,image/jpg,image/png">
+            <img id="photo-image">
+          </label>
+          <!-- ドラックアンドドロップ + ＋ -->
+          <!-- TODO:画像データはBase64のインラインイメージか？ 別ファイルで参照にするか？ -->
         </section><!-- /#id-photo -->
   
         <section class="personal-data">
@@ -412,8 +419,8 @@
             <div class="obligation-to-support-spouse-line">
               <p id="obligation-to-support-spouse" class="input-field">有・無</p>
             </div>
-          </section><!-- /#obligation-to-support-spouse -->
-        </section><!-- /#motivation -->
+          </section><!-- /.obligation-to-support-spouse -->
+        </section><!-- /.motivation -->
   
         <section class="objective entry-field">
           <p class="label">本人希望記入欄（特に待遇・職種・勤務時間・その他についての希望などがあれば記入）</p>
