@@ -1,48 +1,112 @@
-/* 定数を定義
----------------------------------------------------------------------------- */
-DEFAULT_IS_EDITTING = true;
-DEFAULT_EXPORT_FILE_TYPE_IS_TEXT = false;
-
 /* DOM解析終了イベント時の処理を定義
 ---------------------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
-
-  // 履歴書の入力要素全てを格納した配列
-  const inputFields = document.querySelectorAll('.input-field');
-  // 顔写真
-  this.image = document.getElementById('photo-image');
-  // sessionStorage自動読み込み
-  const autoLoad = new AutoSessionLoad(inputFields);
-  // sessionStorageの自動書き込み
-  const autoSave = new AutoSessionSave(inputFields);
-  // 顔写真を追加・変更
-  const idPhoto = new IDPhoto();
-  // 編集可否を切り替え
-  const edittingSwitch = new EdittingSwitch(inputFields, DEFAULT_IS_EDITTING);
-  // 編集内容のリセット
-  const reset = new Reset(inputFields);
-  // print
-  // JSONファイルのインポート
-  const fileImport = new Import(inputFields);
-  // JSONファイルへエクスポート
-  const fileExport = new Export(inputFields);
-  // ヘルプ
-  const help = new Help();
-  // ウィンドウ（ブラウザタブ）を閉じる 
-  const close = new Close();
-  // 改行抑止
-  const lineBreakSuppression = new LineBreakSuppression(inputFields); 
-
-  // document.execCommand("defaultParagraphSeparator", false, "div");
-
+  // 履歴書編集オブジェクトの生成
+  const resumeEditor = new ResumeEditor();
 
 },false);
 
-/* 
+/* 履歴書編集
+---------------------------------------------------------------------------- */
+class ResumeEditor {
+  constructor() {
+    /* -------------------------------------------------
+     定数を定義
+    ---------------------------------------------------- */
+    this.DEFAULT_IS_EDITTING = true;
+    this.DEFAULT_EXPORT_FILE_TYPE_IS_TEXT = false;
+    
+    /* -------------------------------------------------
+     表示部を定義
+    ---------------------------------------------------- */
+    // 履歴書の入力要素全てを格納した配列
+    this.inputFields = document.querySelectorAll('.input-field');
+    // 顔写真
+    this.idPhotoImage = document.getElementById('photo-image');
+    
+    /* -------------------------------------------------
+     機能を定義
+    ---------------------------------------------------- */
+    // 起動リロード時に、sessionStorage自動読み込み
+    this.autoLoad = new AutoSessionLoad(this.inputFields, this.idPhotoImage);
+    // sessionStorageの自動書き込み
+    this.autoSave = new AutoInputFieldsSessionSave(this.inputFields);
+    // 顔写真を追加・変更
+    this.idPhoto = new IDPhoto(this.idPhotoImage);
+    // 編集可否を切り替え
+    this.edittingSwitch = new EdittingSwitch(this.inputFields, this.DEFAULT_IS_EDITTING);
+    // 編集内容のリセットlo
+    this.reset = new Reset(this.inputFields);
+    // print
+    // JSONファイルのインポート
+    this.fileImport = new Import(this.inputFields);
+    // JSONファイルへエクスポート
+    this.fileExport = new Export(this.inputFields, this.DEFAULT_EXPORT_FILE_TYPE_IS_TEXT);
+    // ヘルプ
+    this.help = new Help();
+    // ウィンドウ（ブラウザタブ）を閉じる 
+    this.close = new Close();
+    // 改行抑止
+    this.lineBreakSuppression = new LineBreakSuppression(this.inputFields); 
+    // document.execCommand("defaultParagraphSeparator", false, "div");
+  }
+}
+/* ActsOnInputField
+ 入力要素に関わる親クラス
+---------------------------------------------------------------------------- */
+class ActsOnInputField {
+  constructor(inputFields){
+    this.inputFields = inputFields;
+  }
+}
+/* AutoSave
+ 各入力領域の内容を自動保存する
+---------------------------------------------------------------------------- */
+class AutoInputFieldsSessionSave extends ActsOnInputField{
+  constructor(inputFields){
+    super(inputFields);
+    this.inputFields.forEach(inputField=>{
+      // 入力した時に保存する
+      // TODO:場合によっては'change'や'keyup'を検討する
+      inputField.addEventListener('input', ()=>{this.inputFieldSave()});
+    });
+  }
+  inputFieldSave(){
+    if(document.activeElement.id) {
+      console.log('hage');
+      sessionStorage.setItem(document.activeElement.id, document.activeElement.innerText);
+    } 
+  }
+}
+/* AutoLoad
+ 各入力領域の内容を自動読み込みする
+---------------------------------------------------------------------------- */
+class AutoSessionLoad extends ActsOnInputField{
+  constructor(inputFields, idPhotoImage){
+    super(inputFields);
+    this.idPhotoImage = idPhotoImage;
+    this.load();
+  }
+  load(){
+    // 入力領域
+    this.inputFields.forEach(inputField=>{
+      if(sessionStorage.getItem(inputField.id)) { // IDと一致するキーが存在した場合に値を読み込む
+        inputField.innerText = sessionStorage.getItem(inputField.id);
+      }
+    });
+    // 顔写真
+    this.idPhotoImage.src = 
+      sessionStorage.getItem(this.idPhotoImage.id);
+      // sessionStorage.getItem(this.idPhotoImage.id)
+      // ? sessionStorage.getItem(this.idPhotoImage.id)
+      // : null;
+  }
+}
+/* 顔写真の追加・変更
 ---------------------------------------------------------------------------- */
 class IDPhoto {
-  constructor(){
-    this.image = document.getElementById('photo-image');
+  constructor(idPhotoImage){
+    this.idPhotoImage = idPhotoImage;
     this.input = document.getElementById('id-photo');
     this.input.addEventListener('change', (event)=>{this.addIDPhoto(event)});
   }
@@ -50,20 +114,22 @@ class IDPhoto {
   addIDPhoto(){
     console.log(('id-photo add:'))
     const file = this.input.files[0];
-    console.log(file);
+    // console.log(file);
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.addEventListener('load', ()=>{
-      this.image.src = reader.result;
-      sessionStorage.setItem(this.image.id, reader.result)
+      this.idPhotoImage.src = reader.result;
+      sessionStorage.setItem(this.idPhotoImage.id, reader.result)
     });
     reader.addEventListener('error', ()=>{
       console.log(reader.error);
     });
   }
-  // load
+  // load // 生成時に読み込んでもいい
   load() {
     console.log(('id-photo load:'))
+    this.idPhotoImage.src = 
+      sessionStorage.getItem(this.idPhotoImage.id);
   }
   // reset
   reset() {
@@ -74,16 +140,6 @@ class IDPhoto {
     this.reset();
   } 
 }
-
-/* ActsOnInputField
- 入力要素に関わる親クラス
----------------------------------------------------------------------------- */
-class ActsOnInputField {
-  constructor(inputFields){
-    this.inputFields = inputFields;
-  }
-}
-
 /* EdittingSwitch
  入力領域の編集可否を切り替えする
 ---------------------------------------------------------------------------- */
@@ -121,41 +177,6 @@ class EdittingSwitch extends ActsOnInputField{
         elem.contentEditable = false;
       });
     }
-  }
-}
-/* AutoSave
- 各入力領域の内容を自動保存する
----------------------------------------------------------------------------- */
-class AutoSessionSave extends ActsOnInputField{
-  constructor(inputFields){
-    super(inputFields);
-    this.inputFields.forEach(inputField=>{
-      // 入力した時に保存する
-      // TODO:場合によっては'change'や'keyup'を検討する
-      inputField.addEventListener('input', ()=>{this.save()});
-    });
-  }
-  save(){
-    if(document.activeElement.id) {
-      console.log('hage');
-      sessionStorage.setItem(document.activeElement.id, document.activeElement.innerText);
-    } 
-  }
-}
-/* AutoLoad
- 各入力領域の内容を自動読み込みする
----------------------------------------------------------------------------- */
-class AutoSessionLoad extends ActsOnInputField{
-  constructor(inputFields){
-    super(inputFields);
-    this.load();
-  }
-  load(){
-    this.inputFields.forEach(inputField=>{
-      if(sessionStorage.getItem(inputField.id)) { // IDと一致するキーが存在した場合に値を読み込む
-        inputField.innerText = sessionStorage.getItem(inputField.id);
-      }
-    });
   }
 }
 /* Reset
@@ -219,12 +240,12 @@ class Import extends ActsOnInputField{
  JSONファイルに編集内容を保存します。
 ---------------------------------------------------------------------------- */
 class Export extends ActsOnInputField{
-  constructor(inputFields){
+  constructor(inputFields, flg){
     super(inputFields);
     this.exportButton = document.getElementById('export');
-    this.exportButton.addEventListener('click', ()=>{this.export()});
+    this.exportButton.addEventListener('click', ()=>{this.export(flg)});
   }
-  export(){
+  export(flg){
     console.log('export');
     const list =  {};
     // セッションストレージの内容を連想配列に格納
@@ -237,11 +258,11 @@ class Export extends ActsOnInputField{
     // console.log('window.performance.memory:', window.performance.memory);
 
     const jsonStr = JSON.stringify(list);
-    const blob = DEFAULT_EXPORT_FILE_TYPE_IS_TEXT
+    const blob = flg
       ? new Blob([jsonStr],{type: 'text/plain'}) // utf-8テキスト
       : new Blob([jsonStr],{type: 'application/json'}); // json
       // : new Blob([jsonStr],{type: 'application/octet-stream'}); // 任意のバイナリー
-    const link = document.createElement('a');
+    const link = document.createElement('a'); // ダミーリンク
     link.download = 'resume.json';
     link.href = URL.createObjectURL(blob);
     link.click();

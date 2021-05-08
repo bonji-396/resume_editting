@@ -118,10 +118,12 @@ header {
 // 履歴書（B5サイズ: 182mm×257mm x 2（左右ページ合わせてB4:364mmx257mm）, 余白: 上下左右17mm）
 // 履歴書（A4サイズ: 210mm×297mm x 2（左右ページ合わせてA3:420mmx297mm）, 余白: 上下左右17mm）
 main {
+  width: 100%;
+  margin: 0 auto;
   font-size: 11pt;
   .resume {
     width: 364mm;
-    margin: 60px 10px 10px;
+    margin: 60px auto 10px;
     display: grid;
     grid-template-columns: 182mm 182mm;
     border: 1px solid rgba(0, 0, 0, 0.5);
@@ -188,7 +190,6 @@ main {
           line-height: 8pt;
           margin-bottom: 8pt;
         }
-
         label {
           width: 100%;
           height: 100%;
@@ -205,8 +206,10 @@ main {
             width: 100%;
             height: 100%;
           }
+          img[src="null"] {
+            display: none;
+          }
         }
-
       }
       .personal-data {
         p {
