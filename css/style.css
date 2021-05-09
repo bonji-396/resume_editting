@@ -261,8 +261,31 @@ main .resume .left-page .id-photo label img {
   height: 100%;
 }
 
-main .resume .left-page .id-photo label img[src="null"] {
+main .resume .left-page .id-photo label img[src=""] {
   display: none;
+}
+
+main .resume .left-page .id-photo #contextmenu {
+  display: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100px;
+  height: 30px;
+  border: 1px solid #333;
+  box-shadow: 2px 2px 5px #333;
+  background-color: #eee;
+  z-index: 2;
+}
+
+main .resume .left-page .id-photo #contextmenu li {
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+main .resume .left-page .id-photo #contextmenu li:hover {
+  background-color: #aaa;
 }
 
 main .resume .left-page .personal-data p.label {
@@ -609,6 +632,65 @@ main .resume .right-page .objective p.label {
 
 main .resume .right-page .objective p.input-field {
   height: 43.8mm;
+}
+
+main #help-window {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  height: 90vh;
+  padding: 16px;
+  border-radius: 24px;
+  box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  animation: fade 0.5s linear 0s;
+}
+
+main #help-window.show {
+  display: block;
+  z-index: 4;
+}
+
+main #help-window .help-close {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 0 3px #333;
+  background-color: #fff;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+main #help-window .help-close::before {
+  content: '';
+  width: 30px;
+  height: 5px;
+  background-color: #333;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  transform: rotate(-45deg);
+}
+
+main #help-window .help-close::after {
+  content: '';
+  width: 30px;
+  height: 5px;
+  background-color: #333;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  transform: rotate(45deg);
 }
 
 footer {

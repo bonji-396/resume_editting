@@ -2,40 +2,23 @@
 <html lang="ja">
   <!-- Author : bonji@mikuro.net (Shuji Narumi) 
     start: 4/28
-    total: 20h last 5/8
+    total: 27h last 5/9
     Completion : 5/10
   -->
-<!--   TOOD: 機能ごとのインスタンスをまとめる
- -->
   <!--
-    1. CSS定義用の雛形のHMTLを作る           4/28
-    2. CSS定義(@media print A4, B5)       5/1
-    3. JS 要素生成のロジックを考え決める(MVC?) 5/1
-    4. JS オブジェクト定義                  5/5
-    5. JS コーディング（テスト)       5/5,5/6
-     . import export　OK
-     .　改行させない　OK
-     . image OK
-     （300px x 400px）解像度、サイズを変換 
-     . print
-     . help
-     . ドラックアンドドロップ（JSON, image）
-     . date制作日付（
-      . 起動時は制作日時にデータが入ってない場合は、自動的に日時を取得し反映する。
-      . リロード時に本日日付と制作日付が異なる場合、更新するか確認する。
-        . OKだと更新する
-     ）
-     . tel:, e-mail:
-    6. リファクタリング（HTML,CSS,JavaScript） 5/8
-    7. ショーカットキー割り当て               5/8
-    8. ヘルプ表示                           5/8
-    7. GitHub Pagesへ実装、GitHubコード公開 5/8
-    8. Qiitaへ記事投稿                      4/8
-    9. ポートフォリオ用詳細ページ作成         5/9
-    10. ポートフォリオへ反映                 5/9
-    11. 実装                               5/9
-    12. viewを100%,150%,50%,画面に合わせるに選択可能
-    13. スマートフォン対応
+    6. print機能                           5/9
+    8. ヘルプ表示                           5/9
+    9. SCSSリファクタリング                 5/10
+    10. GitHub Pagesへ実装、GitHubコード公開 5/10
+    11. Qiitaへ記事投稿                      4/10
+    12. ポートフォリオ用詳細ページ作成         5/10
+    13. ポートフォリオへ反映                 5/10
+    14. viewを100%,150%,50%,画面に合わせるに選択可能
+    15 ドラックアンドドロップ（JSON, image）
+    16. スマートフォン対応
+    17. ショーカットキー割り当て
+    18. エクスポートファイル暗号化/インポートファイル複合化
+    10. 入力値のチェック                   5/10
   -->
 <head>
   <meta charset="UTF-8">
@@ -102,6 +85,11 @@
           </label>
           <!-- ドラックアンドドロップ + ＋ -->
           <!-- TODO:画像データはBase64のインラインイメージか？ 別ファイルで参照にするか？ -->
+          <div id="contextmenu">
+            <ul>
+              <li id="photo-delete">画像を削除</li>
+            </ul>
+          </div>
         </section><!-- /.id-photo -->
   
         <section class="personal-data">
@@ -430,6 +418,10 @@
   
       </section><!-- /.right-page -->
     </section>
+    <div id="help-window">
+      <iframe src="help.html" frameborder="0"></iframe>
+      <div class="help-close"></div>
+    </div>
 
   </main>
   <footer>
