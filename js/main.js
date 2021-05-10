@@ -461,18 +461,23 @@ class CloseButton extends ButtonUI {
 class PrintDialog extends UserInterfase {
   constructor(){
     super('print-dialog');
-    const selectBox = document.getElementById('print-size');
-    selectBox.addEventListener('change', ()=>{this.changeSize});
-    const printButton = document.getElementById('printing');
-    printButton.addEventListener('click', ()=>{this.print()});
-    const closeButton = document.getElementById('dialog-close');
-    closeButton.addEventListener('click', ()=>{this.close()});
+
+    this.selectBox = document.getElementById('print-size');
+    this.selectBox.addEventListener('change', ()=>{this.changeSize()});
+    console.log(this.selectBox.value);
+    
+    this.printButton = document.getElementById('printing');
+    this.printButton.addEventListener('click', ()=>{this.print()});
+    
+    this.closeButton = document.getElementById('dialog-close');
+    this.closeButton.addEventListener('click', ()=>{this.close()});
   }
   /* ---------------------------------------------------
     スタイルシートを変更する？　TODO:
   ------------------------------------------------------ */
-  chageSize(){
-
+  changeSize(){
+    console.log(this.selectBox.value);
+    // スタイルシートを変更する　////////////////////////////
   }
   /* ---------------------------------------------------
     プリントダイアログを表示する

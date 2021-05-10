@@ -809,8 +809,9 @@ main #help-window .help-close::after {
 }
 
 footer {
-  height: 50px;
+  height: 30px;
   text-align: center;
+  line-height: 30px;
 }
 
 @media print {
