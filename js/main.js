@@ -5,9 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 履歴書編集オブジェクトの生成
   const resumeEditor = new ResumeEditor();
   
-
 },false);
-
 /* -------------------------------------------------------------------------
  履歴書編集クラス（ResumeEditor）
 ---------------------------------------------------------------------------- */
@@ -22,14 +20,18 @@ class ResumeEditor {
      User Interfaces
     -------------------------------- */
     this.inputFields = new InputFields();
-    this.idPhoto = new IDPhoto();
+    this.idPhoto = new IDPhoto((event)=>{this.showContextMenu(event)});
     this.eittingSwitchButton = new EdittingSwitchButton((checked)=>{this.edittingSwitch(checked)});
+    this.printDialog = new PrintDialog();
+    this.rightClickMenu  = new RightClickMenu(()=>{this.idPhotoImageDelete()});
+    // ここに helpWindow
     this.resetButton = new ResetButton(()=>{this.reset()});
     this.printButton = new PrintButton(()=>{this.print()});
     this.importButton = new ImportButton(()=>{this.load()});
     this.exportButton = new ExportButton(()=>{this.export(this.DEFAULT_EXPORT_FILE_TYPE_IS_TEXT)});
     this.helpButton = new HelpButton(()=>{this.help()});
     this.closeButton = new CloseButton(()=>{this.close()});
+
     this.init();
   }
   /* ---------------------------------------------------
@@ -66,7 +68,7 @@ class ResumeEditor {
     印刷
   ------------------------------------------------------ */
   print(){
-    console.log('printにゃーーー');
+    this.printDialog.show();
   }
   /* ---------------------------------------------------
     sessionStorageからデータを読み込む
@@ -77,6 +79,7 @@ class ResumeEditor {
   }
   /* ---------------------------------------------------
     ヘルプ表示
+    TODO: 別インスタンスで処理
   ------------------------------------------------------ */
   help(){
     console.log('helpにゃーーー');
@@ -103,6 +106,21 @@ class ResumeEditor {
       window.close();
     }
   }
+  /* ---------------------------------------------------
+    右クリックメニューを表示する
+  ------------------------------------------------------ */
+  showContextMenu(event){
+    this.rightClickMenu.show(event);
+    // ブラウザ標準のコンテキストメニューを表示させない
+    event.preventDefault();
+  }
+  /* ---------------------------------------------------
+    顔写真を削除
+  ------------------------------------------------------ */
+  idPhotoImageDelete(){
+    this.idPhoto.delete();
+    this.rightClickMenu.close();
+  }
 }
 /* -------------------------------------------------------------------------
  UserInterfase
@@ -114,7 +132,6 @@ class UserInterfase {
 }
 /* -------------------------------------------------------------------------
   入力編集領域UI（InputFields） 
-  TODO: 改行処理を実装
   TODO: 入力内容精査
   TDOD: 制作日時を自動反映
   　例；リロード時に本日日付と制作日付が異なる場合、更新するか確認する。
@@ -184,55 +201,53 @@ class InputFields extends UserInterfase {
       // IDと一致するキーが存在した場合に値を読み込む
       if(sessionStorage.getItem(inputField.id)) {
         inputField.innerText = sessionStorage.getItem(inputField.id);
-      }else {
+      } else {
         inputField.innerHTML = '';
       }
     });
+    const haveContent = (idName, content)=>{
+      if(!sessionStorage.getItem(idName)) {
+        document.getElementById(idName).innerText = content;
+      }
+    }
+    haveContent('gender', '男・女')
+    haveContent('marital-status', '有・無')
+    haveContent('obligation-to-support-spouse', '有・無')
   }
-  /* ---------------------------------------------------
+/* ---------------------------------------------------
     編集内容をクリアリセットする
   ------------------------------------------------------ */
   clear() {
     this.selfElement.forEach(inputField=>{
       inputField.innerText = '';
     });
+    document.getElementById('gender').innerText = '男・女';
+    document.getElementById('marital-status').innerText = '有・無';
+    document.getElementById('obligation-to-support-spouse').innerText = '有・無';
   }
   /* ---------------------------------------------------
     編集内容とsessionStorageをクリアリセットする
   ------------------------------------------------------ */
   allClear() {
-    this.selfElement.forEach(inputField=>{
-      inputField.innerText = '';
-    });
+    this.clear();
     sessionStorage.clear();
   }
-  
 }
 /* -------------------------------------------------------------------------
  顔写真UI（IDPhoto） 
 ---------------------------------------------------------------------------- */
 class IDPhoto extends UserInterfase {
-  constructor() {
+  constructor(callback) {
+    // 写真欄
     super('id-photo');
-    this.selfElement.addEventListener('change', (event)=>{this.addIDPhoto(event)});
-
+    // 写真欄（input[type=file]）で、ファイル選択をされた時のイベント
+    this.selfElement.addEventListener('change', ()=>{this.addIDPhoto()});
+    // 画像要素
     this.idPhotoImage = document.getElementById('photo-image');
-    this.idPhotoImage.addEventListener('contextmenu', (event)=>{this.contextmenuShow(event)});
-    
-    this.photoDelete = document.getElementById('photo-delete')
-    this.photoDelete.addEventListener('click', ()=>{this.delete()});
+    // 画像要素を右クリックした時のイベント
+    this.idPhotoImage.addEventListener('contextmenu', (event)=>{callback(event)});
 
     this.load();
-  }
-  /* ---------------------------------------------------
-    右クリックメニューを表示
-  ------------------------------------------------------ */
-  contextmenuShow(event){
-    const contextmenu = document.getElementById('contextmenu');
-    contextmenu.style.display = 'block';
-    contextmenu.style.top = event.pageY + 'px';
-    contextmenu.style.left = event.pageX + 'px'
-    event.preventDefault();
   }
   /* ---------------------------------------------------
     IDPhotoの編集を有効化
@@ -256,23 +271,46 @@ class IDPhoto extends UserInterfase {
       : '';
   }
   /* ---------------------------------------------------
-    顔写真を初期化 ※ FIX:画像がすぐに反映しない
+    顔写真を追加
     TODO: （300px x 400px）解像度、サイズを変換 
   ------------------------------------------------------ */
-  addIDPhoto(event){
+  addIDPhoto(){
+    // this.addIDPhotoInDataURLFormat();
+    this.addIDPhotoInDataURLFormat();
+  }
+  /* ---------------------------------------------------
+    顔写真を追加（Data URI形式）
+  ------------------------------------------------------ */
+  addIDPhotoIBlogURLFormat(){
     const file = this.selfElement.files[0];
-    // console.log(file);
+    // 選択した画像を表示する
+    this.idPhotoImage.setAttribute('src', file);
+    // SessonStorageにも保存
+    sessionStorage.setItem(this.idPhotoImage.id, file);
+  }
+  /* ---------------------------------------------------
+    顔写真を追加（Data URI形式）
+  ------------------------------------------------------ */
+  addIDPhotoInDataURLFormat(){
+    const file = this.selfElement.files[0];
     const reader = new FileReader();
-    reader.readAsDataURL(file);
+    // Data URI（画像をテキスト化）形式で表示
+    // readAsDataURL完了後
     reader.addEventListener('load', ()=>{
       // 選択した画像を表示する
-      this.idPhotoImage.src = reader.result;
+      this.idPhotoImage.setAttribute('src', reader.result);
       // SessonStorageにも保存
-      sessionStorage.setItem(this.idPhotoImage.id, reader.result)
+      sessionStorage.setItem(this.idPhotoImage.id, reader.result);
+      // !!!!!!!!!!!!!!!!!!!!!!!
+      // HTTPリクエストを発生させずにテキストとして埋め込んでいるので、リロードするなどしないと表示しない。
+      // !!!!!!!!!!!!!!!!!!!!!!! FIX: リロード回避方法を実装
+      location.reload(); 
     });
+    // readAsDataURLでのエラー
     reader.addEventListener('error', ()=>{
       console.log(reader.error);
     });
+    reader.readAsDataURL(file); // readAsDataURL()は非同期で処理される 
   }
   /* ---------------------------------------------------
     顔写真を初期化
@@ -286,10 +324,8 @@ class IDPhoto extends UserInterfase {
   delete() {
     this.idPhotoImage.src = '';
     sessionStorage.removeItem(this.idPhotoImage.id);
-    document.getElementById('contextmenu').style.display = 'none';
   }
 }
-
 /* -------------------------------------------------------------------------
  編集可否変更ボタンUI（EdittingSwitchButton） CallBack
 ---------------------------------------------------------------------------- */
@@ -403,7 +439,7 @@ class ExportButton extends ButtonUI {
   }
 }
 /* -------------------------------------------------------------------------
-  HELP表示
+  HelpButton: HELP表示ボタンUI
   TODO: ヘルプ内容を
 ---------------------------------------------------------------------------- */
 class HelpButton extends ButtonUI {
@@ -412,10 +448,101 @@ class HelpButton extends ButtonUI {
   }
 }
 /* -------------------------------------------------------------------------
-  ウィンド又はタブページを閉じる
+  CloseButton: ウィンド又はタブページを閉じるボタンUI
 ---------------------------------------------------------------------------- */
 class CloseButton extends ButtonUI {
   constructor(callback) {
     super('close', callback);
   }
+}
+/* -------------------------------------------------------------------------
+  プリントダイアログ
+---------------------------------------------------------------------------- */
+class PrintDialog extends UserInterfase {
+  constructor(){
+    super('print-dialog');
+    const selectBox = document.getElementById('print-size');
+    selectBox.addEventListener('change', ()=>{this.changeSize});
+    const printButton = document.getElementById('printing');
+    printButton.addEventListener('click', ()=>{this.print()});
+    const closeButton = document.getElementById('dialog-close');
+    closeButton.addEventListener('click', ()=>{this.close()});
+  }
+  /* ---------------------------------------------------
+    スタイルシートを変更する？　TODO:
+  ------------------------------------------------------ */
+  chageSize(){
+
+  }
+  /* ---------------------------------------------------
+    プリントダイアログを表示する
+  ------------------------------------------------------ */
+  show() {
+    this.selfElement.classList.add('show');
+    this.selfElement.showModal();
+  }
+  /* ---------------------------------------------------
+    ブラウザのプリント機能を利用する
+  ------------------------------------------------------ */
+  print() {
+    window.print();
+    this.selfElement.classList.remove('show');
+    this.selfElement.close();
+  }
+  /* ---------------------------------------------------
+    プリントダイアログを閉じる
+  ------------------------------------------------------ */
+  close(){
+    this.selfElement.classList.remove('show');
+    this.selfElement.close();
+  }
+}
+/* -------------------------------------------------------------------------
+ RightClickMenu: 右クリックメニュー（id photo delete）
+---------------------------------------------------------------------------- */
+class RightClickMenu extends UserInterfase{
+  constructor(callback) {
+    super('contextmenu');
+    // 画像を削除リスト
+    this.photoDelete = document.getElementById('photo-delete')
+    // 画像を削除リストをクリックした時のイベント
+    this.photoDelete.addEventListener('click', ()=>{callback()});
+  }
+  /* ---------------------------------------------------
+    自身の要素を表示する
+  ------------------------------------------------------ */
+  show(event){
+    this.selfElement.style.top = event.pageY + 'px';
+    this.selfElement.style.left = event.pageX + 'px';
+    this.selfElement.classList.add('show');
+    /*
+      自身の要素を以外をクリックしたら自身を閉じる
+    ---------------------- */
+    document.body.addEventListener('click',(event)=>{
+      if (this.selfElement.classList.contains('show')
+        && !event.target.closest('#contextmenu')) {
+          this.close()
+          console.log('page');
+      }
+      // } else { //（イベント残留注意）
+      //   console.log('poge else');
+      // }
+    // });
+    }, { once: true });
+  }
+  /* ---------------------------------------------------
+    自身の要素を閉じる
+  ------------------------------------------------------ */
+  close(){
+    this.selfElement.classList.remove('show');
+  }
+}
+/* -------------------------------------------------------------------------
+  HelpWindow: ヘルプモーダルウィンドウ
+---------------------------------------------------------------------------- */
+class HelpWindow extends UserInterfase{
+  constructor(){
+    super('help-window');
+  }
+
 }

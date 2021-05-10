@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja">
   <!-- Author : bonji@mikuro.net (Shuji Narumi) 
-    start: 4/28
-    total: 27h last 5/9
-    Completion : 5/10
+    start: 2021/4/28
+    total: 30h last 2021/5/10
+    Completion : 2021/5/10
   -->
   <!--
-    6. print機能                           5/9
-    8. ヘルプ表示                           5/9
-    9. SCSSリファクタリング                 5/10
-    10. GitHub Pagesへ実装、GitHubコード公開 5/10
-    11. Qiitaへ記事投稿                      4/10
-    12. ポートフォリオ用詳細ページ作成         5/10
-    13. ポートフォリオへ反映                 5/10
+    TODO:
+    6. print機能                           5/10
+    8. ヘルプ表示                           5/10
+    9. SCSSリファクタリング                 5/11
+    10. GitHub Pagesへ実装、GitHubコード公開 5/11
+    11. Qiitaへ記事投稿                      5/11
+    12. ポートフォリオ用詳細ページ作成         5/11
+    13. ポートフォリオへ反映                 5/11
     14. viewを100%,150%,50%,画面に合わせるに選択可能
     15 ドラックアンドドロップ（JSON, image）
     16. スマートフォン対応
     17. ショーカットキー割り当て
     18. エクスポートファイル暗号化/インポートファイル複合化
-    10. 入力値のチェック                   5/10
+    10. 入力値のチェック
   -->
 <head>
   <meta charset="UTF-8">
@@ -49,6 +50,16 @@
       <button id="help" type="button"><img src="img/help.svg" alt="help" title="ヘルプ"></button>
       <button id="close" type="button"><img src="img/close.svg" alt="close" title="閉じる"></button>
     </div>
+    <dialog id="print-dialog">
+      <select name="" id="print-size" required>
+        <option value="b5">B5(見開きB4:1枚)</option>
+        <option value="b5x2">B5(B5:2枚)</option>
+        <option value="a4">A4(見開きA3:1枚)</option>
+        <option value="a4x2">A4(A4:2枚)</option>
+      </select>
+      <button id="printing">印刷</button>
+      <button id="dialog-close">キャンセル</button>
+    </dialog>
   </header>
   <main>
     <section class="resume">
@@ -56,19 +67,12 @@
 
         <section class="resume-header">
           <h2>履　歴　書</h2>
-          <!-- 本日日付を取得して自動で入力される。編集は可能で、データ読み込みの場合はその値を反映 -->
           <div class="creataion-date">
-            <!-- ↓ 年号、西暦と年チェック -->
             <p id="creatation-year" class="input-field" autofocus></p>
-            <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
             <p class="label">年</p> 
-            <!-- ↓ 数値範囲１〜１２チェック -->
             <p id="creatation-month" class="input-field"></p>
-            <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
             <p class="label">月</p> 
-            <!-- ↓ 数値範囲１〜３１チェック -->
             <p id="creatation-day"  class="input-field"></p>
-            <!-- ↑ keyup　code:13 (リターン), code:9（タブ移動）の時、データをチェックして間違いであればアラート表示 -->
             <p class="label">日現在</p> 
           </div>
         </section><!-- /.resume-header -->
@@ -83,8 +87,6 @@
             <input type="file" id="id-photo" accept="image/gif,image/jpeg,image/jpg,image/png">
             <img id="photo-image">
           </label>
-          <!-- ドラックアンドドロップ + ＋ -->
-          <!-- TODO:画像データはBase64のインラインイメージか？ 別ファイルで参照にするか？ -->
           <div id="contextmenu">
             <ul>
               <li id="photo-delete">画像を削除</li>
@@ -175,9 +177,9 @@
   
         <section class="education-and-career-history">
           <div class="resume-line resume-line-header">
-            <p>年</p>
-            <p>月</p>
-            <p>学歴・職歴</p>
+            <p class="label">年</p>
+            <p class="label">月</p>
+            <p class="label">学歴・職歴</p>
           </div>
           <div class="resume-line">
             <p id="career-year-1" class="input-field"></p>
@@ -418,6 +420,7 @@
   
       </section><!-- /.right-page -->
     </section>
+
     <div id="help-window">
       <iframe src="help.html" frameborder="0"></iframe>
       <div class="help-close"></div>
