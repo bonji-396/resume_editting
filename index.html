@@ -2,19 +2,21 @@
 <html lang="ja">
   <!-- Author : bonji@mikuro.net (Shuji Narumi) 
     start: 2021/4/28
-    total: 30h last 2021/5/10
+    total: 32h last 2021/5/11
     Completion : 2021/5/10
   -->
   <!--
     TODO:
-    5. 入力フォーカスした時に、全選択する      5/10
-    6. print機能                           5/10
-    8. ヘルプ表示                           5/10
+    4. 学歴・職歴の文字揃え切り替えを実装      5/11
+    5. 入力フォーカスした時に、全選択する      5/11
+    6. print機能                           5/11
+    8. ヘルプ表示                           5/11
     9. SCSSリファクタリング                 5/11
-    10. GitHub Pagesへ実装、GitHubコード公開 5/11
-    11. Qiitaへ記事投稿                      5/11
-    12. ポートフォリオ用詳細ページ作成         5/11
-    13. ポートフォリオへ反映                 5/11
+        Firefox、Safari
+    10. GitHub Pagesへ実装、GitHubコード公開 5/12
+    11. Qiitaへ記事投稿                      5/12
+    12. ポートフォリオ用詳細ページ作成         5/12
+    13. ポートフォリオへ反映                 5/12
     14. viewを100%,150%,50%,画面に合わせるに選択可能
     15 ドラックアンドドロップ（JSON, image）
     16. スマートフォン対応
@@ -53,10 +55,10 @@
     </div>
     <dialog id="print-dialog">
       <select name="" id="print-size" required>
-        <option value="b5">B5(見開きB4:1枚)</option>
-        <option value="b5x2">B5(B5:2枚)</option>
-        <option value="a4">A4(見開きA3:1枚)</option>
-        <option value="a4x2">A4(A4:2枚)</option>
+        <option value="B4">B5(見開きB4:1枚)</option>
+        <option value="B5">B5(B5:2枚)</option>
+        <option value="A3">A4(見開きA3:1枚)</option>
+        <option value="A4">A4(A4:2枚)</option>
       </select>
       <button id="printing">印刷</button>
       <button id="dialog-close">キャンセル</button>
@@ -65,7 +67,6 @@
   <main>
     <section class="resume">
       <section class="page left-page">
-
         <section class="resume-header">
           <h2>履　歴　書</h2>
           <div class="creataion-date">
@@ -185,97 +186,97 @@
           <div class="resume-line">
             <p id="career-year-1" class="input-field"></p>
             <p id="career-month-1" class="input-field"></p>
-            <p id="career-1" class="input-field"></p>
+            <p id="career-contents-1" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-2" class="input-field"></p>
             <p id="career-month-2" class="input-field"></p>
-            <p id="career-2" class="input-field"></p>
+            <p id="career-contents-2" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-3" class="input-field"></p>
             <p id="career-month-3" class="input-field"></p>
-            <p id="career-3" class="input-field"></p>
+            <p id="career-contents-3" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-4" class="input-field"></p>
             <p id="career-month-4" class="input-field"></p>
-            <p id="career-4" class="input-field"></p>
+            <p id="career-contents-4" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-5" class="input-field"></p>
             <p id="career-month-5" class="input-field"></p>
-            <p id="career-5" class="input-field"></p>
+            <p id="career-contents-5" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-6" class="input-field"></p>
             <p id="career-month-6" class="input-field"></p>
-            <p id="career-6" class="input-field"></p>
+            <p id="career-contents-6" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-7" class="input-field"></p>
             <p id="career-month-7" class="input-field"></p>
-            <p id="career-7" class="input-field"></p>
+            <p id="career-contents-7" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-8" class="input-field"></p>
             <p id="career-month-8" class="input-field"></p>
-            <p id="career-8" class="input-field"></p>
+            <p id="career-contents-8" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-9" class="input-field"></p>
             <p id="career-month-9" class="input-field"></p>
-            <p id="career-9" class="input-field"></p>
+            <p id="career-contents-9" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-10" class="input-field"></p>
             <p id="career-month-10" class="input-field"></p>
-            <p id="career-10" class="input-field"></p>
+            <p id="career-contents-10" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-11" class="input-field"></p>
             <p id="career-month-11" class="input-field"></p>
-            <p id="career-11" class="input-field"></p>
+            <p id="career-contents-11" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-12" class="input-field"></p>
             <p id="career-month-12" class="input-field"></p>
-            <p id="career-12" class="input-field"></p>
+            <p id="career-contents-12" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-13" class="input-field"></p>
             <p id="career-month-13" class="input-field"></p>
-            <p id="career-13" class="input-field"></p>
+            <p id="career-contents-13" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-14" class="input-field"></p>
             <p id="career-month-14" class="input-field"></p>
-            <p id="career-14" class="input-field"></p>
+            <p id="career-contents-14" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-15" class="input-field"></p>
             <p id="career-month-15" class="input-field"></p>
-            <p id="career-15" class="input-field"></p>
+            <p id="career-contents-15" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-16" class="input-field"></p>
             <p id="career-month-16" class="input-field"></p>
-            <p id="career-16" class="input-field"></p>
+            <p id="career-contents-16" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-17" class="input-field"></p>
             <p id="career-month-17" class="input-field"></p>
-            <p id="career-17" class="input-field"></p>
+            <p id="career-contents-17" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-18" class="input-field"></p>
             <p id="career-month-18" class="input-field"></p>
-            <p id="career-18" class="input-field"></p>
+            <p id="career-contents-18" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-19" class="input-field"></p>
             <p id="career-month-19" class="input-field"></p>
-            <p id="career-19" class="input-field"></p>
+            <p id="career-contents-19" class="input-field"></p>
           </div>
         </section>
       </section><!-- /.left-page -->
@@ -291,47 +292,47 @@
           <div class="resume-line">
             <p id="career-year-20" class="input-field"></p>
             <p id="career-month-20" class="input-field"></p>
-            <p id="career-20" class="input-field"></p>
+            <p id="career-contents-20" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-21" class="input-field"></p>
             <p id="career-month-21" class="input-field"></p>
-            <p id="career-21" class="input-field"></p>
+            <p id="career-contents-21" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-22" class="input-field"></p>
             <p id="career-month-22" class="input-field"></p>
-            <p id="career-22" class="input-field"></p>
+            <p id="career-contents-22" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-23" class="input-field"></p>
             <p id="career-month-23" class="input-field"></p>
-            <p id="career-23" class="input-field"></p>
+            <p id="career-contents-23" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-24" class="input-field"></p>
             <p id="career-month-24" class="input-field"></p>
-            <p id="career-24" class="input-field"></p>
+            <p id="career-contents-24" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-25" class="input-field"></p>
             <p id="career-month-25" class="input-field"></p>
-            <p id="career-25" class="input-field"></p>
+            <p id="career-contents-25" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-26" class="input-field"></p>
             <p id="career-month-26" class="input-field"></p>
-            <p id="career-26" class="input-field"></p>
+            <p id="career-contents-26" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-27" class="input-field"></p>
             <p id="career-month-27" class="input-field"></p>
-            <p id="career-27" class="input-field"></p>
+            <p id="career-contents-27" class="input-field"></p>
           </div>
           <div class="resume-line">
             <p id="career-year-28" class="input-field"></p>
             <p id="career-month-28" class="input-field"></p>
-            <p id="career-28" class="input-field"></p>
+            <p id="career-contents-28" class="input-field"></p>
           </div>
         </section><!-- /.education-and-career-history -->
   
@@ -344,32 +345,32 @@
           <div class="qualifications-line">
             <p id="qualifications-year-1" class="input-field"></p>
             <p id="qualifications-month-1" class="input-field"></p>
-            <p id="qualifications-1" class="input-field"></p>
+            <p id="qualifications-contents-1" class="input-field"></p>
           </div>
           <div class="qualifications-line">
             <p id="qualifications-year-2" class="input-field"></p>
             <p id="qualifications-month-2" class="input-field"></p>
-            <p id="qualifications-2" class="input-field"></p>
+            <p id="qualifications-contents-2" class="input-field"></p>
           </div>
           <div class="qualifications-line">
             <p id="qualifications-year-3" class="input-field"></p>
             <p id="qualifications-month-3" class="input-field"></p>
-            <p id="qualifications-3" class="input-field"></p>
+            <p id="qualifications-contents-3" class="input-field"></p>
           </div>
           <div class="qualifications-line">
             <p id="qualifications-year-4" class="input-field"></p>
             <p id="qualifications-month-4" class="input-field"></p>
-            <p id="qualifications-4" class="input-field"></p>
+            <p id="qualifications-contents-4" class="input-field"></p>
           </div>
           <div class="qualifications-line">
             <p id="qualifications-year-5" class="input-field"></p>
             <p id="qualifications-month-5" class="input-field"></p>
-            <p id="qualifications-5" class="input-field"></p>
+            <p id="qualifications-contents-5" class="input-field"></p>
           </div>
           <div class="qualifications-line">
             <p id="qualifications-year-6" class="input-field"></p>
             <p id="qualifications-month-6" class="input-field"></p>
-            <p id="qualifications-6" class="input-field"></p>
+            <p id="qualifications-contents-6" class="input-field"></p>
           </div>
         </section><!-- /.qualifications -->
   

@@ -504,15 +504,6 @@ main {
                 right: none;
               }
             }
-            &[data-text-align="left"] {
-              text-align: left;
-            }
-            &[data-text-align="right"] {
-              text-align: right;
-            }
-            &[data-text-align="center"] {
-              text-align: center;
-            }
           }
         }
       }
@@ -560,15 +551,6 @@ main {
                 right: none;
               }
             }
-            &[data-text-align="left"] {
-              text-align: left;
-            }
-            &[data-text-align="right"] {
-              text-align: right;
-            }
-            &[data-text-align="center"] {
-              text-align: center;
-            }
           }
         }
       }
@@ -610,15 +592,6 @@ main {
               border: {
                 right: none;
               }
-            }
-            &[data-text-align="left"] {
-              text-align: left;
-            }
-            &[data-text-align="right"] {
-              text-align: right;
-            }
-            &[data-text-align="center"] {
-              text-align: center;
             }
           }
         }

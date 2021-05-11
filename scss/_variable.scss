@@ -1,6 +1,12 @@
-$line-color : #000;
-
+// Color
+$base-color: #fff;
+$font-color: #000;
+$line-color: #000;
+$heder-border-color: #333;
+$body-background-color: #eee;
+// Border Line
 $print-line-bold: 1mm solid $line-color;
 $print-line-middle: 0.7mm solid $line-color;
 $print-line-default: 0.35mm solid $line-color;
 $print-line-double: 1mm double $line-color;
+// 

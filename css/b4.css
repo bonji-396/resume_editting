@@ -567,18 +567,6 @@ main .resume .left-page .education-and-career-history .resume-line p:last-of-typ
   border-right: none;
 }
 
-main .resume .left-page .education-and-career-history .resume-line p[data-text-align="left"] {
-  text-align: left;
-}
-
-main .resume .left-page .education-and-career-history .resume-line p[data-text-align="right"] {
-  text-align: right;
-}
-
-main .resume .left-page .education-and-career-history .resume-line p[data-text-align="center"] {
-  text-align: center;
-}
-
 main .resume .right-page .education-and-career-history {
   margin-top: 8.3mm;
 }
@@ -619,18 +607,6 @@ main .resume .right-page .education-and-career-history .resume-line p:last-of-ty
   border-right: none;
 }
 
-main .resume .right-page .education-and-career-history .resume-line p[data-text-align="left"] {
-  text-align: left;
-}
-
-main .resume .right-page .education-and-career-history .resume-line p[data-text-align="right"] {
-  text-align: right;
-}
-
-main .resume .right-page .education-and-career-history .resume-line p[data-text-align="center"] {
-  text-align: center;
-}
-
 main .resume .right-page .qualifications .qualifications-line {
   width: 148mm;
   height: 7.3mm;
@@ -663,18 +639,6 @@ main .resume .right-page .qualifications .qualifications-line p {
 main .resume .right-page .qualifications .qualifications-line p:last-of-type {
   text-align: left;
   border-right: none;
-}
-
-main .resume .right-page .qualifications .qualifications-line p[data-text-align="left"] {
-  text-align: left;
-}
-
-main .resume .right-page .qualifications .qualifications-line p[data-text-align="right"] {
-  text-align: right;
-}
-
-main .resume .right-page .qualifications .qualifications-line p[data-text-align="center"] {
-  text-align: center;
 }
 
 main .resume .right-page .motivation {
@@ -855,4 +819,4 @@ footer {
     display: none;
   }
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=b4.css.map */

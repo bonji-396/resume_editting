@@ -15,7 +15,8 @@ class ResumeEditor {
      定数を定義
     -------------------------------- */
     this.DEFAULT_IS_EDITTING = true;
-    this.DEFAULT_EXPORT_FILE_TYPE_IS_TEXT = false;    
+    this.DEFAULT_EXPORT_FILE_TYPE_IS_TEXT = false;
+    this.DEFAULT_PAGE_SIZE = 'B4';  
     /* -----------------------------
      User Interfaces
     -------------------------------- */
@@ -31,8 +32,10 @@ class ResumeEditor {
     this.exportButton = new ExportButton(()=>{this.export(this.DEFAULT_EXPORT_FILE_TYPE_IS_TEXT)});
     this.helpButton = new HelpButton(()=>{this.help()});
     this.closeButton = new CloseButton(()=>{this.close()});
-
+    // 初期化
     this.init();
+    // （リロード時に）sessionStorageの反映
+    this.load();
   }
   /* ---------------------------------------------------
     編集可否の初期化
@@ -41,7 +44,6 @@ class ResumeEditor {
     // 編集可否の初期化
     this.eittingSwitchButton.selfElement.checked = this.DEFAULT_IS_EDITTING;
     this.edittingSwitch(this.DEFAULT_IS_EDITTING);
-    // 
   }
   /* ---------------------------------------------------
     編集可否を切り替える
@@ -76,6 +78,7 @@ class ResumeEditor {
   load(){
     this.inputFields.load();
     this.idPhoto.load();
+    this.printDialog.load(this.DEFAULT_PAGE_SIZE);
   }
   /* ---------------------------------------------------
     ヘルプ表示
@@ -143,9 +146,14 @@ class InputFields extends UserInterfase {
     this.selfElement.forEach(inputField=>{
       inputField.addEventListener('input', (event)=>{this.autoSave(event)});
     });
-    // sessionStorageのデータを反映
+    this.careerAndQualifications = document.querySelectorAll('[id*="-contents-"]');
+    this.careerAndQualifications.forEach(elem=>{
+      elem.addEventListener('dblclick',(event)=>{this.changeTextAlign(event)});
+    });
+    // console.log(this.careerAndQualifications);
+
+    // 編集領域の改行可否 
     this.supression();
-    this.load();
   }
   /* ---------------------------------------------------
    入力編集可能にする
@@ -199,7 +207,7 @@ class InputFields extends UserInterfase {
   load() {
     this.selfElement.forEach(inputField=>{
       // IDと一致するキーが存在した場合に値を読み込む
-      if(sessionStorage.getItem(inputField.id)) {
+      if (sessionStorage.getItem(inputField.id)) {
         inputField.innerText = sessionStorage.getItem(inputField.id);
       } else {
         inputField.innerHTML = '';
@@ -214,7 +222,80 @@ class InputFields extends UserInterfase {
     haveContent('marital-status', '有・無')
     haveContent('obligation-to-support-spouse', '有・無')
   }
-/* ---------------------------------------------------
+  /* ---------------------------------------------------
+    TextAlignをcenter,right,leftのローテンションで変更する
+  ------------------------------------------------------ */
+  changeTextAlign(event) {
+
+    switch (event.target.dataset.textAlign) {
+      case undefined:
+        event.target.dataset.textAlign = 'center';
+        break;
+      case 'left':
+        event.target.dataset.textAlign = 'center';
+        break;
+      case 'center':
+        event.target.dataset.textAlign = 'right';
+        break;
+      case 'right':
+        event.target.dataset.textAlign = 'left';
+        break;          
+      default:
+        break;
+    }
+    // sessionStorageへ保存する
+    this.dataTextAlignSave(event.target.dataset.textAlign, event.target.id);
+  }
+  /* ---------------------------------------------------
+  ------------------------------------------------------ */
+  dataTextAlignSave(key, value){
+    console.log(key, value);
+    let left = [];
+    if (sessionStorage.getItem('left')) {
+      left = sessionStorage.getItem('left').split(',');
+    }
+    console.log(left);
+    let center = [];
+    if (sessionStorage.getItem('center')) {
+      center = sessionStorage.getItem('center').split(',');
+    }
+    console.log(center);
+    let right = [];
+    if (sessionStorage.getItem('right')) {
+      right = sessionStorage.getItem('right').split(',');
+    }
+    console.log(right);
+   
+    // TODO:
+    ////////////////// 一旦、保存されていたvalueを削除する //////////////
+
+    switch (key) {
+      case 'left':
+        left.push(value);
+        break;
+      case 'center':
+        center.push(value);
+        break;
+      case 'right':
+        right.push(value);
+        break;
+      default:
+        break;
+    }
+
+    if(left.length) {
+      sessionStorage.setItem('left', left);      
+    }
+    if(center.length) {
+      sessionStorage.setItem('center', center);
+    }
+    if(right.length) {
+      sessionStorage.setItem('right', right);
+    }
+
+    console.log(left,'\n', center,'\n', right);
+  }
+  /* ---------------------------------------------------
     編集内容をクリアリセットする
   ------------------------------------------------------ */
   clear() {
@@ -246,8 +327,6 @@ class IDPhoto extends UserInterfase {
     this.idPhotoImage = document.getElementById('photo-image');
     // 画像要素を右クリックした時のイベント
     this.idPhotoImage.addEventListener('contextmenu', (event)=>{callback(event)});
-
-    this.load();
   }
   /* ---------------------------------------------------
     IDPhotoの編集を有効化
@@ -279,11 +358,12 @@ class IDPhoto extends UserInterfase {
     this.addIDPhotoInDataURLFormat();
   }
   /* ---------------------------------------------------
-    顔写真を追加（Data URI形式）
+    顔写真を追加（Blob URI形式）
   ------------------------------------------------------ */
   addIDPhotoIBlogURLFormat(){
     const file = this.selfElement.files[0];
     // 選択した画像を表示する
+    // FIX:importButtonと同じようにすると、一旦SessionStorageに保存し、ResumeEditor.lode();で読み込むべき
     this.idPhotoImage.setAttribute('src', file);
     // SessonStorageにも保存
     sessionStorage.setItem(this.idPhotoImage.id, file);
@@ -305,6 +385,9 @@ class IDPhoto extends UserInterfase {
       // HTTPリクエストを発生させずにテキストとして埋め込んでいるので、リロードするなどしないと表示しない。
       // !!!!!!!!!!!!!!!!!!!!!!! FIX: リロード回避方法を実装
       location.reload(); 
+      // FIX:importButtonと同じようにすると、
+      // 一旦SessionStorageに保存し、ResumeEditor.lode();で読み込むべき
+      // その場合上記のreload要らない。
     });
     // readAsDataURLでのエラー
     reader.addEventListener('error', ()=>{
@@ -464,7 +547,6 @@ class PrintDialog extends UserInterfase {
 
     this.selectBox = document.getElementById('print-size');
     this.selectBox.addEventListener('change', ()=>{this.changeSize()});
-    console.log(this.selectBox.value);
     
     this.printButton = document.getElementById('printing');
     this.printButton.addEventListener('click', ()=>{this.print()});
@@ -473,11 +555,26 @@ class PrintDialog extends UserInterfase {
     this.closeButton.addEventListener('click', ()=>{this.close()});
   }
   /* ---------------------------------------------------
+    settionStorageから値を読み込む
+  ------------------------------------------------------ */
+  load(DEFAULT_PAGE_SIZE) {
+    // console.log(this.selectBox.value, this.selectBox.selectedIndex);
+    if (sessionStorage.getItem(this.selectBox.id)) {
+      this.selectBox.value = sessionStorage.getItem(this.selectBox.id);
+    } else {
+      this.selectBox.value = DEFAULT_PAGE_SIZE;
+      sessionStorage.setItem(this.selectBox.id, this.selectBox.value);  
+    }
+    // console.log(this.selectBox.value, this.selectBox.selectedIndex);
+  }
+  /* ---------------------------------------------------
     スタイルシートを変更する？　TODO:
   ------------------------------------------------------ */
   changeSize(){
-    console.log(this.selectBox.value);
-    // スタイルシートを変更する　////////////////////////////
+    // console.log(this.selectBox.value, this.selectBox.selectedIndex);
+    // sessionStorageに選択状態を保存
+    sessionStorage.setItem(this.selectBox.id, this.selectBox.value);
+    // スタイルシートを変更する　FIX: ////////////////////////////
   }
   /* ---------------------------------------------------
     プリントダイアログを表示する
