@@ -221,6 +221,10 @@ class InputFields extends UserInterfase {
     haveContent('gender', '男・女')
     haveContent('marital-status', '有・無')
     haveContent('obligation-to-support-spouse', '有・無')
+
+    //// 揃え情報を読み込んで反映する　TODO: //////////////////////////
+
+
   }
   /* ---------------------------------------------------
     TextAlignをcenter,right,leftのローテンションで変更する
@@ -247,28 +251,36 @@ class InputFields extends UserInterfase {
     this.dataTextAlignSave(event.target.dataset.textAlign, event.target.id);
   }
   /* ---------------------------------------------------
+    揃え方角をsessionStorage情報に保存 // TODO: リファクタリング
   ------------------------------------------------------ */
   dataTextAlignSave(key, value){
     console.log(key, value);
+
+    const removeFromArray = (item)=>{
+      if(item !== value){
+        return item;
+      }
+    };
+
     let left = [];
     if (sessionStorage.getItem('left')) {
       left = sessionStorage.getItem('left').split(',');
+      let tmp = left.filter(removeFromArray);
+      left = tmp;
     }
-    console.log(left);
     let center = [];
     if (sessionStorage.getItem('center')) {
       center = sessionStorage.getItem('center').split(',');
+      let tmp = center.filter(removeFromArray);
+      center = tmp;
     }
-    console.log(center);
     let right = [];
     if (sessionStorage.getItem('right')) {
       right = sessionStorage.getItem('right').split(',');
+      let tmp = right.filter(removeFromArray);
+      right = tmp;
     }
-    console.log(right);
    
-    // TODO:
-    ////////////////// 一旦、保存されていたvalueを削除する //////////////
-
     switch (key) {
       case 'left':
         left.push(value);
@@ -282,6 +294,10 @@ class InputFields extends UserInterfase {
       default:
         break;
     }
+
+    sessionStorage.removeItem('left');
+    sessionStorage.removeItem('center');
+    sessionStorage.removeItem('right');
 
     if(left.length) {
       sessionStorage.setItem('left', left);      

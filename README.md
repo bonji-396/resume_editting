@@ -5,7 +5,7 @@ HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロント�
 ## 概要
 下記ページにアクセスすれば利用できます。
 
-- [提供ページ]()
+- [提供ページ](https://www.mikuro.works/resume_editting/editor)
 - [説明ページ](https://www.mikuro.works/resume_editting)
 - [GitHub](https://github.com/bonji-396/resume_editting)
 
