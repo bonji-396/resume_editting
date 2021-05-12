@@ -1,0 +1,92 @@
+// header menu buttons style <Apply it to the button or input-label element >
+@mixin menuButtonStyle {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 3px;
+  border:1px solid $button-border-color;
+  background-color: $button-bg-color;
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+// modal window common part
+@mixin modalLayout {
+  display: none;
+  position: fixed;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
+  background-color: $base-color;
+  box-shadow: $modal-show-body-background;
+  animation: fade 0.5s linear 0s;
+}
+// help close button icon part
+@mixin helpCloseX {
+  content: '';
+  width: 30px;
+  height: 5px;
+  background-color: $font-color;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;  
+}
+// resume-line style
+@mixin resume-line {
+  width: $content-width;
+  height: $field-line-hight;
+  display: grid;
+  grid-template-columns: $resume-line-grid-t-cols;
+  text-align: center;
+  border: {
+    left: $print-line-bold;
+    right: $print-line-bold;
+    bottom: $print-line-default ;
+  }
+  &:first-of-type {
+    border: {
+      bottom: $print-line-double;
+    }
+    p {
+      &:last-of-type {
+        text-align: center;
+      }
+    }
+  }
+  &:last-of-type {
+    border: {
+      bottom: $print-line-bold;
+    }
+  }
+  p {
+    line-height: $field-line-hight;
+    padding: $resume-line-p-padding;
+    border: {
+      right: $print-line-default ;
+    }
+    &:last-of-type {
+      text-align: left;
+      padding: $resume-line-p-3th-cols-padding;
+      border: {
+        right: none;
+      }
+    }
+    &[data-text-align="left"] {
+      text-align: left;
+    }
+    &[data-text-align="right"] {
+      text-align: right;
+    }
+    &[data-text-align="center"] {
+      text-align: center;
+    }
+  }
+}

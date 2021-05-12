@@ -7,16 +7,30 @@
   -->
   <!--
     TODO:
-    4. 学歴・職歴の文字揃え切り替えを実装      5/11
-    5. 入力フォーカスした時に、全選択する      5/11
-    6. print機能                           5/11
-    8. ヘルプ表示                           5/11
-    9. SCSSリファクタリング                 5/11
+    1.1 print-size　初回load時に初期を与えること
+    1.2 help close
+    1.3 doneでもid-photoを削除できる
+    2.  font指定
+    3.  SCSSリファクタリング                 5/13
         Firefox、Safari
-    10. GitHub Pagesへ実装、GitHubコード公開 5/12
-    11. Qiitaへ記事投稿                      5/12
-    12. ポートフォリオ用詳細ページ作成         5/12
-    13. ポートフォリオへ反映                 5/12
+    4.  ヘルプ表示                           5/13
+
+    5.  HTML出力（
+      1.必要のない要素をremoveメソッドで削除
+        document.querySelector('hote').remove();
+      2.header要素など一部変更する
+      3.専用のCSSファイルを読み込みんで、style要素に入れ込み
+        header要素にそのstyle要素を追加する
+      4.html要素を取得する。
+        document.querySelector('html')
+      7.html.outerHTMLでDOMStringとして出力
+        document.querySelector('html').outerHTML;
+      8.ファイル名を指定してhtmlファイルとして出力
+      
+    10. GitHub Pagesへ実装、GitHubコード公開 5/13
+    11. Qiitaへ記事投稿                      5/13
+    12. ポートフォリオ用詳細ページ作成         5/13
+    13. ポートフォリオへ反映                 5/13
     14. viewを100%,150%,50%,画面に合わせるに選択可能
     15 ドラックアンドドロップ（JSON, image）
     16. スマートフォン対応
@@ -29,7 +43,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>履歴書 Editor</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link id="combines-styles" rel="stylesheet" href="css/style.css">
   <script src="js/main.js"></script>
 </head>
 <body>
@@ -55,10 +69,10 @@
     </div>
     <dialog id="print-dialog">
       <select name="" id="print-size" required>
-        <option value="B4">B5(見開きB4:1枚)</option>
-        <option value="B5">B5(B5:2枚)</option>
-        <option value="A3">A4(見開きA3:1枚)</option>
-        <option value="A4">A4(A4:2枚)</option>
+        <option value="b4">B5(見開きB4:1枚)</option>
+        <option value="b5">B5(B5:2枚)</option>
+        <option value="a3">A4(見開きA3:1枚)</option>
+        <option value="a4">A4(A4:2枚)</option>
       </select>
       <button id="printing">印刷</button>
       <button id="dialog-close">キャンセル</button>
@@ -144,7 +158,7 @@
             </div>
             <div class="e-mail">
               <p class="label">E-mail</p>
-              <p id="e-mail" class="input-field"></p>
+              <p id="e-mail" class="input-field multiple-lines"></p>
             </div>
           </div><!-- /.contact-info -->
   
@@ -170,7 +184,7 @@
             </div>
             <div class="e-mail">
               <p class="label">E-mail</p>
-              <p id="emergency-e-mail" class="input-field"></p>
+              <p id="emergency-e-mail" class="input-field multiple-lines"></p>
             </div>
             </div>
           </div><!-- /#emergency-contact -->
@@ -378,7 +392,7 @@
 
           <section class="self-promotion entry-field">
             <p class="label">志望の動機、自己PR、趣味、特技など</p>
-            <p id="self-promotion" class="input-field multiple-lines "></p>
+            <p id="self-promotion" class="input-field multiple-lines"></p>
           </section><!-- /.self-promotion -->
     
           <section class="commuting-time">

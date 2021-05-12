@@ -14,7 +14,7 @@ body {
     box-sizing: border-box;
   }
   @media screen {
-    background-color: #eee;
+    background-color: $body-bg-color;
   }
 }
 header {
@@ -25,11 +25,11 @@ header {
   display: grid;
   grid-template-columns: 300px 1fr;
   align-items: bottom;
-  border-bottom: 1px solid #333;
-  background-color: #fff;
+  border-bottom: $header-border;
+  background-color: $base-color;
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 10;
   @media print {
     display: none;
   }
@@ -48,7 +48,7 @@ header {
         display: none;
         &:checked {
           +label {
-            background-color: #4BD865;
+            background-color: $enable-color;
             &::before {
               content: 'edit';
             }
@@ -61,7 +61,7 @@ header {
       label {
         width: 40px;
         height: 20px;
-        background-color: #ccc;
+        background-color: $disable-color;
         position:relative;
         top: 20px;
         display: inline-block;
@@ -86,50 +86,37 @@ header {
           width: 20px;
           height: 20px;
           border-radius: 100%;
-          z-index: 2;
-          background-color: #fff;
-          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+          background-color: $base-color;
+          box-shadow:$switch-toggle-shadow;
           transition: 0.4s;
           cursor: pointer;
         }
       }
     }
-    >label {
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      border-radius: 3px;
-      border:1px solid rgb(118, 118, 118);
-      background-color: #EFEFEF;
+    >label { // importButton
+      @include menuButtonStyle;
       img {
-        width: 24px;
-        height: 24px;
-        text-align: center;
-        margin: 7px;
+        margin: 7px; // 中央揃え
       }
       input {
         display: none;
       }
     }
     button {
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      img{
-        width: 24px;
-        height: 24px;
-      }
+      @include menuButtonStyle;
     }
   }
   #print-dialog {
-    display: none;
+    @include modalLayout;
     width: 200px;
     height: 100px;
-    padding: 10px;
+    padding: 8px;
+    color: $font-color;
+    border: $print-dialog-border;
     &.show {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 8px;
       grid-template-rows: repeat(2, 1fr);
     }
     #print-size {
@@ -143,36 +130,34 @@ header {
     }
   }
 }
-// 履歴書（B5サイズ: 182mm×257mm x 2（左右ページ合わせてB4:364mmx257mm）, 余白: 上下左右17mm）
-// 履歴書（A4サイズ: 210mm×297mm x 2（左右ページ合わせてA3:420mmx297mm）, 余白: 上下左右17mm）
 main {
   width: 100%;
   margin: 0 auto;
   font-size: 11pt;
   .resume {
-    width: 364mm;
+    width: $page-width * 2;
     margin: 60px auto 10px;
     display: grid;
-    grid-template-columns: 182mm 182mm;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    grid-template-columns: repeat(2, $page-width);
+    border: $page-boder;
     @media print {
       margin: 0;
       // border: none;
     }
     @media screen {
-      background-color: #fff;
+      background-color: $base-color;
     }
-    @media screen and (max-width: 200mm) {
-      width: 182mm;
-      grid-template-columns: 182mm;
+    @media screen and (max-width: $two-page-breakpoint) {
+      width: $page-width;
+      grid-template-columns: $page-width;
     }
     .page {
-      width: 182mm;
-      height: 257mm;
-      padding: 14mm 17mm;
+      width: $page-width;
+      height: $page-height;
+      padding: $vertical-margin $side-margin;
       .input-field {
         overflow: hidden;
-        br { // 表示自体はなんとかなるが、もともとJavaScriptで入力時に改行を制限する必要がある。
+        br { // 表示自体はなんとかなるが、JavaScriptで入力時に改行を制限が必要
           white-space: nowrap; //　空白は詰める（改行もされない）
           display: none; // 改行すると<div><br></div>が生成されるので非表示にする
         }
@@ -187,24 +172,24 @@ main {
     .left-page {
       position: relative;
       .resume-header {
-        width: 148mm;
-        height: 7.3mm;
-        margin-top: 1mm;
+        width: $content-width;
+        height: $field-line-hight;
+        margin-top: $resume-header-margin-top;
         display: grid;
-        grid-template-columns: 35mm 78mm 35mm;
+        grid-template-columns: $resume-header-grid-t-cols;
         align-items: center;
         h2 {
-          font-size: 17pt;
+          font-size: $h2-font-size;
           text-align: center;
         }
         .creataion-date {
-          padding: 1mm;
+          padding: $creataion-date-padding;
           display: grid;
-          grid-template-columns: 13mm 3mm 5.5mm 3mm 5.5mm 8.5mm;
+          grid-template-columns: $creataion-date-grid-t-cols;
           justify-self: end;
           p {
             vertical-align: middle;
-            font-size: 8pt;
+            font-size: $creataion-date-font-size;
             &.label {
               text-align: center;
             }
@@ -215,19 +200,19 @@ main {
         }
       }
       .id-photo {
-        width: 28mm;
-        height: 36.5mm;
-        padding: 8pt;
+        width: $id-photo-width;
+        height: $id-photo-height;
+        padding: $id-photo-font-size;
         position: absolute;
-        top: 14mm;
-        right: 21mm;
+        top: $id-photo-top-position;
+        right: $id-photo-right-position;
         border: $print-line-default;
         text-align: center;
         p{
-          font-size: 8pt;
+          font-size: $id-photo-font-size;
           text-align: center;
-          line-height: 8pt;
-          margin-bottom: 8pt;
+          line-height: $id-photo-font-size;
+          margin-bottom: $id-photo-font-size;
         }
         label {
           width: 100%;
@@ -237,7 +222,6 @@ main {
           right: 0;
           bottom: 0;
           left: 0;
-          z-index: 1;
           input {
             display: none;
           }
@@ -256,10 +240,9 @@ main {
           top:0px;
           width:100px;
           height:30px;
-          border:1px solid #333;
-          box-shadow: 2px 2px 5px #333;
-          background-color:#eee;
-          z-index: 2;
+          border: $contextmenu-border;
+          box-shadow: $contextmenu-shadow;
+          background-color:$base-color;
           &.show {
             display: block;
           }
@@ -268,7 +251,7 @@ main {
             line-height: 30px;
             cursor:pointer;
             &:hover {
-              background-color: #aaa;
+              background-color: $contextmenu-hover-color;
             }
           }
         }
@@ -278,23 +261,23 @@ main {
           &.label {
             text-align: left;
             align-self: center;
-            padding: 0 1mm;
+            padding: $parsonal-data-label-padding;
           }
           &.input-field {
             align-self: center;
-            padding: 0 1mm;
+            padding: $parsonal-data-input-field-padding;
           }
         }
         .basic-data {
           display: grid;
-          grid-template-columns: 94mm 19mm 35mm;
-          grid-template-rows: 7.3mm 15mm 7.3mm;
+          grid-template-columns: $basic-data-grid-t-cols;
+          grid-template-rows: $basic-data-grid-t-tows;
           .name-furigana {
-            height: 7.3mm;
+            height: $name-furigana-field-line-hight;
             grid-column: 1 / 2;
             grid-row: 1 / 2;
             display: grid;
-            grid-template-columns: 15mm 78mm;
+            grid-template-columns: $name-furigana-grid-t-clos;
             border: {
               top: $print-line-bold;
               right: $print-line-default;
@@ -304,20 +287,20 @@ main {
             p {
               &.label {
                 grid-column: 1 / 2;
-                font-size: 9pt;
+                font-size: $name-furigana-font-size;
               }
               &.input-field {
                 grid-column: 2 / 3;
-                font-size: 9pt;
+                font-size: $name-furigana-font-size;
               }  
             }
           }
           .name {
-            height: 15mm;
+            height: $name-line-height;
             grid-column: 1 / 2;
             grid-row: 2 / 3;
             display: grid;
-            grid-template-columns: 15mm 78mm;
+            grid-template-columns: $name-grid-t-clos;
             border: {
               right: $print-line-default;
               bottom: $print-line-default;
@@ -330,11 +313,12 @@ main {
               &.input-field {
                 grid-column: 2 / 3;
                 text-align: center;
-                font-size: 16pt;
+                font-size: $name-font-size;
               }
             }
           }
           .gender {
+            height: $gender-height;
             grid-row: 1 / 3;
             grid-column: 2 / 3;
             border: {
@@ -359,7 +343,7 @@ main {
               left: $print-line-bold;
             }
             display: grid;
-            grid-template-columns: 19mm 26mm 5mm 9mm 5mm 9mm 18mm 10mm 10mm;          
+            grid-template-columns: $birthday-grid-t-clos;         
             align-items: center;
             p {
               &.input-field {
@@ -371,8 +355,8 @@ main {
         .contact-info, 
         .emergency-contact{
           display: grid;
-          grid-template-columns: 19mm 92.5mm 35.5mm;
-          grid-template-rows: 7.3mm 6mm 9mm;
+          grid-template-columns: $emergency-contact-grid-t-cols;
+          grid-template-rows: $emergency-contact-grid-t-rows;
           border: {
             left: $print-line-bold;
             right: $print-line-bold;
@@ -386,8 +370,8 @@ main {
               bottom: $print-line-default;
             }
             display: grid;
-            grid-template-columns: 18mm 92mm;
-            font-size: 9pt;
+            grid-template-columns: $resides-furigana-grid-t-cols;
+            font-size: $resides-furigana-font-size;
           }
           .postal-code {
             grid-row: 2 / 3;
@@ -396,7 +380,7 @@ main {
               right: $print-line-default;
             }
             display: grid;
-            grid-template-columns: 18mm 9mm 12mm 5mm 16mm 5mm;
+            grid-template-columns: $postal-code-grid-t-cols;
             p {
               &.input-field {
                 text-align: center;
@@ -404,16 +388,16 @@ main {
             }
           }
           .resides {
-            height: 9mm;
+            height: $resides-height;
             grid-row: 3 / 4;
             grid-column: 1 / 3;
-            font-size: 11pt;
+            font-size: $resides-font-size;
             border: {
               right: $print-line-default;
             }
             align-self: center;
             p.input-field {
-              line-height: 9mm;
+              line-height: $resides-line-height;
             }
           }
           .phone-number {
@@ -424,31 +408,32 @@ main {
               bottom: $print-line-default;
             }
             display: grid;
-            grid-template-columns: 9mm 26mm;
+            grid-template-columns: $phone-number-grid-t-clos;
             p {
               &.label {
-                font-size: 9pt;
+                font-size: $phone-number-label-font-size;
               }
               &.input-field {
-                font-size: 8pt;
+                font-size: $phone-number-font-size;
               }  
             }
           }
           .e-mail {
-            height: 15mm;
+            height: $email-height;
             grid-row: 2 / 4;
             grid-column: 3 / 4;
             display: grid;
-            grid-template-columns: 35mm;
-            grid-template-rows: 6mm 9mm;
+            grid-template-columns: $email-grid-t-cols;
+            grid-template-rows: $email-grid-t-rows;
             p {
               &.label {
-                font-size: 9pt;
+                font-size: $email-label-font-size;
               }
               &.input-field {
                 text-align: center;
-                font-size: 8pt;
-                height: 9mm;
+                font-size: $email-font-size;
+                height: $email-input-field-height;
+                line-height: $email-input-field-height;
               }  
             }
           }
@@ -466,161 +451,26 @@ main {
       }
       .education-and-career-history {
         .resume-line {
-          width: 148mm;
-          height: 7.3mm;
-          display: grid;
-          grid-template-columns: 22.5mm 12.5mm 111mm; // 両脇枠線分2mm引き
-          text-align: center;
-          border: {
-            left: $print-line-bold;
-            right: $print-line-bold;
-            bottom: $print-line-default ;
-          }
-          &:first-of-type {
-            border: {
-              bottom: $print-line-double;
-            }
-            p {
-              &:last-of-type {
-                text-align: center;
-              }
-            }
-          }
-          &:last-of-type {
-            border: {
-              bottom: $print-line-bold;
-            }
-          }
-          p {
-            line-height: 7.3mm;
-            padding: 0 1mm;
-            border: {
-              right: $print-line-default ;
-            }
-            &:last-of-type {
-              text-align: left;
-              padding: 0 2mm;
-              border: {
-                right: none;
-              }
-            }
-            &[data-text-align="left"] {
-              text-align: left;
-            }
-            &[data-text-align="right"] {
-              text-align: right;
-            }
-            &[data-text-align="center"] {
-              text-align: center;
-            }
-          }
+          @include resume-line;
         }
       }
     }
     .right-page {
       .education-and-career-history {
-        margin-top: 8.3mm;
+        margin-top: $right-page-education-and-career-history-margin-top;
         .resume-line {
-          width: 148mm;
-          height: 7.3mm;
-          display: grid;
-          grid-template-columns: 22.5mm 12.5mm 111mm; // 両脇枠線分2mm引き
-          text-align: center;
-          border: {
-            left: $print-line-bold;
-            right: $print-line-bold;
-            bottom: $print-line-default ;
-          }
+          @include resume-line;
           &:first-of-type {
-            height: 8.3mm;
+            height: $right-page-education-and-career-history-hedding-height;
             border: {
               top: $print-line-bold;
-              bottom: $print-line-double;
-            } 
-            p {
-              &:last-of-type {
-                text-align: center;
-              }
             }
           }
-          &:last-of-type {
-            border: {
-              bottom: $print-line-bold;
-            }
-          }
-          p {
-            line-height: 7.3mm;
-            border: {
-              right: $print-line-default;
-            }
-            &:last-of-type {
-              text-align: left;
-              padding: 0 2mm;
-              border: {
-                right: none;
-              }
-            }
-            &[data-text-align="left"] {
-              text-align: left;
-            }
-            &[data-text-align="right"] {
-              text-align: right;
-            }
-            &[data-text-align="center"] {
-              text-align: center;
-            }
-          }
-        }
+        } 
       }
       .qualifications {
         .qualifications-line {
-          width: 148mm;
-          height: 7.3mm;
-          display: grid;
-          grid-template-columns: 22.5mm 12.5mm 111mm; // 両脇枠線分2mm引き
-          text-align: center;
-          border: {
-            left: $print-line-bold;
-            right: $print-line-bold;
-            bottom: $print-line-default ;
-          }
-          &:first-of-type {
-            border: {
-              bottom: $print-line-double;
-            }
-            p {
-              &:last-of-type {
-                text-align: center;
-              }
-            }
-          }
-          &:last-of-type {
-            border: {
-              bottom: $print-line-bold;
-            };
-          }
-          p {
-            padding: 0 1mm;
-            line-height: 7.3mm;
-            border: {
-              right: $print-line-default ;
-            }
-            &:last-of-type {
-              text-align: left;
-              border: {
-                right: none;
-              }
-            }
-            &[data-text-align="left"] {
-              text-align: left;
-            }
-            &[data-text-align="right"] {
-              text-align: right;
-            }
-            &[data-text-align="center"] {
-              text-align: center;
-            }
-          }
+         @include resume-line;
         }
       }
       .motivation{
@@ -732,59 +582,30 @@ main {
     }
   }
   #help-window {
-    display: none;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-    transform: translate(-50%, -50%);
-    // max-width: 832px;
+    @include modalLayout;
     width: 90vw;
     height: 90vh;
     padding: 16px;
     border-radius: 24px;
-    box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
-    background-color: #fff;
-    animation: fade 0.5s linear 0s;
     &.show {
       display: block;
-      z-index: 4;
+      z-index: 20;
     }
     .help-close {
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      // border: 5px solid #333;
-      box-shadow: 0 0 3px #333;
-      background-color: #fff;
+      box-shadow: $help-close-shadow;
+      background-color: $base-color;
       position: absolute;
       top: -10px;
       right: -10px;
       &::before {
-        content: '';
-        width: 30px;
-        height: 5px;
-        background-color: #333;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        margin: auto;
+        @include helpCloseX;
         transform: rotate(-45deg);
       }
       &::after {
-        content: '';
-        width: 30px;
-        height: 5px;
-        background-color: #333;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        margin: auto;
+        @include helpCloseX;
         transform: rotate(45deg);
       }
     }

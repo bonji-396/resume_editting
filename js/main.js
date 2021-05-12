@@ -4,7 +4,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   // 履歴書編集オブジェクトの生成
   const resumeEditor = new ResumeEditor();
-  
+  // document.querySelector('header').remove();
+  // console.log(document.querySelector('html').outerHTML);
+  // console.log(window.getComputedStyle(document.querySelector('main')));
 },false);
 /* -------------------------------------------------------------------------
  履歴書編集クラス（ResumeEditor）
@@ -85,7 +87,6 @@ class ResumeEditor {
     TODO: 別インスタンスで処理
   ------------------------------------------------------ */
   help(){
-    console.log('helpにゃーーー');
     const helpWindow = document.getElementById('help-window');
     helpWindow.classList.add("show");
  
@@ -94,7 +95,6 @@ class ResumeEditor {
       if (helpWindow.classList.contains('show')
         && !event.target.closest('#help-window')) {
           helpWindow.classList.remove("show");
-          console.log('hage');
       }
     });
     // }, { once: true });
@@ -143,15 +143,22 @@ class InputFields extends UserInterfase {
   constructor() {
     super();
     this.selfElement = document.querySelectorAll('.input-field');
+    // 全入力欄にイベント処理を付与
     this.selfElement.forEach(inputField=>{
+      // input時に自動保存
       inputField.addEventListener('input', (event)=>{this.autoSave(event)});
+      // フォーカス時に全選択
+      inputField.addEventListener('focus',()=>{
+        document.execCommand('focus',false,null);
+        console.log('focus');
+      });
     });
+    // 学歴・職歴/免許・資格 欄
     this.careerAndQualifications = document.querySelectorAll('[id*="-contents-"]');
+    // ダブルクリックで文字揃え変更処理を付与
     this.careerAndQualifications.forEach(elem=>{
       elem.addEventListener('dblclick',(event)=>{this.changeTextAlign(event)});
     });
-    // console.log(this.careerAndQualifications);
-
     // 編集領域の改行可否 
     this.supression();
   }
@@ -225,6 +232,22 @@ class InputFields extends UserInterfase {
     //// 揃え情報を読み込んで反映する　TODO: //////////////////////////
 
 
+    const applyTextAlign = (direction)=>{
+
+      if (sessionStorage.getItem(direction)) {
+        let items = sessionStorage.getItem(direction).split(',');
+        items.forEach(item=>{
+          // console.log(direction,item);
+          const field = document.getElementById(item);
+          field.dataset.textAlign = direction
+        });
+      }
+
+    }
+
+    applyTextAlign('left');
+    applyTextAlign('center');
+    applyTextAlign('right');
   }
   /* ---------------------------------------------------
     TextAlignをcenter,right,leftのローテンションで変更する
@@ -251,10 +274,11 @@ class InputFields extends UserInterfase {
     this.dataTextAlignSave(event.target.dataset.textAlign, event.target.id);
   }
   /* ---------------------------------------------------
-    揃え方角をsessionStorage情報に保存 // TODO: リファクタリング
+    揃え方角をsessionStorage情報に保存 
+    TODO: リファクタリング
   ------------------------------------------------------ */
   dataTextAlignSave(key, value){
-    console.log(key, value);
+    // console.log(key, value);
 
     const removeFromArray = (item)=>{
       if(item !== value){
@@ -309,7 +333,7 @@ class InputFields extends UserInterfase {
       sessionStorage.setItem('right', right);
     }
 
-    console.log(left,'\n', center,'\n', right);
+    // console.log(left,'\n', center,'\n', right);
   }
   /* ---------------------------------------------------
     編集内容をクリアリセットする
@@ -385,7 +409,7 @@ class IDPhoto extends UserInterfase {
     sessionStorage.setItem(this.idPhotoImage.id, file);
   }
   /* ---------------------------------------------------
-    顔写真を追加（Data URI形式）
+    顔写真を追加（Data URI形式）← 不利用（メモとして残す）
   ------------------------------------------------------ */
   addIDPhotoInDataURLFormat(){
     const file = this.selfElement.files[0];
@@ -399,9 +423,9 @@ class IDPhoto extends UserInterfase {
       sessionStorage.setItem(this.idPhotoImage.id, reader.result);
       // !!!!!!!!!!!!!!!!!!!!!!!
       // HTTPリクエストを発生させずにテキストとして埋め込んでいるので、リロードするなどしないと表示しない。
-      // !!!!!!!!!!!!!!!!!!!!!!! FIX: リロード回避方法を実装
+      // !!!!!!!!!!!!!!!!!!!!!!! 
       location.reload(); 
-      // FIX:importButtonと同じようにすると、
+      // importButtonと同じようにすると、
       // 一旦SessionStorageに保存し、ResumeEditor.lode();で読み込むべき
       // その場合上記のreload要らない。
     });
@@ -475,7 +499,7 @@ class ImportButton extends UserInterfase {
     その後、コールバックで表示に反映する。
   ------------------------------------------------------ */
   import(event, callback){
-    console.log('import', this.selfElement.files);
+    // console.log('import', this.selfElement.files);
     // 選択したファイルを読み込んで、その内容を各入力欄へ反映する
     const file = this.selfElement.files[0];
     const reader = new FileReader();
@@ -512,7 +536,7 @@ class ExportButton extends ButtonUI {
     sessionStorageデータをJSONテキストファイルとして保存
   ------------------------------------------------------ */
   export(flg){
-    console.log('export');
+    // console.log('export');
     const list =  {};
     // セッションストレージの内容を連想配列に格納
     for (let i = 0; i < sessionStorage.length; i++) {
@@ -560,13 +584,13 @@ class CloseButton extends ButtonUI {
 class PrintDialog extends UserInterfase {
   constructor(){
     super('print-dialog');
-
+    // セレクトボックス
     this.selectBox = document.getElementById('print-size');
     this.selectBox.addEventListener('change', ()=>{this.changeSize()});
-    
+    // 印刷ボタン
     this.printButton = document.getElementById('printing');
     this.printButton.addEventListener('click', ()=>{this.print()});
-    
+    // キャンセルボタン
     this.closeButton = document.getElementById('dialog-close');
     this.closeButton.addEventListener('click', ()=>{this.close()});
   }
@@ -584,20 +608,21 @@ class PrintDialog extends UserInterfase {
     // console.log(this.selectBox.value, this.selectBox.selectedIndex);
   }
   /* ---------------------------------------------------
-    スタイルシートを変更する？　TODO:
+    スタイルシートを変更する
   ------------------------------------------------------ */
   changeSize(){
-    // console.log(this.selectBox.value, this.selectBox.selectedIndex);
+    // スタイルシートを変更する
+    const link = document.getElementById('combines-styles');
+    link.href = `css/${this.selectBox.value}.css`;
     // sessionStorageに選択状態を保存
     sessionStorage.setItem(this.selectBox.id, this.selectBox.value);
-    // スタイルシートを変更する　FIX: ////////////////////////////
   }
   /* ---------------------------------------------------
     プリントダイアログを表示する
   ------------------------------------------------------ */
   show() {
     this.selfElement.classList.add('show');
-    this.selfElement.showModal();
+    // this.selfElement.showModal(); // firefoxやSafariでは未対応
   }
   /* ---------------------------------------------------
     ブラウザのプリント機能を利用する
@@ -605,7 +630,7 @@ class PrintDialog extends UserInterfase {
   print() {
     window.print();
     this.selfElement.classList.remove('show');
-    this.selfElement.close();
+    // this.selfElement.close(); // firefoxやSafariでは未対応
   }
   /* ---------------------------------------------------
     プリントダイアログを閉じる
@@ -640,7 +665,6 @@ class RightClickMenu extends UserInterfase{
       if (this.selfElement.classList.contains('show')
         && !event.target.closest('#contextmenu')) {
           this.close()
-          console.log('page');
       }
       // } else { //（イベント残留注意）
       //   console.log('poge else');
