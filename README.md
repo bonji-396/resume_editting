@@ -1,4 +1,4 @@
-# Resume Editor
+# Resume Editor（プロトタイプ）
 履歴書作成ウェブアプリです。
 HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロントエンドのみで収束」します。
 
