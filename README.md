@@ -2,6 +2,8 @@
 履歴書作成ウェブアプリです。
 HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロントエンドのみで収束」します。
 
+![スクリーンショット](https://user-images.githubusercontent.com/71716610/118047489-caee4f00-b3b5-11eb-9722-e145eefc79a9.png)
+
 ## 概要
 下記ページにアクセスすれば利用できます。
 
