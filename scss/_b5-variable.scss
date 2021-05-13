@@ -4,8 +4,7 @@
 $base-color: #fff;
 $font-color: #000;
 $line-color: #000;
-// $body-bg-color: #eee;
-$body-bg-color: green;
+$body-bg-color: #eee;
 $border-color: #333;
 $enable-color: #4bd865;
 $disable-color: #ccc;
@@ -15,6 +14,7 @@ $contextmenu-hover-color: #9aa;
 // ------------------------------------------------------------------------- //
 // Border Line
 // ------------------------------------------------------------------------- //
+$page-boder: 1px solid rgba(0, 0, 0, 0.5);
 $header-border: 1px solid $border-color;
 $print-dialog-border: 2px solid $line-color;
 $contextmenu-border: 1px solid $border-color;
@@ -22,7 +22,6 @@ $print-line-bold: 1mm solid $line-color;
 $print-line-middle: 0.7mm solid $line-color;
 $print-line-default: 0.35mm solid $line-color;
 $print-line-double: 1mm double $line-color;
-$page-boder: 1px solid rgba(0, 0, 0, 0.5);
 // ------------------------------------------------------------------------- //
 // box-shadow
 // ------------------------------------------------------------------------- //
@@ -46,6 +45,7 @@ $b4-height: 257mm;
 $b5-width: 182mm;
 $b5-height: 257mm;
 // page size
+$resume-width: $b5-width; // 
 $page-width: $b5-width;
 $page-height: $b5-height;
 // paper margin
@@ -54,6 +54,7 @@ $vertical-margin: 14mm;
 // ------------------------------------------------------------------------- //
 // size & position of content
 // ------------------------------------------------------------------------- //
+$resume-t-cols: $page-width;
 $content-width: $b5-width - $side-margin - $side-margin;
 $field-line-hight: 7.3mm;
 $resume-header-margin-top: 1mm;

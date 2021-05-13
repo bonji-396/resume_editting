@@ -19,11 +19,10 @@ header {
   height: 50px;
   padding: 0 10px;
   margin-bottom: 10px;
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  align-items: bottom;
   border-bottom: $header-border;
   background-color: $base-color;
+  display: grid;
+  grid-template-columns: 300px calc(100% - 300px);
   position: fixed;
   top: 0;
   z-index: 10;
@@ -32,10 +31,8 @@ header {
   }
   .menu {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 40px);
+    grid:  1fr / auto-flow;
     column-gap: 10px;
-    grid-auto-flow: column;
-    justify-items: center;
     justify-self: end;
     align-items: center;
     .editing-switch {
@@ -90,6 +87,10 @@ header {
         }
       }
     }
+    .select-papersize {
+      grid-column: 2 / 4;
+      height: 40px;
+    }
     >label { // importButton
       @include menuButtonStyle;
       img {
@@ -132,10 +133,10 @@ main {
   margin: 0 auto;
   font-size: 11pt;
   .resume {
-    width: $page-width * 2;
+    width: $resume-width;
     margin: 60px auto 10px;
     display: grid;
-    grid-template-columns: repeat(2, $page-width);
+    grid-template-columns: $resume-t-cols;
     border: $page-boder;
     @media print {
       margin: 0;
@@ -147,11 +148,19 @@ main {
     @media screen and (max-width: $two-page-breakpoint) {
       width: $page-width;
       grid-template-columns: $page-width;
+      border: {
+        bottom: none;
+      }
     }
     .page {
       width: $page-width;
       height: $page-height;
       padding: $vertical-margin $side-margin;
+      @media screen and (max-width: $two-page-breakpoint) {
+        border: {
+          bottom: $page-boder;
+        }
+      }
       .input-field {
         overflow: hidden;
         br { // 表示自体はなんとかなるが、JavaScriptで入力時に改行を制限が必要

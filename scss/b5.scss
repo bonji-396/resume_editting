@@ -2,3 +2,28 @@
 @import "b5-variable";
 @import "mixin";
 @import "style";
+
+.resume {
+  @media screen and (max-width: $two-page-breakpoint) {
+    width: $page-width;
+    grid-template-columns: $page-width;
+    border: {
+      bottom: none;
+    }
+    & and print {
+      width: $resume-width;
+      grid-template-columns: $resume-t-cols;
+      border: $page-boder;
+    }
+  }
+  .page {
+    width: $page-width;
+    height: $page-height;
+    padding: $vertical-margin $side-margin;
+    @media screen and (max-width: $two-page-breakpoint) {
+      border: {
+        bottom: $page-boder;
+      }
+    }
+  }
+}

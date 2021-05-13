@@ -2,7 +2,7 @@
 <html lang="ja">
   <!-- Author : bonji@mikuro.net (Shuji Narumi) 
     start: 2021/4/28
-    total: 36h last 2021/5/13
+    total: 37h last 2021/5/13
     Completion : 2021/5/14
     Version: 0.9
   -->
@@ -10,13 +10,7 @@
     TODO:
     3.  SCSSリファクタリング                 5/13
         Firefox、Safari
-    1.1 print-size　初回load時に初期値を与えること
-    1.2 help close button
-    1.3 print digalog closeでバグ
-    1.4 doneでもid-photoを削除できるバグ
-    1.5 close button廃止してWindow: beforeunload イベントで実装
     2.  font指定
-
     4.  ヘルプ表示                           5/13
 
     5.  HTML出力（
@@ -47,7 +41,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>履歴書 Editor</title>
-  <link id="combines-styles" rel="stylesheet" href="css/main.css">
+  <link id="combines-styles" rel="stylesheet" href="css/b4.css">
   <script src="js/main.js"></script>
 </head>
 <body>
@@ -59,24 +53,30 @@
     <div class="menu">
       <div class="editing-switch">
         <input id="isEditing" type="checkbox">
-        <label for="isEditing"></label>  
+        <label for="isEditing"></label>
       </div>
-      <button id="reset" type="button"><img src="img/reset.svg" alt="reset" title="リセット"></button>
-      <button id="print" type="button"><img src="img/print.svg" alt="print" title="プリント"></button>
+      <select name="" id="paper-size" class="select-papersize"  required>
+        <option value="b4">B4見開き</option>
+        <option value="b5">B5:2枚</option>
+        <option value="a3">A3見開き</option>
+        <option value="a4">A4:2枚</option>
+      </select>
       <label for="import">
         <img src="img/import.svg" alt="import" title="インポート">
         <input type="file" id="import" accept=".json">
       </label>
       <button id="export" type="button"><img src="img/export.svg" alt="export" title="エクスポート"></button>
+      <button id="print" type="button"><img src="img/print.svg" alt="print" title="プリント"></button>
+      <button id="output" type="button"><img src="img/output.svg" alt="print" title="HTML出力"></button>
+      <button id="reset" type="button"><img src="img/reset.svg" alt="reset" title="リセット"></button>
       <button id="help" type="button"><img src="img/help.svg" alt="help" title="ヘルプ"></button>
-      <button id="close" type="button"><img src="img/close.svg" alt="close" title="閉じる"></button>
     </div>
     <dialog id="print-dialog">
       <select name="" id="print-size" required>
         <option value="b4">見開きB4:1枚</option>
         <option value="b5">B5:2枚</option>
-        <option value="a3">見開きA3:1枚</option>
-        <option value="a4">A4:2枚</option>
+        <!-- <option value="a3">見開きA3:1枚</option>
+        <option value="a4">A4:2枚</option> -->
       </select>
       <button id="printing">印刷</button>
       <button id="dialog-close">閉じる</button>

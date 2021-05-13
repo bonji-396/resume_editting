@@ -47,11 +47,10 @@ header {
   height: 50px;
   padding: 0 10px;
   margin-bottom: 10px;
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  align-items: bottom;
   border-bottom: 1px solid #333;
   background-color: #fff;
+  display: grid;
+  grid-template-columns: 300px calc(100% - 300px);
   position: fixed;
   top: 0;
   z-index: 10;
@@ -65,10 +64,8 @@ header {
 
 header .menu {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 40px);
+  grid: 1fr / auto-flow;
   column-gap: 10px;
-  grid-auto-flow: column;
-  justify-items: center;
   justify-self: end;
   align-items: center;
 }
@@ -129,6 +126,11 @@ header .menu .editing-switch label::after {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   transition: 0.4s;
   cursor: pointer;
+}
+
+header .menu .select-papersize {
+  grid-column: 2 / 4;
+  height: 40px;
 }
 
 header .menu > label {
@@ -226,6 +228,7 @@ main .resume {
   main .resume {
     width: 182mm;
     grid-template-columns: 182mm;
+    border-bottom: none;
   }
 }
 
@@ -233,6 +236,12 @@ main .resume .page {
   width: 182mm;
   height: 257mm;
   padding: 14mm 17mm;
+}
+
+@media screen and (max-width: 200mm) {
+  main .resume .page {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  }
 }
 
 main .resume .page .input-field {
@@ -871,6 +880,31 @@ footer {
 @media print {
   footer {
     display: none;
+  }
+}
+
+@media screen and (max-width: 200mm) {
+  .resume {
+    width: 182mm;
+    grid-template-columns: 182mm;
+    border-bottom: none;
+  }
+  .resume and print {
+    width: 364mm;
+    grid-template-columns: repeat(2, 182mm);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+}
+
+.resume .page {
+  width: 182mm;
+  height: 257mm;
+  padding: 14mm 17mm;
+}
+
+@media screen and (max-width: 200mm) {
+  .resume .page {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   }
 }
 /*# sourceMappingURL=b4.css.map */

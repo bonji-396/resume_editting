@@ -18,22 +18,28 @@ class ResumeEditor {
     -------------------------------- */
     this.DEFAULT_IS_EDITTING = true;
     this.DEFAULT_EXPORT_FILE_TYPE_IS_TEXT = false;
-    this.DEFAULT_PAGE_SIZE = 'B4';  
+    this.DEFAULT_PAGE_SIZE = 'b4';
+    /* -----------------------------
+     Style sheet link object
+    -------------------------------- */
+    this.styleSheet = new StyleSheet(this.DEFAULT_PAGE_SIZE);
     /* -----------------------------
      User Interfaces
     -------------------------------- */
     this.inputFields = new InputFields();
     this.idPhoto = new IDPhoto((event)=>{this.showContextMenu(event)});
+    this.selectPagerSizeDropDownList = new SelectPaperSizeDropDownList((size)=>{this.changeStyleSheet(size)});
     this.eittingSwitchButton = new EdittingSwitchButton((checked)=>{this.edittingSwitch(checked)});
-    this.printDialog = new PrintDialog();
     this.rightClickMenu  = new RightClickMenu(()=>{this.idPhotoImageDelete()});
-    // ここに helpWindow
+    this.helpWindow = new HelpWindow(()=>{});
     this.resetButton = new ResetButton(()=>{this.reset()});
-    this.printButton = new PrintButton(()=>{this.print()});
     this.importButton = new ImportButton(()=>{this.load()});
     this.exportButton = new ExportButton(()=>{this.export(this.DEFAULT_EXPORT_FILE_TYPE_IS_TEXT)});
+    this.printButton = new PrintButton(()=>{this.print()});
+    this.outputButton = new HTMLOutputButton(()=>{this.output()});
     this.helpButton = new HelpButton(()=>{this.help()});
-    this.closeButton = new CloseButton(()=>{this.close()});
+    window.addEventListener('beforeunload', (event)=>{this.close(event)});
+    
     // 初期化
     this.init();
     // （リロード時に）sessionStorageの反映
@@ -52,12 +58,44 @@ class ResumeEditor {
   ------------------------------------------------------ */
   edittingSwitch(isEditting) {
     if(isEditting) {
+      console.log('enable');
       this.inputFields.makeItEditable();
       this.idPhoto.toEnable();
     } else {
+      console.log('disable');
       this.inputFields.makeItUnEditable();
       this.idPhoto.toDisable();
     }
+  }
+  /* ---------------------------------------------------
+    スタイルシートを変更する
+  ------------------------------------------------------ */
+  changeStyleSheet(size){
+    this.styleSheet.cangehlef(size);
+  }
+  /* ---------------------------------------------------
+    sessionStorageからデータを読み込む
+  ------------------------------------------------------ */
+  load(){
+    this.inputFields.load();
+    this.idPhoto.load();
+    this.styleSheet.load();
+  }
+  /* ---------------------------------------------------
+    右クリックメニューを表示する
+  ------------------------------------------------------ */
+  showContextMenu(event){
+    // 表示
+    this.rightClickMenu.show(event);
+    // ブラウザ標準のコンテキストメニューを表示させない
+    event.preventDefault();
+  }
+  /* ---------------------------------------------------
+    顔写真を削除
+  ------------------------------------------------------ */
+  idPhotoImageDelete(){
+    this.idPhoto.delete();
+    this.rightClickMenu.close();
   }
   /* ---------------------------------------------------
     編集内容をsessionStorageも含めて全てクリアリセットする
@@ -72,57 +110,63 @@ class ResumeEditor {
     印刷
   ------------------------------------------------------ */
   print(){
-    this.printDialog.show();
+    window.print();
   }
   /* ---------------------------------------------------
-    sessionStorageからデータを読み込む
+    履歴書をHTML出力
   ------------------------------------------------------ */
-  load(){
-    this.inputFields.load();
-    this.idPhoto.load();
-    this.printDialog.load(this.DEFAULT_PAGE_SIZE);
+  output() {
+    console.log('html output!!!!!!!');
   }
   /* ---------------------------------------------------
     ヘルプ表示
-    TODO: 別インスタンスで処理
   ------------------------------------------------------ */
   help(){
-    const helpWindow = document.getElementById('help-window');
-    helpWindow.classList.add("show");
- 
+    this.helpWindow.open();
     document.body.addEventListener('click', (event)=>{
-
-      if (helpWindow.classList.contains('show')
+      if (this.helpWindow.selfElement.classList.contains('show')
         && !event.target.closest('#help-window')) {
-          helpWindow.classList.remove("show");
+          this.helpWindow.close();
       }
-    });
-    // }, { once: true });
+    }, { once: true }); // １回のみのイベント
   }
   /* ---------------------------------------------------
-    ページ又はタブを閉じる
+    ページを閉じる
   ------------------------------------------------------ */
-  close(){
-    // TODO: 入力内容がファイル保存した内容と変化した場合に伺うようにする。
-    if(window.confirm('ページを閉じます。入力内容は破棄されます。よろしいですか？')){
-      sessionStorage.clear();
-      window.close();
-    }
-  }
-  /* ---------------------------------------------------
-    右クリックメニューを表示する
-  ------------------------------------------------------ */
-  showContextMenu(event){
-    this.rightClickMenu.show(event);
-    // ブラウザ標準のコンテキストメニューを表示させない
+  close(event){
+    console.log(event);
     event.preventDefault();
+    event.returnValue = '';
+  }
+}
+/* -------------------------------------------------------------------------
+ StyleSheet
+---------------------------------------------------------------------------- */
+class StyleSheet {
+  constructor(size){
+    this.selfElement = document.getElementById('combines-styles');
+    this.selfElement.href = `css/${size}.css`;
   }
   /* ---------------------------------------------------
-    顔写真を削除
+    スタイルシートを変更する
   ------------------------------------------------------ */
-  idPhotoImageDelete(){
-    this.idPhoto.delete();
-    this.rightClickMenu.close();
+  cangehlef(size){
+    this.selfElement.href = `css/${size}.css`;
+    this.save();
+  }
+  /* ---------------------------------------------------
+    sessionStorageへ保存する
+  ------------------------------------------------------ */
+  save() {
+    sessionStorage.setItem(this.selfElement.id, this.selfElement.href);
+  }
+  /* ---------------------------------------------------
+    sessionStorageから読みこみ要素に反映する
+  ------------------------------------------------------ */
+  load() {
+    if(sessionStorage.getItem(this.selfElement.id)) {
+      this.selfElement.href = sessionStorage.getItem(this.selfElement.id);
+    }
   }
 }
 /* -------------------------------------------------------------------------
@@ -365,20 +409,24 @@ class IDPhoto extends UserInterfase {
     this.selfElement.addEventListener('change', ()=>{this.addIDPhoto()});
     // 画像要素
     this.idPhotoImage = document.getElementById('photo-image');
-    // 画像要素を右クリックした時のイベント
-    this.idPhotoImage.addEventListener('contextmenu', (event)=>{callback(event)});
+    // コールバックを保存
+    this.callback = callback;
   }
   /* ---------------------------------------------------
     IDPhotoの編集を有効化
   ------------------------------------------------------ */
   toEnable(){
     this.selfElement.disabled = false;
+    // 画像要素を右クリックした時のイベント
+    this.idPhotoImage.addEventListener('contextmenu', this.callback);
   }
   /* ---------------------------------------------------
     IDPhotoの編集を無効化
   ------------------------------------------------------ */
   toDisable(){
     this.selfElement.disabled = true;
+    console.log('remove');
+    this.idPhotoImage.removeEventListener('contextmenu',  this.callback, false);
   }
   /* ---------------------------------------------------
     SessionStorageに保存された画像を読み込む
@@ -450,12 +498,21 @@ class IDPhoto extends UserInterfase {
   }
 }
 /* -------------------------------------------------------------------------
- 編集可否変更ボタンUI（EdittingSwitchButton） CallBack
+  EdittingSwitchButton: 編集可否変更ボタンUI
 ---------------------------------------------------------------------------- */
 class EdittingSwitchButton extends UserInterfase {
   constructor(callback) {
     super('isEditing');
     this.selfElement.addEventListener('change', ()=>{callback(this.selfElement.checked)});
+  }
+}
+/* -------------------------------------------------------------------------
+ select-papersize: 用紙サイズ変更ドロップリスト
+---------------------------------------------------------------------------- */
+class SelectPaperSizeDropDownList extends UserInterfase {
+  constructor(callback){
+    super('paper-size');
+    this.selfElement.addEventListener('change', (event)=>{callback(this.selfElement.value);});
   }
 }
 /* -------------------------------------------------------------------------
@@ -562,82 +619,19 @@ class ExportButton extends ButtonUI {
   }
 }
 /* -------------------------------------------------------------------------
+  HTMLOutputButton: ウィンド又はタブページを閉じるボタンUI
+---------------------------------------------------------------------------- */
+class HTMLOutputButton extends ButtonUI {
+  constructor(callback) {
+    super('output', callback);
+  }
+}
+/* -------------------------------------------------------------------------
   HelpButton: HELP表示ボタンUI
-  TODO: ヘルプ内容を
 ---------------------------------------------------------------------------- */
 class HelpButton extends ButtonUI {
   constructor(callback) {
     super('help', callback);
-  }
-}
-/* -------------------------------------------------------------------------
-  CloseButton: ウィンド又はタブページを閉じるボタンUI
----------------------------------------------------------------------------- */
-class CloseButton extends ButtonUI {
-  constructor(callback) {
-    super('close', callback);
-  }
-}
-/* -------------------------------------------------------------------------
-  プリントダイアログ
----------------------------------------------------------------------------- */
-class PrintDialog extends UserInterfase {
-  constructor(){
-    super('print-dialog');
-    // セレクトボックス
-    this.selectBox = document.getElementById('print-size');
-    this.selectBox.addEventListener('change', ()=>{this.changeSize()});
-    // 印刷ボタン
-    this.printButton = document.getElementById('printing');
-    this.printButton.addEventListener('click', ()=>{this.print()});
-    // キャンセルボタン
-    this.closeButton = document.getElementById('dialog-close');
-    this.closeButton.addEventListener('click', ()=>{this.close()});
-  }
-  /* ---------------------------------------------------
-    settionStorageから値を読み込む
-  ------------------------------------------------------ */
-  load(DEFAULT_PAGE_SIZE) {
-    // console.log(this.selectBox.value, this.selectBox.selectedIndex);
-    if (sessionStorage.getItem(this.selectBox.id)) {
-      this.selectBox.value = sessionStorage.getItem(this.selectBox.id);
-    } else {
-      this.selectBox.value = DEFAULT_PAGE_SIZE;
-      sessionStorage.setItem(this.selectBox.id, this.selectBox.value);  
-    }
-    // console.log(this.selectBox.value, this.selectBox.selectedIndex);
-  }
-  /* ---------------------------------------------------
-    スタイルシートを変更する
-  ------------------------------------------------------ */
-  changeSize(){
-    // スタイルシートを変更する
-    const link = document.getElementById('combines-styles');
-    link.href = `css/${this.selectBox.value}.css`;
-    // sessionStorageに選択状態を保存
-    sessionStorage.setItem(this.selectBox.id, this.selectBox.value);
-  }
-  /* ---------------------------------------------------
-    プリントダイアログを表示する
-  ------------------------------------------------------ */
-  show() {
-    this.selfElement.classList.add('show');
-    // this.selfElement.showModal(); // firefoxやSafariでは未対応
-  }
-  /* ---------------------------------------------------
-    ブラウザのプリント機能を利用する
-  ------------------------------------------------------ */
-  print() {
-    window.print();
-    this.selfElement.classList.remove('show');
-    // this.selfElement.close(); // firefoxやSafariでは未対応
-  }
-  /* ---------------------------------------------------
-    プリントダイアログを閉じる
-  ------------------------------------------------------ */
-  close(){
-    this.selfElement.classList.remove('show');
-    this.selfElement.close();
   }
 }
 /* -------------------------------------------------------------------------
@@ -666,10 +660,6 @@ class RightClickMenu extends UserInterfase{
         && !event.target.closest('#contextmenu')) {
           this.close()
       }
-      // } else { //（イベント残留注意）
-      //   console.log('poge else');
-      // }
-    // });
     }, { once: true });
   }
   /* ---------------------------------------------------
@@ -685,6 +675,13 @@ class RightClickMenu extends UserInterfase{
 class HelpWindow extends UserInterfase{
   constructor(){
     super('help-window');
+    this.closeButton = document.querySelector('#help-window>.help-close');
+    this.closeButton.addEventListener('click', ()=>{this.close()});
   }
-
+  open() {
+    this.selfElement.classList.add('show');
+  }
+  close() {
+    this.selfElement.classList.remove('show');
+  }
 }
