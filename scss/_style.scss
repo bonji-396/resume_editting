@@ -7,6 +7,7 @@ html, body {
   scroll-behavior: smooth;
 }
 body {
+  font-family: serif;
   *{
     box-sizing: border-box;
   }
@@ -26,6 +27,7 @@ header {
   position: fixed;
   top: 0;
   z-index: 10;
+  font-family: sans-serif;
   @media print {
     display: none;
   }
@@ -89,7 +91,16 @@ header {
     }
     .select-papersize {
       grid-column: 2 / 4;
+      width: 90px;
       height: 40px;
+      padding: 0;
+      margin: 0;
+      background-color: $base-color;
+      option {
+        height: 40px;
+        padding: 0;
+        margin: 0;
+      }
     }
     >label { // importButton
       @include menuButtonStyle;
@@ -102,29 +113,6 @@ header {
     }
     button {
       @include menuButtonStyle;
-    }
-  }
-  #print-dialog {
-    @include modalLayout;
-    width: 200px;
-    height: 100px;
-    padding: 8px;
-    color: $font-color;
-    border: $print-dialog-border;
-    &.show {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-      grid-template-rows: repeat(2, 1fr);
-    }
-    #print-size {
-      grid-column: 1 / 3;
-    }
-    #printing {
-
-    }
-    #dialog-close {
-
     }
   }
 }
@@ -621,6 +609,7 @@ footer {
   height: 30px;
   text-align: center;
   line-height: 30px;
+  font-family: sans-serif;
 
   @media print {
     display: none;

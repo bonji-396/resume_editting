@@ -32,13 +32,17 @@ html, body {
   scroll-behavior: smooth;
 }
 
+body {
+  font-family: serif;
+}
+
 body * {
   box-sizing: border-box;
 }
 
 @media screen {
   body {
-    background-color: yellow;
+    background-color: #eee;
   }
 }
 
@@ -54,6 +58,7 @@ header {
   position: fixed;
   top: 0;
   z-index: 10;
+  font-family: sans-serif;
 }
 
 @media print {
@@ -130,7 +135,17 @@ header .menu .editing-switch label::after {
 
 header .menu .select-papersize {
   grid-column: 2 / 4;
+  width: 90px;
   height: 40px;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+}
+
+header .menu .select-papersize option {
+  height: 40px;
+  padding: 0;
+  margin: 0;
 }
 
 header .menu > label {
@@ -167,35 +182,6 @@ header .menu button {
 header .menu button img {
   width: 24px;
   height: 24px;
-}
-
-header #print-dialog {
-  display: none;
-  position: fixed;
-  left: 50%;
-  right: 50%;
-  top: 50%;
-  bottom: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.5);
-  animation: fade 0.5s linear 0s;
-  width: 200px;
-  height: 100px;
-  padding: 8px;
-  color: #000;
-  border: 2px solid #000;
-}
-
-header #print-dialog.show {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  grid-template-rows: repeat(2, 1fr);
-}
-
-header #print-dialog #print-size {
-  grid-column: 1 / 3;
 }
 
 main {
@@ -875,6 +861,7 @@ footer {
   height: 30px;
   text-align: center;
   line-height: 30px;
+  font-family: sans-serif;
 }
 
 @media print {
