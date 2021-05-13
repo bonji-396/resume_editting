@@ -707,10 +707,6 @@ main .resume .right-page .motivation p {
   padding: 1mm;
 }
 
-main .resume .right-page .motivation .label {
-  font-size: 10pt;
-}
-
 main .resume .right-page .motivation .self-promotion {
   grid-row: 1 / 4;
   grid-column: 1 / 2;
@@ -877,4 +873,4 @@ footer {
     display: none;
   }
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=main.css.map */
