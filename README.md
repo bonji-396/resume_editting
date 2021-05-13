@@ -11,8 +11,8 @@ HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロント�
 ![スクリーンショット](https://user-images.githubusercontent.com/71716610/118047489-caee4f00-b3b5-11eb-9722-e145eefc79a9.png)
 
 ## バージョン履歴
-2021/5/13 - version 0.9 : 残り印刷機能とHTML出力が未実装
-2021/5/13 - version 0.9.1: バグ解消と一部仕様とUIを変更、印刷機能追加。印刷用CSSの編集とHTML機能がまだ未実装
+- 2021/5/13 - version 0.9 : 残り印刷機能とHTML出力が未実装
+- 2021/5/14 - version 0.9.1: バグ解消と一部仕様とUIを変更、印刷機能追加。印刷用CSSの編集とHTML機能がまだ未実装
 
 
 ## 概要
