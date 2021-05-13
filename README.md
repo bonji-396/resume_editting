@@ -8,7 +8,7 @@ HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロント�
 
 ※ ただし、インポート、HTML出力、印刷・PDF印刷したデータの管理はご自身でしっかり行って下さい。
 
-![スクリーンショット](https://user-images.githubusercontent.com/71716610/118047489-caee4f00-b3b5-11eb-9722-e145eefc79a9.png)
+![スクリーンショット 2021-05-14 8 47 37](https://user-images.githubusercontent.com/71716610/118200929-3fe28700-b491-11eb-9d2d-0372de1f72d4.png)
 
 ## バージョン履歴
 - 2021/5/13 - version 0.9 : 残り印刷機能とHTML出力が未実装
