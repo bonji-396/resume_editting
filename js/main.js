@@ -4,9 +4,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   // 履歴書編集オブジェクトの生成
   const resumeEditor = new ResumeEditor();
-  // document.querySelector('header').remove();
-  // console.log(document.querySelector('html').outerHTML);
-  // console.log(window.getComputedStyle(document.querySelector('main')));
 },false);
 /* -------------------------------------------------------------------------
  履歴書編集クラス（ResumeEditor）
@@ -22,13 +19,13 @@ class ResumeEditor {
     /* -----------------------------
      Style sheet link object
     -------------------------------- */
-    this.styleSheet = new StyleSheet(this.DEFAULT_PAGE_SIZE);
+    this.styleSheet = new StyleSheet();
     /* -----------------------------
      User Interfaces
     -------------------------------- */
     this.inputFields = new InputFields();
     this.idPhoto = new IDPhoto((event)=>{this.showContextMenu(event)});
-    this.selectPagerSizeDropDownList = new SelectPaperSizeDropDownList((size)=>{this.changeStyleSheet(size)});
+    this.selectPaperSizeDropDownList = new SelectPaperSizeDropDownList((size)=>{this.changeStyleSheet(size)});
     this.eittingSwitchButton = new EdittingSwitchButton((checked)=>{this.edittingSwitch(checked)});
     this.rightClickMenu  = new RightClickMenu(()=>{this.idPhotoImageDelete()});
     this.helpWindow = new HelpWindow(()=>{});
@@ -38,7 +35,8 @@ class ResumeEditor {
     this.printButton = new PrintButton(()=>{this.print()});
     this.outputButton = new HTMLOutputButton(()=>{this.output()});
     this.helpButton = new HelpButton(()=>{this.help()});
-    window.addEventListener('beforeunload', (event)=>{this.close(event)});
+    // ウィンドウを閉じる、リロードするときに、確認メッセージを行う（リロードするときに表示したくなく、使っていない。）
+    // window.addEventListener('beforeunload', (event)=>{this.close(event)});
     
     // 初期化
     this.init();
@@ -72,6 +70,7 @@ class ResumeEditor {
   ------------------------------------------------------ */
   changeStyleSheet(size){
     this.styleSheet.cangehlef(size);
+    this.selectPaperSizeDropDownList.save();
   }
   /* ---------------------------------------------------
     sessionStorageからデータを読み込む
@@ -79,7 +78,7 @@ class ResumeEditor {
   load(){
     this.inputFields.load();
     this.idPhoto.load();
-    this.styleSheet.load();
+    this.styleSheet.load(this.selectPaperSizeDropDownList.load(this.DEFAULT_PAGE_SIZE));
   }
   /* ---------------------------------------------------
     右クリックメニューを表示する
@@ -104,6 +103,11 @@ class ResumeEditor {
     if(window.confirm('入力内容全てを消去します。よろしいですか？')){
       this.inputFields.allClear();
       this.idPhoto.delete();
+      this.selectPaperSizeDropDownList.save(); // クリアしても用紙サイズは変更しない
+      // スタイルシートはリロードしてないので改めて変更等する必要はないが・・
+      // リロードした時、上記のSaveで整合性を保つ。サイズまでリセットするなら以下が必要
+      // this.styleSheet.load(this.selectPaperSizeDropDownList.load());
+      
     }
   }
   /* ---------------------------------------------------
@@ -134,38 +138,29 @@ class ResumeEditor {
     ページを閉じる
   ------------------------------------------------------ */
   close(event){
-    console.log(event);
-    event.preventDefault();
     event.returnValue = '';
+    event.preventDefault();
   }
 }
 /* -------------------------------------------------------------------------
  StyleSheet
 ---------------------------------------------------------------------------- */
 class StyleSheet {
-  constructor(size){
+  constructor(){
     this.selfElement = document.getElementById('combines-styles');
-    this.selfElement.href = `css/${size}.css`;
   }
   /* ---------------------------------------------------
     スタイルシートを変更する
   ------------------------------------------------------ */
   cangehlef(size){
     this.selfElement.href = `css/${size}.css`;
-    this.save();
   }
   /* ---------------------------------------------------
-    sessionStorageへ保存する
+    引数の値からスタイルを反映する
   ------------------------------------------------------ */
-  save() {
-    sessionStorage.setItem(this.selfElement.id, this.selfElement.href);
-  }
-  /* ---------------------------------------------------
-    sessionStorageから読みこみ要素に反映する
-  ------------------------------------------------------ */
-  load() {
-    if(sessionStorage.getItem(this.selfElement.id)) {
-      this.selfElement.href = sessionStorage.getItem(this.selfElement.id);
+  load(size) {
+    if(size) {
+      this.cangehlef(size);
     }
   }
 }
@@ -319,7 +314,7 @@ class InputFields extends UserInterfase {
   }
   /* ---------------------------------------------------
     揃え方角をsessionStorage情報に保存 
-    TODO: リファクタリング
+    TODO: リファクタリング（共通化）
   ------------------------------------------------------ */
   dataTextAlignSave(key, value){
     // console.log(key, value);
@@ -513,6 +508,23 @@ class SelectPaperSizeDropDownList extends UserInterfase {
   constructor(callback){
     super('paper-size');
     this.selfElement.addEventListener('change', (event)=>{callback(this.selfElement.value);});
+  }
+  /* ---------------------------------------------------
+    sessionStorageからページサイズ情報を読み込む
+  ------------------------------------------------------ */
+  load(defaultSize) {
+    if(sessionStorage.getItem(this.selfElement.id)) {
+      this.selfElement.value = sessionStorage.getItem(this.selfElement.id);
+    } else {
+      this.selfElement.value = defaultSize;
+    }
+    return this.selfElement.value;
+  }
+  /* ---------------------------------------------------
+    sessionStorageにページサイズ情報を書き込む
+  ------------------------------------------------------ */
+  save(size = this.selfElement.value) {
+    sessionStorage.setItem(this.selfElement.id, size);
   }
 }
 /* -------------------------------------------------------------------------
