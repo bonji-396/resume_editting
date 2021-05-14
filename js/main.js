@@ -35,7 +35,8 @@ class ResumeEditor {
     this.printButton = new PrintButton(()=>{this.print()});
     this.outputButton = new HTMLOutputButton(()=>{this.output()});
     this.helpButton = new HelpButton(()=>{this.help()});
-    // ウィンドウを閉じる、リロードするときに、確認メッセージを行う（リロードするときに表示したくなく、使っていない。）
+    // ウィンドウを閉じる、リロードするときに、確認メッセージを行う
+    //（リロードするときに表示したくなく、今回は使っていない。初心者メモ）
     // window.addEventListener('beforeunload', (event)=>{this.close(event)});
     
     // 初期化
@@ -107,7 +108,10 @@ class ResumeEditor {
       // スタイルシートはリロードしてないので改めて変更等する必要はないが・・
       // リロードした時、上記のSaveで整合性を保つ。サイズまでリセットするなら以下が必要
       // this.styleSheet.load(this.selectPaperSizeDropDownList.load());
-      
+
+      // サーバとのやりとりが必要な場合は、内容がをクリアしても同Sesson扱いとなるケースとなるため、
+      // window.location.reload()を最後に行った方が良いかもしれない。
+
     }
   }
   /* ---------------------------------------------------

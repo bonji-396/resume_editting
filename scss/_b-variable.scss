@@ -1,0 +1,62 @@
+// page size
+$resume-width: $b5-width * 2; 
+$page-width: $b5-width;
+$page-height: $b5-height;
+// paper margin
+$vertical-margin: 14mm; //
+// ------------------------------------------------------------------------- //
+// size & position of content
+// ------------------------------------------------------------------------- //
+$resume-t-cols: repeat(2, $page-width);
+$content-width: $b5-width - $side-margin - $side-margin;  // 148mm :1
+$field-line-hight: 7.3mm; //
+$resume-header-margin-top: 1mm;
+$resume-header-grid-t-cols: 35mm 78mm 35mm;
+$h2-padding: 0 2mm;
+$creataion-date-padding: 1mm;
+$creataion-date-grid-t-cols: 13mm 3mm 5.5mm 3mm 5.5mm 8.5mm;
+$id-photo-top-position: 14mm; //
+$id-photo-right-position: 21mm;
+$id-photo-width: 28mm;
+$id-photo-height: 35.5mm;
+$parsonal-data-label-padding: 0 1mm;
+$parsonal-data-input-field-padding: 0 1mm;
+$basic-data-grid-t-cols: 94mm 19mm 35mm; // 148mm
+$basic-data-grid-t-tows: $field-line-hight 15mm $field-line-hight; // 29.6mm
+$name-furigana-field-line-hight: $field-line-hight;
+$name-furigana-grid-t-clos: 15mm 78mm; // 93mm
+$name-line-height: 15mm; //
+$name-grid-t-clos: $name-furigana-grid-t-clos;
+$gender-height: $name-line-height + $field-line-hight;
+$birthday-grid-t-clos: 19mm 26mm 5mm 9mm 5mm 9mm 18mm 10mm 10mm; // 111mm
+$emergency-contact-grid-t-cols: 19mm 92.5mm 35.5mm; // 147mm
+$emergency-contact-grid-t-rows: $field-line-hight 6mm 9mm; // 22.3mm
+$resides-furigana-grid-t-cols: 18mm 92mm; // 110mm
+$postal-code-grid-t-cols: 18mm 9mm 12mm 5mm 16mm 5mm;
+$resides-height: 9mm; // 
+$resides-line-height: $resides-height;
+$phone-number-grid-t-clos: 9mm 25mm; // 34mm
+$email-height: 15mm; //
+$email-grid-t-cols: 35mm; //
+$email-grid-t-rows: 6mm 9mm; // 
+$email-input-field-height: 9mm; //
+$resume-line-grid-t-cols: 22.5mm 12.5mm 111mm; // 146mm
+$resume-line-p-padding: 0 1mm;
+$resume-line-p-3th-cols-padding: 0 2mm;
+$right-page-education-and-career-history-margin-top: 8.3mm;
+$right-page-education-and-career-history-hedding-height: 8.3mm;
+$motivation-grid-t-cols: 89mm 29mm 30mm; // 148mm
+$motivation-rows-width: 14.6mm; //
+$motivation-padding: 1mm;
+$self-promotion-input-field-height: 37mm; //
+$commuting-time-line-grid-t-cols: 19mm 10mm 10mm 10mm 10mm; // 59mm
+$commuting-input-field-height: 7mm; //
+$dependents-line-grid-t-cols: 40mm 19mm; //
+$objective-p-padding: 1mm;
+$objective-label-height: $field-line-hight;
+$objective-line-height: 4.3mm; //
+$objective-input-field-height:  43.8mm; //
+// ------------------------------------------------------------------------- //
+// @media screen Threshold 
+// ------------------------------------------------------------------------- //
+$two-page-breakpoint: 200mm;

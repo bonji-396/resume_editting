@@ -11,7 +11,7 @@ body {
   *{
     box-sizing: border-box;
   }
-  @media screen {
+  @include media-screen {
     background-color: $body-bg-color;
   }
 }
@@ -28,8 +28,9 @@ header {
   top: 0;
   z-index: 10;
   font-family: sans-serif;
-  @media print {
+  @include media-print {
     display: none;
+
   }
   .menu {
     display: grid;
@@ -125,30 +126,20 @@ main {
     margin: 60px auto 10px;
     display: grid;
     grid-template-columns: $resume-t-cols;
+    background-color: $base-color;
     border: $page-boder;
-    @media print {
+    @include media-print {
       margin: 0;
-      // border: none;
+      border: none;
     }
-    @media screen {
-      background-color: $base-color;
-    }
-    @media screen and (max-width: $two-page-breakpoint) {
+    @include media-screen-break-two-page {
       width: $page-width;
       grid-template-columns: $page-width;
-      border: {
-        bottom: none;
-      }
     }
     .page {
       width: $page-width;
       height: $page-height;
       padding: $vertical-margin $side-margin;
-      @media screen and (max-width: $two-page-breakpoint) {
-        border: {
-          bottom: $page-boder;
-        }
-      }
       .input-field {
         overflow: hidden;
         br { // 表示自体はなんとかなるが、JavaScriptで入力時に改行を制限が必要
@@ -174,15 +165,16 @@ main {
         align-items: center;
         h2 {
           font-size: $h2-font-size;
-          text-align: center;
+          text-align: left;
+          padding: $h2-padding;
         }
         .creataion-date {
           padding: $creataion-date-padding;
           display: grid;
           grid-template-columns: $creataion-date-grid-t-cols;
           justify-self: end;
+          align-self: flex-end;
           p {
-            vertical-align: middle;
             font-size: $creataion-date-font-size;
             &.label {
               text-align: center;
@@ -239,6 +231,9 @@ main {
           background-color:$base-color;
           &.show {
             display: block;
+            @include media-print {
+              display: none;
+            }
           }
           li {
             height: 30px;
@@ -450,6 +445,14 @@ main {
       }
     }
     .right-page {
+      @include media-screen-break-two-page {
+        border: {
+          top: $page-boder;
+        }
+      }
+      @include media-print {
+        border: none;
+      }
       .education-and-career-history {
         margin-top: $right-page-education-and-career-history-margin-top;
         .resume-line {
@@ -494,12 +497,15 @@ main {
         .commuting-time {
           grid-row: 1 / 2;
           grid-column: 2 / 4;
+          display: grid;
+          grid-template-rows: $email-grid-t-rows;
           border: {
             right: $print-line-bold;
             bottom: $print-line-default;
           }
           .commuting-time-line {
             text-align: center;
+            line-height: $commuting-input-field-height;
             display: grid;
             grid-template-columns: $commuting-time-line-grid-t-cols;
             .input-field {
@@ -514,7 +520,10 @@ main {
             bottom: $print-line-default;
             right: $print-line-bold;
           }
+          display: grid;
+          grid-template-rows: $email-grid-t-rows;
           .dependents-line {
+            line-height: $commuting-input-field-height;
             display: grid;
             grid-template-columns: $dependents-line-grid-t-cols;
             p {
@@ -531,7 +540,10 @@ main {
             right: $print-line-default;
             bottom: $print-line-bold;
           }
+          display: grid;
+          grid-template-rows: $email-grid-t-rows;   
           .input-field {
+            line-height: $commuting-input-field-height;
             text-align: center;
           }
         }
@@ -542,10 +554,13 @@ main {
             right: $print-line-bold;
             bottom: $print-line-bold;
           }
+          display: grid;
+          grid-template-rows: $email-grid-t-rows;
           .label {
             font-size: $obligation-to-support-spouse-label-font-size;
           }
           .input-field {
+            line-height: $commuting-input-field-height;
             text-align: center;
           }
         }
@@ -610,8 +625,7 @@ footer {
   text-align: center;
   line-height: 30px;
   font-family: sans-serif;
-
-  @media print {
+  @include media-print {
     display: none;
   }
 }

@@ -195,18 +195,14 @@ main .resume {
   margin: 60px auto 10px;
   display: grid;
   grid-template-columns: repeat(2, 182mm);
+  background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 @media print {
   main .resume {
     margin: 0;
-  }
-}
-
-@media screen {
-  main .resume {
-    background-color: #fff;
+    border: none;
   }
 }
 
@@ -214,7 +210,6 @@ main .resume {
   main .resume {
     width: 182mm;
     grid-template-columns: 182mm;
-    border-bottom: none;
   }
 }
 
@@ -222,12 +217,6 @@ main .resume .page {
   width: 182mm;
   height: 257mm;
   padding: 14mm 17mm;
-}
-
-@media screen and (max-width: 200mm) {
-  main .resume .page {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  }
 }
 
 main .resume .page .input-field {
@@ -259,7 +248,8 @@ main .resume .left-page .resume-header {
 
 main .resume .left-page .resume-header h2 {
   font-size: 17pt;
-  text-align: center;
+  text-align: left;
+  padding: 0 2mm;
 }
 
 main .resume .left-page .resume-header .creataion-date {
@@ -267,10 +257,10 @@ main .resume .left-page .resume-header .creataion-date {
   display: grid;
   grid-template-columns: 13mm 3mm 5.5mm 3mm 5.5mm 8.5mm;
   justify-self: end;
+  align-self: flex-end;
 }
 
 main .resume .left-page .resume-header .creataion-date p {
-  vertical-align: middle;
   font-size: 8pt;
 }
 
@@ -337,6 +327,12 @@ main .resume .left-page .id-photo #contextmenu {
 
 main .resume .left-page .id-photo #contextmenu.show {
   display: block;
+}
+
+@media print {
+  main .resume .left-page .id-photo #contextmenu.show {
+    display: none;
+  }
 }
 
 main .resume .left-page .id-photo #contextmenu li {
@@ -498,7 +494,7 @@ main .resume .left-page .personal-data .emergency-contact .phone-number {
   border-top: 1mm solid #000;
   border-bottom: 0.35mm solid #000;
   display: grid;
-  grid-template-columns: 9mm 26mm;
+  grid-template-columns: 9mm 25mm;
 }
 
 main .resume .left-page .personal-data .contact-info .phone-number p.label,
@@ -587,6 +583,18 @@ main .resume .left-page .education-and-career-history .resume-line p[data-text-a
 
 main .resume .left-page .education-and-career-history .resume-line p[data-text-align="center"] {
   text-align: center;
+}
+
+@media screen and (max-width: 200mm) {
+  main .resume .right-page {
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+  }
+}
+
+@media print {
+  main .resume .right-page {
+    border: none;
+  }
 }
 
 main .resume .right-page .education-and-career-history {
@@ -717,12 +725,15 @@ main .resume .right-page .motivation .self-promotion p.input-field {
 main .resume .right-page .motivation .commuting-time {
   grid-row: 1 / 2;
   grid-column: 2 / 4;
+  display: grid;
+  grid-template-rows: 6mm 9mm;
   border-right: 1mm solid #000;
   border-bottom: 0.35mm solid #000;
 }
 
 main .resume .right-page .motivation .commuting-time .commuting-time-line {
   text-align: center;
+  line-height: 7mm;
   display: grid;
   grid-template-columns: 19mm 10mm 10mm 10mm 10mm;
 }
@@ -736,9 +747,12 @@ main .resume .right-page .motivation .dependents {
   grid-column: 2 / 4;
   border-bottom: 0.35mm solid #000;
   border-right: 1mm solid #000;
+  display: grid;
+  grid-template-rows: 6mm 9mm;
 }
 
 main .resume .right-page .motivation .dependents .dependents-line {
+  line-height: 7mm;
   display: grid;
   grid-template-columns: 40mm 19mm;
 }
@@ -752,9 +766,12 @@ main .resume .right-page .motivation .marital-status {
   grid-column: 2 / 3;
   border-right: 0.35mm solid #000;
   border-bottom: 1mm solid #000;
+  display: grid;
+  grid-template-rows: 6mm 9mm;
 }
 
 main .resume .right-page .motivation .marital-status .input-field {
+  line-height: 7mm;
   text-align: center;
 }
 
@@ -763,6 +780,8 @@ main .resume .right-page .motivation .obligation-to-support-spouse {
   grid-column: 3 / 4;
   border-right: 1mm solid #000;
   border-bottom: 1mm solid #000;
+  display: grid;
+  grid-template-rows: 6mm 9mm;
 }
 
 main .resume .right-page .motivation .obligation-to-support-spouse .label {
@@ -770,6 +789,7 @@ main .resume .right-page .motivation .obligation-to-support-spouse .label {
 }
 
 main .resume .right-page .motivation .obligation-to-support-spouse .input-field {
+  line-height: 7mm;
   text-align: center;
 }
 
@@ -867,31 +887,6 @@ footer {
 @media print {
   footer {
     display: none;
-  }
-}
-
-@media screen and (max-width: 200mm) {
-  .resume {
-    width: 182mm;
-    grid-template-columns: 182mm;
-    border-bottom: none;
-  }
-  .resume and print {
-    width: 364mm;
-    grid-template-columns: repeat(2, 182mm);
-    border: 1px solid rgba(0, 0, 0, 0.5);
-  }
-}
-
-.resume .page {
-  width: 182mm;
-  height: 257mm;
-  padding: 14mm 17mm;
-}
-
-@media screen and (max-width: 200mm) {
-  .resume .page {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   }
 }
 /*# sourceMappingURL=b4.css.map */

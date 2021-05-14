@@ -1,0 +1,65 @@
+// ------------------------------------------------------------------------- //
+// Color
+// ------------------------------------------------------------------------- //
+$base-color: #fff;
+$font-color: #000;
+$line-color: #000;
+$body-bg-color: #eee;
+$border-color: #333;
+$enable-color: #4bd865;
+$disable-color: #ccc;
+$button-bg-color: #EFEFEF;
+$button-border-color: #767676;
+$contextmenu-hover-color: #9aa;
+// ------------------------------------------------------------------------- //
+// Border Line
+// ------------------------------------------------------------------------- //
+$page-boder: 1px solid rgba(0, 0, 0, 0.5);
+$header-border: 1px solid $border-color;
+$print-dialog-border: 2px solid $line-color;
+$contextmenu-border: 1px solid $border-color;
+$print-line-bold: 1mm solid $line-color;
+$print-line-middle: 0.7mm solid $line-color;
+$print-line-default: 0.35mm solid $line-color;
+$print-line-double: 1mm double $line-color;
+// ------------------------------------------------------------------------- //
+// box-shadow
+// ------------------------------------------------------------------------- //
+$switch-toggle-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+$help-close-shadow: 0 0 3px #333;
+$modal-show-body-background:0 0 0 10000px rgba(0, 0, 0, 0.5);
+$contextmenu-shadow:1px 1px 3px #333;
+// ------------------------------------------------------------------------- //
+// size of paper
+// ------------------------------------------------------------------------- //
+// A3: 420x297mm
+$a3-width: 420mm;
+$a3-height: 297mm;
+// A4: 210x297mm
+$a4-width: 210mm;
+$a4-height: 297mm;
+// B4: 364x257mm
+$b4-width: 364mm;
+$b4-height: 257mm;
+// B5: 182×257mm
+$b5-width: 182mm;
+$b5-height: 257mm;
+// paper margin
+$side-margin: 17mm;  
+// ------------------------------------------------------------------------- //
+// size of font
+// ------------------------------------------------------------------------- //
+$h2-font-size: 17pt;
+$creataion-date-font-size: 8pt;
+$id-photo-font-size: 8pt;
+$name-furigana-font-size: 9pt;
+$name-font-size: 17pt;
+$resides-furigana-font-size: 9pt;
+$resides-font-size: 11pt;
+$phone-number-label-font-size: 9pt;
+$phone-number-font-size: 8pt;
+$email-label-font-size: 9pt;
+$email-font-size: 9pt;
+$motivation-label-font-size: 10pt;
+$obligation-to-support-spouse-label-font-size: 9pt;
+$objective-label-font-size: 10pt;
