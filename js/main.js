@@ -4,6 +4,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   // 履歴書編集オブジェクトの生成
   const resumeEditor = new ResumeEditor();
+  const linkstyle = document.getElementById('combines-styles');
+
 },false);
 /* -------------------------------------------------------------------------
  履歴書編集クラス（ResumeEditor）
@@ -19,7 +21,7 @@ class ResumeEditor {
     /* -----------------------------
      Style sheet link object
     -------------------------------- */
-    this.styleSheet = new StyleSheet();
+    this.resumeStyleSheet = new ResumeStyleSheet();
     /* -----------------------------
      User Interfaces
     -------------------------------- */
@@ -57,11 +59,9 @@ class ResumeEditor {
   ------------------------------------------------------ */
   edittingSwitch(isEditting) {
     if(isEditting) {
-      console.log('enable');
       this.inputFields.makeItEditable();
       this.idPhoto.toEnable();
     } else {
-      console.log('disable');
       this.inputFields.makeItUnEditable();
       this.idPhoto.toDisable();
     }
@@ -70,7 +70,7 @@ class ResumeEditor {
     スタイルシートを変更する
   ------------------------------------------------------ */
   changeStyleSheet(size){
-    this.styleSheet.cangehlef(size);
+    this.resumeStyleSheet.cangehlef(size);
     this.selectPaperSizeDropDownList.save();
   }
   /* ---------------------------------------------------
@@ -79,7 +79,7 @@ class ResumeEditor {
   load(){
     this.inputFields.load();
     this.idPhoto.load();
-    this.styleSheet.load(this.selectPaperSizeDropDownList.load(this.DEFAULT_PAGE_SIZE));
+    this.resumeStyleSheet.load(this.selectPaperSizeDropDownList.load(this.DEFAULT_PAGE_SIZE));
   }
   /* ---------------------------------------------------
     右クリックメニューを表示する
@@ -107,7 +107,7 @@ class ResumeEditor {
       this.selectPaperSizeDropDownList.save(); // クリアしても用紙サイズは変更しない
       // スタイルシートはリロードしてないので改めて変更等する必要はないが・・
       // リロードした時、上記のSaveで整合性を保つ。サイズまでリセットするなら以下が必要
-      // this.styleSheet.load(this.selectPaperSizeDropDownList.load());
+      // this.resumeStyleSheet.load(this.selectPaperSizeDropDownList.load());
 
       // サーバとのやりとりが必要な場合は、内容がをクリアしても同Sesson扱いとなるケースとなるため、
       // window.location.reload()を最後に行った方が良いかもしれない。
@@ -124,7 +124,38 @@ class ResumeEditor {
     履歴書をHTML出力
   ------------------------------------------------------ */
   output() {
-    console.log('html output!!!!!!!');
+    
+    // htmlを複製
+    const outputBody = document.querySelector('html').cloneNode(true);
+    /* タイトルを変えて、余分な要素を削除 */
+    outputBody.querySelector('header').remove();
+    outputBody.querySelector('footer').remove();
+    outputBody.querySelector('title').innerText = '履歴書';
+    outputBody.querySelector('script').remove();
+    // 
+    outputBody.querySelector('.resume').style.margin = 0;
+    outputBody.querySelector('.resume').style.border = 0;
+    
+    /* スタイルシートをHTMLファイルへ埋め込む */
+    const linkstyle = document.getElementById('combines-styles');
+    let cssStr = '';
+    // CSSStyleSheet.rules
+    for (let elem of linkstyle.sheet.rules){
+      // console.log(elem.cssText);
+      cssStr = cssStr + elem.cssText + '\n';
+    };
+    outputBody.querySelector('#combines-styles').remove();
+    const styleTag = document.createElement('style');
+    styleTag.textContent = cssStr;
+    outputBody.querySelector('head').appendChild(styleTag);
+    /* ファイル出力 */
+    const outStr = outputBody.outerHTML.replace( /<!--[\s\S]*?-->/g , '' ); // コメント削除
+    const blob =  new Blob([outStr],{type: 'text/plain'}); // utf-8テキスト
+    const link = document.createElement('a'); // ダミーリンク
+    link.download = 'resume.html';
+    link.href = URL.createObjectURL(blob);
+    link.click();
+    URL.revokeObjectURL(link.href);
   }
   /* ---------------------------------------------------
     ヘルプ表示
@@ -149,7 +180,7 @@ class ResumeEditor {
 /* -------------------------------------------------------------------------
  StyleSheet
 ---------------------------------------------------------------------------- */
-class StyleSheet {
+class ResumeStyleSheet {
   constructor(){
     this.selfElement = document.getElementById('combines-styles');
   }
@@ -255,6 +286,7 @@ class InputFields extends UserInterfase {
    SessionStorageデータを読み込み、入力編集領域反映する
   ------------------------------------------------------ */
   load() {
+
     this.selfElement.forEach(inputField=>{
       // IDと一致するキーが存在した場合に値を読み込む
       if (sessionStorage.getItem(inputField.id)) {
@@ -263,6 +295,7 @@ class InputFields extends UserInterfase {
         inputField.innerHTML = '';
       }
     });
+
     const haveContent = (idName, content)=>{
       if(!sessionStorage.getItem(idName)) {
         document.getElementById(idName).innerText = content;
@@ -271,9 +304,6 @@ class InputFields extends UserInterfase {
     haveContent('gender', '男・女')
     haveContent('marital-status', '有・無')
     haveContent('obligation-to-support-spouse', '有・無')
-
-    //// 揃え情報を読み込んで反映する　TODO: //////////////////////////
-
 
     const applyTextAlign = (direction)=>{
 

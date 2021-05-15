@@ -343,13 +343,12 @@ main {
         }
         .contact-info, 
         .emergency-contact{
+          width: $content-width;
           display: grid;
           grid-template-columns: $emergency-contact-grid-t-cols;
           grid-template-rows: $emergency-contact-grid-t-rows;
           border: {
             left: $print-line-bold;
-            right: $print-line-bold;
-            bottom: $print-line-default;
           }
           .resides-furigana {
             grid-row: 1 / 2;
@@ -383,6 +382,7 @@ main {
             font-size: $resides-font-size;
             border: {
               right: $print-line-default;
+              bottom: $print-line-default;
             }
             align-self: center;
             p.input-field {
@@ -394,6 +394,7 @@ main {
             grid-column: 3 / 4;
             border: {
               top: $print-line-bold;
+              right: $print-line-bold;
               bottom: $print-line-default;
             }
             display: grid;
@@ -414,6 +415,10 @@ main {
             display: grid;
             grid-template-columns: $email-grid-t-cols;
             grid-template-rows: $email-grid-t-rows;
+            border: {
+              right: $print-line-bold;
+              bottom: $print-line-default;
+            }
             p {
               &.label {
                 font-size: $email-label-font-size;
@@ -428,12 +433,19 @@ main {
           }
         }
         .emergency-contact {
-          border:  {
-            bottom: $print-line-bold;
-          }
           .phone-number {
             border: {
               top: none;
+            }
+          }
+          .e-mail {
+            border: {
+              bottom: $print-line-bold;
+            }
+          }
+          .resides {
+            border: {
+              bottom: $print-line-bold;
             }
           }
         }

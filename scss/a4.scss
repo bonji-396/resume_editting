@@ -11,12 +11,16 @@ main {
       grid-template-columns: $page-width;
     }
     .left-page {
+
+
+    }
+    .right-page {
       border: {
-        right: $page-boder;
+        left:  $page-boder;
       }
       @include media-screen-break-two-page {
         border: {
-          right: none;
+          left: none;
         }
       }
       @include media-print {
