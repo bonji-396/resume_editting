@@ -1,6 +1,6 @@
 # Resume Editor
 履歴書作成ウェブアプリです。
-HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロントエンドのみで収束」します。
+HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロントエンドのみで終息」します。
 なので、個人情報を送信することはありません。
 
 また、編集中データはsessionStorageに保存しているので、プラウザを閉じれば個人情報が残ることもありません。
@@ -8,7 +8,8 @@ HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロント�
 
 ※ ただし、インポート、HTML出力、印刷・PDF印刷したデータの管理はご自身でしっかり行って下さい。
 
-![スクリーンショット 2021-05-14 8 47 37](https://user-images.githubusercontent.com/71716610/118200929-3fe28700-b491-11eb-9d2d-0372de1f72d4.png)
+![resume](https://user-images.githubusercontent.com/71716610/118402393-bb685200-b6a4-11eb-95d1-8fe5f3008cc8.gif)
+
 
 ## バージョン履歴
 - 2021/5/16 - version 1.0
@@ -33,6 +34,7 @@ HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロント�
 - A4、A3見開き、B5、B4見開きのそれぞれを選択印刷が可能です。（PDF出力する場合はブラウザの機能を使ってください。）
 - 編集内容は（sessionStorageに）自動保存します。
 - 再編集用にJSON形式で保存・読み込みが可能です。
+- HTMLファイル出力が可能です。リモート面談等で活用して下さい。
 
 
 ## 履歴書（JIS規格）見た目のままで編集できます
