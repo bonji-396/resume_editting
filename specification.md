@@ -30,18 +30,18 @@ SessionStorage、JSONファイルへの保存やHTML出力を考慮して、写�
 - CSS 				: 表示レイアウト、印刷レイアウト
 - SASS              : 
 - JavaScript
- - Web Storage API  : データ永続化（型がkey,value両方文字列のため、シリアライズ、デシリアライズが必要）
- - File API         : JSONテキストファイルへの出力
- - CSSStyleSheet    : HTML出力時に、スタイルシートをHTMLへ埋め込むときに利用
- - contenteditable  : 要素の見た目をそのままに編集可能とする。
+   - Web Storage API  : データ永続化（型がkey,value両方文字列のため、シリアライズ、デシリアライズが必要）
+   - File API         : JSONテキストファイルへの出力
+   - CSSStyleSheet    : HTML出力時に、スタイルシートをHTMLへ埋め込むときに利用
+   - contenteditable  : 要素の見た目をそのままに編集可能とする。
 
 ## 開発環境
 
 - VSCode
- - LiveServer 
- - LiveSassCompiler
+   - LiveServer 
+   - LiveSassCompiler
 - Git
- - GitHub
+   - GitHub
 
 ## 実装環境
 - GitHub Page
