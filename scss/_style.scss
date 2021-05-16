@@ -427,7 +427,7 @@ main {
                 text-align: center;
                 font-size: $email-font-size;
                 height: $email-input-field-height;
-                line-height: $email-input-field-height;
+                line-height: $email-input-field-line-height;
               }  
             }
           }
@@ -611,6 +611,10 @@ main {
     &.show {
       display: block;
       z-index: 20;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
     }
     .help-close {
       width: 50px;

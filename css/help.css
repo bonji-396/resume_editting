@@ -1,0 +1,90 @@
+@charset "UTF-8";
+html, body, h1, h2, h3, dl, dt, dd, label {
+  margin: 0;
+  padding: 0;
+  line-height: 1.0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  vertical-align: bottom;
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  padding: 10px;
+}
+
+body ul {
+  margin-left: 3em;
+}
+
+body ul li {
+  line-height: 1.5em;
+}
+
+body p {
+  line-height: 2em;
+  margin-left: 3em;
+}
+
+body h1 {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+body section h2 {
+  display: none;
+}
+
+body section label {
+  display: block;
+  background-color: #f0f8ff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  padding: 6px;
+  margin: 10px 0;
+}
+
+body section .description {
+  display: none;
+  margin-bottom: 40px;
+}
+
+body section h3 {
+  border-left: 10px solid #b0c4de;
+  padding: 6px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 2em;
+}
+
+body section input {
+  display: none;
+}
+
+body section input:checked + .description {
+  display: block;
+}
+
+body section .commentary-image {
+  margin-top: 10px;
+  margin-left: 3em;
+  margin-bottom: 10px;
+  width: 500px;
+}
+
+body section .commentary-image.animation::after {
+  font-size: 12px;
+  content: '画像をクリックするとアニメーションで確認できます。';
+}
+
+body section .commentary-image.small {
+  width: 200px;
+}
+/*# sourceMappingURL=help.css.map */

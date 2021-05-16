@@ -4,9 +4,200 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Shuji Narumi">
+  <meta description="Resume editing operation manual, 履歴書Editorの操作説明のページです">
+  <meta keywords="resume, 履歴書, 操作説明">
   <title>履歴書Editorの操作説明</title>
+  <link rel="stylesheet" href="css/help.css">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const images = document.querySelectorAll('.commentary-image.animation img');
+      for (let element of images) {
+        element.addEventListener('click',()=>{
+          if (/\.png/.test(element.src)) {
+            element.src =  element.src.replace('.png', '.gif');
+          } else if (/\.gif/.test(element.src)) {
+            element.src =  element.src.replace('.gif', '.png');
+          }
+        });
+      }
+    },false);
+  </script>
 </head>
 <body>
-  はげ
+  <h1>履歴書 Editor 操作説明</h1>
+
+  <section id="feature">
+    <h2>機能</h2>
+    <label for="feature-isshow">機能</label>
+    <input type="checkbox" id="feature-isshow">
+    <div class="description">
+      <h3>見慣れたJISフォーマットで入力</h3>
+      <p>履歴書（JIS規格）の見た目のままで編集できます</p>
+  
+      <h3>用紙サイズ</h3>
+      <p>以下のサイズに変更できます</p>
+      <ul>
+        <li>A3見開き</li>
+        <li>A4</li>
+        <li>B4見開き</li>
+        <li>B5</li>
+      </ul>
+  
+      <h3>入力内容の自動保存</h3>
+      <p>編集・変更内容は自動で保存されます。ブラウザ（タブ）を閉じなければリロードしても消えることはありません。</p>
+  
+      <h3>編集内容のインポート／エクスポート</h3>
+      <p>
+        JOSN形式のファイルとして編集内容を保存するが可能です。保存したファイルを読み込み再度編集をすることも可能です。<br>
+        ※ 履歴書ということで、記載内容は個人情報ですから、保存したファイルは暗号化しておくなど慎重な扱いをお勧めいたします。
+      </p>
+  
+      <h3>HTMLファイル出力</h3>
+      <p>HTML形式で保存も可能です</p>
+    </div><!-- /.description -->
+  </section><!-- /#feature -->
+
+  <section id="input">
+    <h2>入力</h2>
+    <label for="input-isshow">入力</label>
+    <input type="checkbox" id="input-isshow">
+
+    <div class="description">
+      <h3>履歴書の各項目に入力する</h3>
+      <p>紙媒体の履歴書と同じように、入力欄にカーソールを置く（クリックやタップ）とフォーカスされ青い枠線があわられます。
+        その状態で入力が可能です。</p>
+      <p>各項目にカーソールをおいて（タップして）もフォーカスされない場合は、編集可否スイッチで<a href="#switch">編集モード」に切り替え</a>て下さい。</p>
+      <div class="commentary-image animation">
+        <img src="img/input-1.png" alt="入力">
+      </div>
+    </div><!-- /.description -->
+  </section><!-- /#input -->
+
+  <section id="photo">
+    <h2>写真の挿入・削除する</h2>
+    <label for="photo-isshow">写真の挿入・削除する</label>
+    <input type="checkbox" id="photo-isshow">
+
+    <div class="description">
+      <h3>写真の挿入</h3>
+      <p>「写真を貼る位置」をクリック（タップ）して、挿入する画像ファイルを選択して下さい。枠内に画像が挿入されます。</p>
+      <div class="commentary-image animation">
+        <img src="img/photo-1.png" alt="写真を挿入">
+      </div>
+      
+      <h3>写真を変更する</h3>
+      <p>画像が挿入されている状態でクリック（タップ）すれば、再度挿入し直します。改めて画像ファイルを選択して変更することが可能です。</p>
+      <div class="commentary-image animation">
+        <img src="img/photo-2.png" alt="写真を変更">
+      </div>
+      
+      <h3>写真を削除する</h3>
+      <p>挿入されている画像を右クリックして下さい。削除メニューが現れます。削除を選択すると挿入された画像を削除することができます。</p>
+      <div class="commentary-image animation">
+        <img src="img/photo-3.png" alt="写真を削除">
+      </div>
+    </div><!-- /.description -->
+</section>
+
+  <section id="switch">
+    <h2>編集可否モードを切り替える</h2>
+    <label for="switch-isshow">編集可否モードを切り替える</label>
+    <input type="checkbox" id="switch-isshow">
+    <div class="description">
+      <h3>編集可否切り替え</h3>
+      <p>モード切り替えスイッチをクリック（タップ）して、編集可否を切り替えて下さい。</p>
+      <div class="commentary-image small animation">
+        <img src="img/switch-1.png" alt="編集可否切り替え">
+      </div>
+
+      <h3>編集可能にする</h3>
+      <p>上記切り替え動作を行い、スイッチの上に「edit」と表示され、ボタン背景が薄緑になったら、各入力項目に入力が可能となります。写真も挿入・削除が行えます。</p>
+      <div class="commentary-image small animation">
+        <img src="img/switch-2.png" alt="編集可能にする">
+      </div>
+
+      <h3>編集不可にする</h3>
+      <p>上記切り替え動作を行い、スイッチの上に「done」と表示され、ボタン背景が灰色になったら、各入力項目に入力が不可となります。写真も挿入・削除が行えなくなります。</p>
+      <div class="commentary-image small animation">
+        <img src="img/switch-3.png" alt="編集不可にする">
+      </div>
+      
+    </div><!-- /.description -->
+
+  </section>
+
+  <section id="change">
+    <h2>用紙サイズの変更する</h2>
+    <label for="change-isshow">用紙サイズの変更する</label>
+    <input type="checkbox" id="change-isshow">
+    <div class="description">
+      <p>画面左上のセレクトボックスアイコンにて用紙サイズを変更します。</p>
+      <div class="commentary-image">
+        <img src="img/change-1.png" alt="用紙サイズの変更する">
+      </div>
+    </div><!-- /.description -->
+
+  </section>
+
+  <section id="save">
+    <h2>編集内容を保存する</h2>
+    <label for="save-isshow">編集内容を保存する</label>
+    <input type="checkbox" id="save-isshow">
+    <div class="description">
+      <p></p>
+    </div><!-- /.description -->
+
+  </section>
+
+  <section id="load">
+    <h2>保存ファイルを読み込む</h2>
+    <label for="load-isshow">保存ファイルを読み込む</label>
+    <input type="checkbox" id="load-isshow">
+    <div class="description">
+      <p></p>
+    </div><!-- /.description -->
+
+  </section>
+
+  <section id="print">
+    <h2>印刷する</h2>
+    <label for="print-isshow">印刷する</label>
+    <input type="checkbox" id="print-isshow">
+    <div class="description">
+      <p></p>
+    </div><!-- /.description -->
+
+  </section>
+
+  <section id="output">
+    <h2>HTMLファイルで出力する</h2>
+    <label for="output-isshow">HTMLファイルで出力する</label>
+    <input type="checkbox" id="output-isshow">
+    <div class="description">
+      <p></p>
+    </div><!-- /.description -->
+
+  </section>
+
+  <section id="clear">
+    <h2>編集内容をクリアする</h2>
+    <label for="clear-isshow">編集内容をクリアする</label>
+    <input type="checkbox" id="clear-isshow">
+    <div class="description">
+      <p></p>
+    </div><!-- /.description -->
+
+  </section>
+
+  <section id="help">
+    <h2>ヘルプを表示する</h2>
+    <label for="help-isshow">ヘルプを表示する</label>
+    <input type="checkbox" id="help-isshow">
+    <div class="description">
+      <p></p>
+    </div><!-- /.description -->
+  </section>
+
 </body>
 </html>
