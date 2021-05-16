@@ -386,6 +386,7 @@ main .resume .left-page .personal-data .basic-data .name-furigana p.input-field 
 
 main .resume .left-page .personal-data .basic-data .name {
   height: 15mm;
+  line-height: 15mm;
   grid-column: 1 / 2;
   grid-row: 2 / 3;
   display: grid;
