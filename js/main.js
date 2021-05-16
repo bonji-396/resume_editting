@@ -130,7 +130,11 @@ class ResumeEditor {
     履歴書をHTML出力
   ------------------------------------------------------ */
   output() {
-    
+    // 編集不可にする
+    this.eittingSwitchButton.selfElement.checked = false;
+    this.inputFields.makeItUnEditable();
+    this.idPhoto.toDisable();
+
     // htmlを複製
     const outputBody = document.querySelector('html').cloneNode(true);
     /* タイトルを変えて、余分な要素を削除 */
