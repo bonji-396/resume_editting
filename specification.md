@@ -28,7 +28,7 @@ SessionStorage、JSONファイルへの保存やHTML出力を考慮して、写�
 ## 実装技術
 - HTML         		: 表示データの構成
 - CSS 				: 表示レイアウト、印刷レイアウト
-- SASS              : 
+- SASS              : 作業効率の為（選択できる用紙サイズ毎にレイアウト変更するため）
 - JavaScript
    - Web Storage API  : データ永続化（型がkey,value両方文字列のため、シリアライズ、デシリアライズが必要）
    - File API         : JSONテキストファイルへの出力
