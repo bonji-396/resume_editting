@@ -21,7 +21,7 @@ body {
 }
 
 body ul {
-  margin-left: 3em;
+  margin-left: 2em;
 }
 
 body ul li {
@@ -30,7 +30,7 @@ body ul li {
 
 body p {
   line-height: 2em;
-  margin-left: 3em;
+  margin-left: 2em;
 }
 
 body h1 {
@@ -61,7 +61,7 @@ body section h3 {
   padding: 6px;
   margin-top: 20px;
   margin-bottom: 10px;
-  margin-left: 2em;
+  margin-left: 1em;
 }
 
 body section input {
@@ -74,7 +74,7 @@ body section input:checked + .description {
 
 body section .commentary-image {
   margin-top: 10px;
-  margin-left: 3em;
+  margin-left: 2em;
   margin-bottom: 10px;
   width: 500px;
 }
