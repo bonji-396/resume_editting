@@ -44,4 +44,5 @@ SessionStorage、JSONファイルへの保存やHTML出力を考慮して、写�
    - GitHub
 
 ## 実装環境
-- GitHub Page
+- Amazon S3
+- Amazon CloudFront
