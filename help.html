@@ -27,6 +27,7 @@
 <body>
   <h1>履歴書 Editor 操作説明</h1>
 
+  <p>各機能タイトルをクリックすると説明が現れます。</p>
   <section id="feature">
     <h2>機能</h2>
     <label for="feature-isshow">機能</label>
@@ -98,7 +99,7 @@
         <img src="img/photo-3.png" alt="写真を削除">
       </div>
     </div><!-- /.description -->
-</section>
+</section><!-- /#photo -->
 
   <section id="switch">
     <h2>編集可否モードを切り替える</h2>
@@ -106,7 +107,7 @@
     <input type="checkbox" id="switch-isshow">
     <div class="description">
       <h3>編集可否切り替え</h3>
-      <p>モード切り替えスイッチをクリック（タップ）して、編集可否を切り替えて下さい。</p>
+      <p>画面左上のモード切り替えスイッチをクリック（タップ）して、編集可否を切り替えて下さい。</p>
       <div class="commentary-image small animation">
         <img src="img/switch-1.png" alt="編集可否切り替え">
       </div>
@@ -125,79 +126,158 @@
       
     </div><!-- /.description -->
 
-  </section>
+  </section><!-- /#switch -->
 
   <section id="change">
     <h2>用紙サイズの変更する</h2>
     <label for="change-isshow">用紙サイズの変更する</label>
     <input type="checkbox" id="change-isshow">
     <div class="description">
+      <h3>用紙サイズ変更</h3>
       <p>画面左上のセレクトボックスアイコンにて用紙サイズを変更します。</p>
-      <div class="commentary-image">
+      <div class="commentary-image small animation">
         <img src="img/change-1.png" alt="用紙サイズの変更する">
       </div>
+
+      <h3>変更可能なサイズ</h3>
+      <p>以下のサイズに変更できます</p>
+      <ul>
+        <li>A3見開き</li>
+        <li>A4</li>
+        <li>B4見開き</li>
+        <li>B5</li>
+      </ul>
     </div><!-- /.description -->
 
-  </section>
+  </section><!-- /#change -->
 
   <section id="save">
     <h2>編集内容を保存する</h2>
     <label for="save-isshow">編集内容を保存する</label>
     <input type="checkbox" id="save-isshow">
     <div class="description">
-      <p></p>
+
+      <h3>エクスポートボタン</h3>
+      <div class="commentary-image small">
+        <img src="img/save-1.png" alt="エクスポートボタン">
+      </div>
+
+      <h3>編集内容を保存</h3>
+      <p>画面左上のエクスポートボタンを押下し、ファイルの保存場所とファイル名（初期値: resume.json）を指定して保存します。</p>
+      <div class="commentary-image animation">
+        <img src="img/save-2.png" alt="編集内容を保存する">
+      </div>
+
+      <h3>JSON形式テキストファイル</h3>
+      <p>保存形式はJSON形式テキストファイルです。個人情報保護の観点から、パスワード付きZip化するなどの配慮することをお勧めします。</p>
+      <div class="commentary-image">
+        <img src="img/save-3.png" alt="JSON形式テキストファイル">
+      </div>
+
     </div><!-- /.description -->
 
-  </section>
+  </section><!-- #/save -->
 
   <section id="load">
     <h2>保存ファイルを読み込む</h2>
     <label for="load-isshow">保存ファイルを読み込む</label>
     <input type="checkbox" id="load-isshow">
     <div class="description">
-      <p></p>
+
+      <h3>インポートボタン</h3>
+      <div class="commentary-image small">
+        <img src="img/load-1.png" alt="インポートボタン">
+      </div>
+
+      <h3>保存ファイルを読み込む</h3>
+      <p>画面右上のインポートボタンを押下し、保存したJSONファイルを選択し読み込みます。</p>
+      <div class="commentary-image animation">
+        <img src="img/load-2.png" alt="保存ファイルを読み込む">
+      </div>
     </div><!-- /.description -->
 
-  </section>
+  </section><!-- /#load -->
 
   <section id="print">
     <h2>印刷する</h2>
     <label for="print-isshow">印刷する</label>
     <input type="checkbox" id="print-isshow">
     <div class="description">
-      <p></p>
+      <h3>印刷ボタン</h3>
+      <div class="commentary-image small">
+        <img src="img/print-1.png" alt="印刷ボタン">
+      </div>
+
+      <h3>印刷</h3>
+      <p>画面右上の印刷ボタンを押下し、履歴書を印刷します。</p>
+      <p>用紙サイズに合わせたレイアウトは、用紙サイズ変更セレクトボックスで変更できますが、実際のプリンタ用紙等はブラウザ印刷機能の設定で行って下さい。</p>
+      <div class="commentary-image animation">
+        <img src="img/print-2.png" alt="印刷する">
+      </div>
+      
     </div><!-- /.description -->
 
-  </section>
+  </section><!-- /#print -->
 
   <section id="output">
     <h2>HTMLファイルで出力する</h2>
     <label for="output-isshow">HTMLファイルで出力する</label>
     <input type="checkbox" id="output-isshow">
     <div class="description">
-      <p></p>
+      <h3>HTML出力ボタン</h3>
+      <div class="commentary-image small">
+        <img src="img/output-1.png" alt="HTML出力ボタン">
+      </div>
+
+      <h3>HTMLファイルで出力</h3>
+      <p>画面右上のHTML出力ボタンを押下し、履歴書をHTML形式で出力します。</p>
+      <p>リモートでの面談等が多くなった昨今、ご活用ください。</p>
+      <div class="commentary-image animation">
+        <img src="img/ouput-2.png" alt="HTML形式で出力する">
+      </div>
+
     </div><!-- /.description -->
 
-  </section>
+  </section><!-- /#output -->
 
   <section id="clear">
     <h2>編集内容をクリアする</h2>
     <label for="clear-isshow">編集内容をクリアする</label>
     <input type="checkbox" id="clear-isshow">
     <div class="description">
-      <p></p>
+      <h3>クリアボタン</h3>
+      <div class="commentary-image small">
+        <img src="img/reset-1.png" alt="クリアボタン">
+      </div>
+
+      <h3>編集内容をクリアする</h3>
+      <p>画面右上のクリアボタンを押下し、編集内容をリセットクリアする。尚用紙サイズは初期化されません。</p>
+      <div class="commentary-image animation">
+        <img src="img/reset-2.png" alt="編集内容をクリアする">
+      </div>
+
     </div><!-- /.description -->
 
-  </section>
+  </section><!-- /#clear -->
 
   <section id="help">
     <h2>ヘルプを表示する</h2>
     <label for="help-isshow">ヘルプを表示する</label>
     <input type="checkbox" id="help-isshow">
     <div class="description">
-      <p></p>
+      <h3>ヘルプ表示ボタン</h3>
+      <div class="commentary-image small">
+        <img src="img/help-1.png" alt="ヘルプ表示ボタン">
+      </div>
+
+      <h3>操作説明を表示する</h3>
+      <p>画面右上のヘルプボタンを押下し、操作説明を表示します。</p>
+      <div class="commentary-image animation">
+        <img src="img/help-2.png" alt="操作説明を表示する">
+      </div>
+
     </div><!-- /.description -->
-  </section>
+  </section><!-- /#help -->
 
 </body>
 </html>

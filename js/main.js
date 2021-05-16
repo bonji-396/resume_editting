@@ -141,7 +141,6 @@ class ResumeEditor {
     let cssStr = '';
     // CSSStyleSheet.rules
     for (let elem of linkstyle.sheet.rules){
-      // console.log(elem.cssText);
       cssStr = cssStr + elem.cssText + '\n';
     };
     outputBody.querySelector('#combines-styles').remove();
@@ -224,7 +223,6 @@ class InputFields extends UserInterfase {
       // フォーカス時に全選択
       inputField.addEventListener('focus',()=>{
         document.execCommand('focus',false,null);
-        console.log('focus');
       });
     });
     // 学歴・職歴/免許・資格 欄
@@ -269,16 +267,14 @@ class InputFields extends UserInterfase {
   ------------------------------------------------------ */
   supression() {
     this.selfElement.forEach(inputField=>{
+      // 複数行編集以外の場合
       if(!inputField.classList.contains('multiple-lines')) {
         inputField.addEventListener('keydown', (event)=>{
-          // console.log(event.key, event.keyCode);
           /* 改行をさせない */
           if(!event.isComposing && event.key === 'Enter') {
             return false; // 何もしない
           }
         });  
-      } else {
-        // console.log(inputField);
       }
     });
   }
@@ -310,7 +306,6 @@ class InputFields extends UserInterfase {
       if (sessionStorage.getItem(direction)) {
         let items = sessionStorage.getItem(direction).split(',');
         items.forEach(item=>{
-          // console.log(direction,item);
           const field = document.getElementById(item);
           field.dataset.textAlign = direction
         });
@@ -351,7 +346,6 @@ class InputFields extends UserInterfase {
     TODO: リファクタリング（共通化）
   ------------------------------------------------------ */
   dataTextAlignSave(key, value){
-    // console.log(key, value);
 
     const removeFromArray = (item)=>{
       if(item !== value){
@@ -405,8 +399,6 @@ class InputFields extends UserInterfase {
     if(right.length) {
       sessionStorage.setItem('right', right);
     }
-
-    // console.log(left,'\n', center,'\n', right);
   }
   /* ---------------------------------------------------
     編集内容をクリアリセットする
@@ -454,7 +446,6 @@ class IDPhoto extends UserInterfase {
   ------------------------------------------------------ */
   toDisable(){
     this.selfElement.disabled = true;
-    console.log('remove');
     this.idPhotoImage.removeEventListener('contextmenu',  this.callback, false);
   }
   /* ---------------------------------------------------
@@ -602,7 +593,6 @@ class ImportButton extends UserInterfase {
     その後、コールバックで表示に反映する。
   ------------------------------------------------------ */
   import(event, callback){
-    // console.log('import', this.selfElement.files);
     // 選択したファイルを読み込んで、その内容を各入力欄へ反映する
     const file = this.selfElement.files[0];
     const reader = new FileReader();
@@ -612,12 +602,9 @@ class ImportButton extends UserInterfase {
     sessionStorageへ読み込んだデータを保存し、
     その保存データをもとに各要素に反映する */
     reader.addEventListener('load',()=>{
-      // console.log(reader.result);
-      // console.log(JSON.parse(reader.result));
       const readJson = JSON.parse(reader.result);
       sessionStorage.clear();
       for (let key in readJson) {
-        // console.log(key, readJson[key]);
         sessionStorage.setItem(key, readJson[key]);
       }
       callback();
@@ -639,16 +626,11 @@ class ExportButton extends ButtonUI {
     sessionStorageデータをJSONテキストファイルとして保存
   ------------------------------------------------------ */
   export(flg){
-    // console.log('export');
     const list =  {};
     // セッションストレージの内容を連想配列に格納
     for (let i = 0; i < sessionStorage.length; i++) {
       const key = sessionStorage.key(i);
-      // console.log(key, sessionStorage.getItem(key));
       list[key] = sessionStorage.getItem(key);
-    }
-    // console.log(list);
-    // console.log('window.performance.memory:', window.performance.memory);
 
     /* jsonテキストファイルとして保存
     -------------------------------- */
