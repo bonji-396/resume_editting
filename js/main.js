@@ -267,7 +267,7 @@ class InputFields extends UserInterfase {
   ------------------------------------------------------ */
   supression() {
     this.selfElement.forEach(inputField=>{
-      // 複数行編集以外の場合
+      // 複数行編集欄以外
       if(!inputField.classList.contains('multiple-lines')) {
         inputField.addEventListener('keydown', (event)=>{
           /* 改行をさせない */
@@ -631,6 +631,7 @@ class ExportButton extends ButtonUI {
     for (let i = 0; i < sessionStorage.length; i++) {
       const key = sessionStorage.key(i);
       list[key] = sessionStorage.getItem(key);
+    }
 
     /* jsonテキストファイルとして保存
     -------------------------------- */
