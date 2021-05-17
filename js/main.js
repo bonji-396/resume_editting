@@ -132,7 +132,7 @@ class ResumeEditor {
   output() {
     // 編集不可にする
     this.eittingSwitchButton.selfElement.checked = false;
-    this.inputFields.makeItUnEditable();
+    this.inputFields.deleteTheEditabilityAttribute(); //　属性自体削除
     this.idPhoto.toDisable();
 
     // htmlを複製
@@ -262,6 +262,14 @@ class InputFields extends UserInterfase {
       inputField.contentEditable = false;
     });
   }
+  /* ---------------------------------------------------
+   contentEditable属性を削除する
+  ------------------------------------------------------ */
+  deleteTheEditabilityAttribute(){
+    this.selfElement.forEach(inputField=>{
+      inputField.removeAttribute(contentEditable);
+    });
+  } 
   /* ---------------------------------------------------
    入力編集領域をSessionStorageへ自動保存 
   ------------------------------------------------------ */
