@@ -55,6 +55,7 @@ header {
   background-color: #fff;
   display: grid;
   grid-template-columns: 300px calc(100% - 300px);
+  align-items: center;
   position: fixed;
   top: 0;
   z-index: 10;
@@ -67,12 +68,125 @@ header {
   }
 }
 
+header .title h1 {
+  font-size: 24px;
+  padding: 0;
+}
+
+@media screen and (max-width: 237mm) {
+  header .title h1 {
+    font-size: 16px;
+    line-height: 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  header .title h1 {
+    display: block;
+    font-size: 24px;
+  }
+}
+
+header .title p {
+  font-size: 10px;
+}
+
+@media screen and (max-width: 237mm) {
+  header .title p {
+    display: none;
+  }
+}
+
+header .menu-button {
+  justify-self: right;
+  width: 40px;
+  height: 40px;
+  display: none;
+  border: 1px solid #333;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+header .menu-button::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  content: '';
+  width: 24px;
+  height: 4px;
+  background-color: #333;
+  transition: 0.4s;
+  top: -12px;
+}
+
+header .menu-button::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  content: '';
+  width: 24px;
+  height: 4px;
+  background-color: #333;
+  transition: 0.4s;
+  top: 12px;
+}
+
+@media screen and (max-width: 600px) {
+  header .menu-button {
+    display: block;
+  }
+}
+
+header #is-menu-show {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  header #is-menu-show:checked + .menu-button::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+  header #is-menu-show:checked + .menu-button::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+  header #is-menu-show:checked ~ .menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 4px;
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 4px;
+    grid-auto-flow: row;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    padding: 8px;
+    background-color: #fff;
+    border: 1px solid #333;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  }
+}
+
 header .menu {
   display: grid;
   grid: 1fr / auto-flow;
   column-gap: 10px;
   justify-self: end;
   align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+  header .menu {
+    display: none;
+  }
 }
 
 header .menu .editing-switch {
@@ -210,6 +324,12 @@ main .resume {
   main .resume {
     width: 210mm;
     grid-template-columns: 210mm;
+  }
+}
+
+@media screen and (max-width: 210mm) {
+  main .resume {
+    transform: translate(-17mm, 0);
   }
 }
 

@@ -16,6 +16,32 @@
     @content;
   }
 }
+// 
+@mixin media-middle-screen-break {
+  @media screen and (max-width: $small-screen-breakpoin) {
+    @content;
+  }
+}
+// 
+@mixin media-small-screen-break {
+  @media screen and (max-width: 600px) {
+    @content;
+  }
+}
+// 
+@mixin menu-button-decoration {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  content: '';
+  width: 24px;
+  height: 4px;
+  background-color: #333;  
+  transition: 0.4s;
+}
 // メニューボタンの共通部分スタイル
 @mixin menuButtonStyle {
   width: 40px;
