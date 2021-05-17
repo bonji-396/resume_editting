@@ -159,7 +159,7 @@ class ResumeEditor {
     outputBody.querySelector('head').appendChild(styleTag);
     /* ファイル出力 */
     const outStr = outputBody.outerHTML.replace( /<!--[\s\S]*?-->/g , '' ); // コメント削除
-    const blob =  new Blob([outStr],{type: 'text/plain'}); // utf-8テキスト
+    const blob =  new Blob([outStr],{type: 'text/html'}); // HTMLテキスト
     const link = document.createElement('a'); // ダミーリンク
     link.download = 'resume.html';
     link.href = URL.createObjectURL(blob);

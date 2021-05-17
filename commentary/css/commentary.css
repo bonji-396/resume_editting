@@ -1,0 +1,260 @@
+/* reset
+---------------------------------------------------------------------------- */
+html, body, h1, h2, h3, p, dl, dt, dd {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  vertical-align: top;
+  max-width: 960px;
+  max-height: 100%;
+  height: auto;
+}
+
+/*------------------------------------------
+  Responsive Grid Media Queries - 1280, 1024, 768, 480
+   
+  1280-1024   - desktop (default grid)
+    container-width: 960px
+
+  1024-768    - tablet landscape
+    container-widht: 100%;
+
+  768-480     - tablet 
+    container-widht: 100%;
+
+  480-less    - phone landscape & smaller
+    container-widht: 100%;
+--------------------------------------------*/
+@keyframes boderFadeIn {
+  0% {
+    filter: drop-shadow(0 0 0 --main-color);
+  }
+  50% {
+    filter: drop-shadow(0 0 8px --main-color);
+  }
+  80% {
+    filter: drop-shadow(0 0 8px --main-color);
+  }
+  100% {
+    filter: drop-shadow(0 0 0 --main-color);
+  }
+}
+
+/* page styleing
+---------------------------------------------------------------------------- */
+html, body {
+  scroll-behavior: smooth;
+  scroll-padding-top: 50px;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+body p {
+  line-height: 1.5em;
+}
+
+body header {
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1000;
+}
+
+body header ul, body header li {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+body header ul {
+  list-style: none;
+}
+
+body header .links {
+  width: 20%;
+}
+
+body header .links ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 50px);
+  grid-template-rows: 50px;
+  text-align: center;
+  column-gap: 4px;
+}
+
+body header .links ul .size {
+  font-size: 50px;
+}
+
+body header .links ul #website {
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+}
+
+body header .links ul .st0 {
+  fill: #000;
+}
+
+body header nav {
+  width: 80%;
+}
+
+body header nav ul {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(3em, 7em));
+  grid-template-rows: 50px;
+  justify-content: end;
+}
+
+body header nav ul li {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+body header nav ul a {
+  display: block;
+  line-height: 50px;
+}
+
+body header nav ul a:hover {
+  text-shadow: 0 0 10px orange;
+}
+
+body main p {
+  margin-left: 1em;
+  line-height: 2em;
+  text-indent: 1em;
+}
+
+body main ul {
+  margin: 1em;
+}
+
+body main .container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+body main .container section {
+  width: 100%;
+  height: 100%;
+}
+
+body main .container h1 {
+  margin-top: 50px;
+  padding: 40px;
+  text-align: center;
+  font-size: 48px;
+}
+
+body main .container h2 {
+  margin: 50px 0;
+  padding: 6px;
+  border-bottom: 2px solid #ddd;
+}
+
+body main .container h3 {
+  margin: 20px 0;
+  padding: 4px;
+  border-bottom: 1px solid #ddd;
+}
+
+body main .container ul li {
+  line-height: 1.8em;
+}
+
+body main .container dl {
+  width: 100%;
+  border: 1px solid #333;
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+body main .container dl dt {
+  padding: 6px;
+  border-bottom: 1px solid #333;
+  line-height: 21px;
+}
+
+body main .container dl dt:first-of-type {
+  background-color: #666;
+  color: #fff;
+}
+
+body main .container dl dt:last-of-type {
+  border-bottom: 0;
+}
+
+body main .container dl dd {
+  padding: 6px;
+  border-bottom: 1px solid #333;
+  line-height: 21px;
+  border-left: 1px solid #333;
+}
+
+body main .container dl dd:first-of-type {
+  background-color: #666;
+  color: #fff;
+}
+
+body main .container dl dd:last-of-type {
+  border-bottom: 0;
+}
+
+body main .container #visual-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+body main .container #discription .work-content-boxs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+}
+
+body main .container #discription .work-content-boxs .work dt {
+  text-align: center;
+}
+
+body main .container #discription .work-content-boxs .work-hours-and-process dl {
+  grid-template-columns: 70% 30%;
+}
+
+body main .container #discription .work-content-boxs .work-hours-and-process dl dt:last-of-type {
+  background-color: #DDD;
+}
+
+body main .container #discription .work-content-boxs .work-hours-and-process dl dd {
+  text-align: right;
+}
+
+body main .container #discription .work-content-boxs .work-hours-and-process dl dd:nth-of-type(1) {
+  text-align: center;
+}
+
+body main .container #discription .work-content-boxs .work-hours-and-process dl dd:last-of-type {
+  background-color: #ddd;
+}
+/*# sourceMappingURL=commentary.css.map */

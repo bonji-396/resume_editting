@@ -1,0 +1,14 @@
+@keyframes boderFadeIn {
+  0% {
+    filter: drop-shadow(0 0 0 --main-color);
+  }
+  50% {
+    filter: drop-shadow(0 0 8px --main-color);
+  }
+  80% {
+    filter: drop-shadow(0 0 8px --main-color);
+  }
+  100% {
+    filter: drop-shadow(0 0 0 --main-color);
+  }
+}

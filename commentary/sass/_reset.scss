@@ -1,0 +1,18 @@
+/* reset
+---------------------------------------------------------------------------- */
+html, body, h1, h2, h3, p, dl, dt, dd {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+img {
+  vertical-align: top;
+  max-width: 960px;
+  max-height: 100%;
+  height: auto;
+}

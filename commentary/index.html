@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>解説ページのテンプレート</title>
+  <script data-search-pseudo-elements defer src="https://pro.fontawesome.com/releases/v5.10.1/js/all.js"></script>
+  <link rel="stylesheet" href="css/commentary.css">
+  <script src="js/mock_devices.js"></script>
+  <script src="js/main.js"></script>
+</head>
+<body>
+  <header>
+    <div class="links">
+      <ul>
+        <li>
+          <a href="https://www.mikuro.works/portfolio/works/resume_editting/">
+            <svg version="1.1" id="website" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+            y="0px" viewBox="0 0 210 210" style="enable-background:new 0 0 210 210;" xml:space="preserve">
+              <path class="st0" d="M71.6,208.9c14.7,0.4,10.3-3.3,21.1-11c4.8-3.4,19-9.6,25.9-6c8.4,4.3,13.5,17,26.2,15.4
+                c11.8-1.5,22.6-15.4,22.7-37c0-19.5-15.9-27.8-26.9-32.5c-6.5-16.3-4-33.5-43.6-30.9c-30.6,2-32.8,38.4-35.1,42.1
+                c-2.3,3.7-24.4,8.9-18.5,27.3C49.5,195.5,60.7,208.6,71.6,208.9z"/>
+              <path class="st0" d="M7.4,117.9c3.6,19.2,43.2,38.4,36.8-9.4C36.7,52.6-3.7,59.7,7.4,117.9z"/>
+              <path class="st0" d="M156.4,104.6c-4.6,22.8,30.6,66.4,45.3,11C216.5,60.2,168.5,44.5,156.4,104.6z"/>
+              <path class="st0" d="M39.1,53.4c6.2,30.5,42.7,65.2,47-1.9C90.3-15.6,26.5-8.1,39.1,53.4z"/>
+              <path class="st0" d="M108.5,44.5c0,30.3,27.6,70.2,44.4,6.8C169.6-12.2,108.4-16.6,108.5,44.5z"/>
+            </svg>
+          </a>
+        </li>
+        <li><a href="https://github.com/bonji-396/resume_editting/"> <i class="fab fa-github-square size" aria-label="github"></i></a></li>
+      </ul>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Top</a></li>
+        <li><a href="#overview">概要</a></li>
+        <li><a href="#discription">作業内容</a></li>
+        <li><a href="#request-details">依頼内容</a></li>
+        <li><a href="#specification">仕様</a></li>
+        <li><a href="#features">特徴</a></li>
+        <li><a href="#difficulties">苦労した点</a></li>
+        <li><a href="#reflections-and-future">反省点と今後</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>履歴書 Editorの詳細</h1>
+      <section id="visual">
+        <div id="visual-box">
+
+        </div>
+        <div class="reset"></div>
+      </section>
+  
+      <section id="overview">
+        <h2>概要</h2>
+        <h3>履歴書を作成するページです</h3>
+        <p>履歴書作成ウェブアプリです。 HTML、CSS（SCSS）、JavaScriptのみで構成されています。ですので、フロントエンドで終息しサーバに（個人情報など）送信することはありません。</p>
+        <p>また、編集中データはsessionStorageに保存しているので、プラウザを閉じれば個人情報が残ることもありません。共用端末での利用でも安心してお使いいただけます。<br>※ ただし、インポート、HTML出力、印刷・PDF印刷したデータの管理はご自身でしっかり行って下さい。</p>
+
+        <h3>サイトへのリンク</h3>
+        <ul>
+          <li><a href="https://www.mikuro.works/portfolio/works/resume_editting/">履歴書 Editorサイトへ</a></li>
+          <li><a href="https://github.com/bonji-396/resume_editting/">GitHubへ</a></li>
+        </ul>
+
+      </section>
+  
+      <section id="discription">
+        <h2>作業内容</h2>
+          <ul>
+          <li>企画・設計</li>
+          <li>コーディング</li>
+          <li>テスト</li>
+          <li>実装</li>
+          <li>プロモーション活動</li>
+          </ul>
+        <h3>作業期間</h3>
+        <p>2021/4/28 〜 2021/5/17</p>
+        <div class="work-content-boxs">
+          <div class="box work-hours-and-process">
+            <h3>作業工程・作業時間</h3>
+            <dl>
+              <dt>作業工程</dt><dd></dd>
+              <dt>要件定義 : </dt><dd>2時間</dd>
+              <dt>構想と仕様決定 : </dt><dd>4時間</dd>
+              <dt>調査 : </dt><dd>12時間</dd>
+              <dt>デザインカンプ : </dt><dd>1時間</dd>
+              <dt>リソース準備 : </dt><dd>6時間</dd>
+              <dt>コーディング : </dt><dd>60時間</dd>
+              <dt>実装・修正作業 : </dt><dd>4時間</dd>
+              <dt>total : </dt><dd>89時間</dd>
+            </dl>
+          </div>
+
+          <div class="box technology-used">
+            <h3>利用技術</h3>
+            <!-- ツール・プラットフォーム・言語・フレームワーク・ライブラリの各アイコンと名称を記述 -->
+            <dl>
+              <dt>ツール : </dt><dd>VSCode, Git, GitHub, PhotoShop</dd>
+              <dt>言語 : </dt><dd>JavaScript, HTML, CSS</dd>
+              <dt>ライブラリ</dt><dd></dd>
+              <dt>フレームワーク</dt><dd></dd>
+              <dt>プラットフォーム</dt><dd>Amazon S3, Amazon CloudFront, Amazon Route53, AWS Certificate Manage</dd>
+            </dl>
+          </div>  
+        </div>
+      </section>
+  
+      <!-- このクライアントワークケースだけの記述箇所 -->
+      <section id="request-details">
+        <h2>依頼内容</h2>
+        <p>クライアントより、既存ページの改修を依頼された。</p>
+
+        <h3>ヒアリング</h3>
+
+        <h4>詳細</h4>
+        <p></p>
+        <dl>
+          <dt>項目</dt><dd>回答</dd>
+          <dt>新規のサイトか既にあるサイトのリニューアルか</dt><dd>企業HPは既あることを想定。ヘッダー、フッターのレイアウトは既存HPにそって作成すること。</dd>
+          <dt>Webサーバーの環境（自前・レンタル・有料・無料）</dt><dd>自前を想定（提出にはリソース・書類のみで、実装は顧客が行う）<br>[確認環境](#)は提供する</dd>
+          <dt>ドメイン名（有料・無料）</dt><dd>一部のオリジンのみ新規作成にて考慮なし</dd>
+          <dt>コンテンツの中身</dt><dd>※ あくま試験提出用のなので素材を無断での利用にて著作等の関連より、ページにはベーシック認証を利用し、guestユーザでログインして閲覧可能にする。__<br><br>構成は1ページ（__※画像毎の画面表示は70以上__）<br>■ 指定席券売機ご利用案内<br>① 乗換案内からきっぷを購入<br>② 乗換案内からきっぷを購入（列車を変更する場合）<br>③ 新幹線指定席特急券と乗車券を購入<br>④ Suica定期券を購入<br><br>・以降他のページでも利用できるよなデータを意識したレイアウトをして欲しい。<br>・レスポンシブ対応もしてほしい|
+          <dt>コンテンツ素材の有無（画像や文章はどうするか）</dt><dd>イメージや文言はそのまま既存画像を流用し加工する</dd>
+          <dt>パソコンユーザー、スマートフォンユーザーの比率</dt><dd>1:1</dd>
+          <dt>ターゲットとなるユーザーのペルソナ</dt><dd>① まだ指定席券売機を要したことがない一般の方が前もって利用方法を確認するために閲覧。<br>② 出張先などで定期券更新方法などを前もって確認ようとする利用者</dd>
+          <dt>SNSとの連動</dt><dd>Twitterでハッシュタグを「#架空企業」として、さらにプロフィール、ツイートに「架空企業」と掲載</dd>
+          <dt>アップロード後の保守・管理</dt><dd>なし</dd>
+          <dt>デザインの参考サイトやベンチマーク（ライバル的）サイトはあるか？</dt><dd>https://www.eki-net.com/travel/guide/payment/mv.html　動画が目的を果たしている</dd>
+          <dt>公開希望予定日</dt><dd>3月19日</dd>
+        </dl>
+
+        <h4>変更するコンテンツ</h4>
+        <p>指定席券売機ご利用案内の１ページ（ただし表示画面数は70枚以上）</p>
+        <ol>
+          <li>乗換案内からきっぷを購入 </li>
+          <li>乗換案内からきっぷを購入（列車を変更する場合）  </li>
+          <li>新幹線指定席特急券と乗車券を購入</li>
+          <li>Suica定期券を購入 </li>
+          <li>ネットde定期でお申込みいただいた定期券の受取り</li>
+        </ol>
+
+        <h4>クライアントの情報</h4>
+        <dl>
+          <dt>項目</dt><dd>内容</dd>
+          <dt>企業名</dt><dd>JR東日本</dd>
+          <dt>業種</dt><dd>鉄道</dd>
+          <dt>クライアントの特徴</dt><dd></dd>
+          <dt>住所</dt><dd></dd>
+          <dt>ターゲットを決める</dt><dd>指定席券売機よりチケットを購入しようと前もって確認している利用者</dd>
+          <dt>参考サイト</dt><dd></dd>
+        </dl>
+
+        <h3>要件定義</h3>
+        <h4>プロジェクト概要</h4>
+        <dl>
+          <dt>項目</dt><dd>内容</dd>
+          <dt>サイトの概要（どういったサイトを作るか）</dt><dd>操作パネルを操作し画面遷移しているような体感型のマニュアル</dd>
+          <dt>クライアントの情報</dt><dd></dd>
+          <dt>クライアントの要望</dt><dd>・以降他のページでも利用できるよなデータを意識したレイアウト・データの管理をして欲しい。<br>・レスポンシブ対応もしてほしい</dd>
+        </dl>
+
+        <h4>システム部分</h4>
+        <dl>
+          <dt>項目</dt><dd>内容</dd>
+          <dt>新規or改修</dt><dd>既存ページの改修</dd>
+          <dt>新規の場合、サーバー・ドメインをどうするか</dt><dd>既存への修正にてなし</dd>
+          <dt>改修の場合はサーバーのFTP情報の確認</dt><dd>修正作業は顧客で実施するので、試験・確認用環境とリソースの提供のみ。[確認用環境](#)</dd>
+          <dt>埋め込むSNSの有無</dt><dd>なし</dd>
+          <dt>お問い合わせフォームの必要性</dt><dd>なし</dd>
+          <dt>作業のタイムスケジュール</dt><dd>1. 技術調査<br>2. 2/18 カンプ提出・制作開始<br>3. 2/25 テスト<br>4. 3/22 提出・顧客による受け入れテスト<br>5. 3/19 公表</dd>  
+        </dl>
+        
+        <h4>デザイン部分</h4>
+        <dl>
+          <dt>項目</dt><dd>内容</dd>
+          <dt>メインターゲット</dt><dd>指定席券売機よりチケットを購入しようと前もって確認している利用者　|
+          <dt>おおまかなデザインコンセプト</dt><dd>（モックアップ型）体験型の定席券売機の操作説明ページ</dd>
+          <dt>コーポレートカラーの有無</dt><dd>#008803</dd>
+          <dt>出版物や販促物などの有無</dt><dd>なし</dd>
+          <dt>画像・文章の確認</dt><dd>既存画像を利用するが、押下するボタンなどの対象となる部分の画像加工は必要</dd>
+          <dt>参考にしたいサイト</dt><dd></dd>
+        </dl>
+
+        <h4>サイト情報・構成</h4>
+        <dl>
+          <dt>サーバー・ドメイン・サイトマップ</dt><dd>なし</dd>
+          <dt>各ページのコンテンツ</dt><dd>[サイトにのせるコンテンツ](#サイトにのせるコンテンツ)を参照</dd>
+          <dt>ターゲットとなるユーザー</dt><dd>指定席券売機よりチケットを購入しようと前もって確認している利用者</dd>  
+        </dl>
+
+        <h4>デザインコンセプト</h4>
+        <dl>
+          <dt>カラーマネジメント</dt><dd>メインカラー #008803 ベースカラー #ffffff </dd>
+          <dt>フォント</dt><dd></dd>
+          <dt>メインビジュアル</dt><dd></dd>  
+        </dl>
+
+        <h3>ワイヤーフレーム</h3>
+          ![ワイヤーフレーム](img/wireframe.png "ワイヤーフレーム")
+
+        <h3>デザインカンプ</h3>  
+
+
+      </section>
+  
+      <section id="specification"><!-- 仕様についてはGitHubに詳細に掲載 -->
+        <h2>仕様</h2>
+        <p></p>
+        <p></p>
+      </section>
+  
+      <section id="features">
+        <h2>特徴</h2>
+
+        <h3>画像の重ね合わせ</h3>
+        <p></p>
+        <p></p>
+  
+        <h3>VanillaScript</h3>
+        <p>jQuery、他のフレームワークを使わない</p>
+        <p></p>
+  
+        <h3>Animation</h3>
+        <p></p>
+        <p></p>
+  
+        <h3>実装先</h3>
+        <p></p>
+        <p></p>
+        
+      </section>
+  
+      <section id="difficulties">
+        <h2>苦労した点</h2>
+        <dl>
+          <dt>項目</dt><dd>内容</dd>
+          <dt>非同期通信</dt>
+          <dd>XMLHttpRequest、Fetchのとちらにしろ、非同期通信の場合には、「その取得データ取得と取得後の表示を（DOMに）反映するまでの一連の処理は同じタイミング（コールバックも含めて、同じ処理スコープ内）で全てお行わないとトラブルになる。」ということの体得に苦労しました。
+            他のタイミングで利用する場合は、Web Storate APIを利用するなどでシリアライズするか、一旦DOMに反映してそれを利用するかのような回避策もあることも分かりました。
+          今回のように全ての情報を取得してから動作するようなアプリでは、最初からDOMに構成したページを作り、その上でdisplay:none等の切り替えでページが変化する方が、場合によっては良いのかも思いました。</dd>
+          <dt>this</dt>
+          <dd>従来の関数とアロー関数内、クラスメソッドのthisはそれぞれ違うということに気付くのに2日かかりました。</dd>
+          <dt>プロトタイプベースのオブジェクト指向</dt>
+          <dd>過去に学んだ、オブジェクト指向プログラミングはそのほとんどは、クラスベースオブジェクト指向言語であったため、コーディングすればするほど混乱を招いた。
+            コンストラクタはインスタンス変数が使えてしまうように見えるし、メソッドのオーバーロードは行えないなど、非常に考え方に苦労しました。
+            結局９割以上コーディングを終えた時点でJavaScriptでのClassはシンタックスシュガー（糖衣構文）であることが分かり、クラス自体は存在しないことがわかった（結局はオブジェクト（連想配列とプロトタイプ））</dd>
+          <dt>jsonで定義した、coordsを手作業で指定する</dt>
+          <dd>70枚の画像全てを調べてボタンの位置を確認する手作業が非常に時間がかかりました。共通する部分はほぼ同じなのですが、それでもこの作業が、一番時間がかかっています。これらの作業の効率化（アプリ化）を考えるべきだと思いました。</dd>
+        </dl>      
+      </section>
+      
+      <section id="reflections-and-future">
+        <h2>反省点と今後</h2>
+        <h3>反省点</h3>
+        <p>モーダル表示内の画像をもっといっぱいに広げたかった。（時間があれば改善しようと思う。）</p>
+        <h3>今後</h3>
+        <p>JOSNデータを製作中に思ったのですが、画面遷移情報を作成するアプリを作れば、他のページに簡単に流用できるので、社内などで操作マニュアル作成にそのまま使えることが可能と思います。 時間があればこれらの制作にあたり、一つのサービスとして提供することも考えています。</p>
+      </section>
+    </div>/<!-- .container -->
+  </main>
+</body>
+</html>
