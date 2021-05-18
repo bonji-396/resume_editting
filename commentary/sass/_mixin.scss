@@ -1,4 +1,11 @@
-@mixin dtDd {
+@mixin tableDl {
+  width: 100%;
+  border: $dl-border;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  margin: 1em;
+}
+@mixin tableDt {
   padding: 6px;
   border: {
     bottom: $dl-border;
@@ -10,6 +17,12 @@
   }
   &:last-of-type {
     border-bottom: 0;
+  }
+}
+@mixin tableDd {
+  @include tableDt;
+  border: {
+    left: $dl-border;
   }
 }
 @mixin wh100per {

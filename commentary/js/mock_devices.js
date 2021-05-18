@@ -3,7 +3,7 @@ TODO: フルードイメージをheight対応する
 ---------------------------------------------------------------------------- */
 class MockDevices {
   constructor(parameters) {
-    this.url = parameters.DeviceImageFile;
+    this.url = parameters.deviceImageFile;
     this.targetElement = document.getElementById(parameters.targetIdName);
     this.devices = [];
   }

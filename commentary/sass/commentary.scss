@@ -16,7 +16,12 @@ body {
   p {
     line-height: 1.5em;
   }
-
+  a {
+    &:hover {
+      // color: orange;
+      text-shadow: 0 0 10px orange;
+    }
+  }
   header{
     padding: 0 20px;
     display: flex;
@@ -75,10 +80,6 @@ body {
         a {
           display: block;
           line-height: 50px;
-          &:hover {
-            // color: orange;
-            text-shadow: 0 0 10px orange;
-          }
         }
       }
     }
@@ -104,14 +105,17 @@ body {
       }
       h1 {
         margin-top: 50px;
-        padding: 40px;
+        padding: 40px 0;
         text-align: center;
         font-size: 48px;
       }
       h2 {
         margin: 50px 0;
         padding: 6px;
-        border-bottom: 2px solid #ddd;
+        border: {
+          top: 2px solid #ddd;
+          left: 8px solid #ddd;
+        }
         // margin-bottom: 40px;
       }
       h3 {
@@ -119,24 +123,21 @@ body {
         padding: 4px;
         border-bottom: 1px solid #ddd;
       }
+      h4 {
+        margin: 1em;
+      }
       ul {
         li {
           line-height: 1.8em;
         }
       }
       dl {
-        width: 100%;
-        border: $dl-border;
-        display: grid;
-        grid-template-columns: 40% 60%;
+        @include tableDl;
         dt {
-          @include dtDd;
+          @include tableDt;
         }
         dd {
-          @include dtDd;
-          border: {
-            left: $dl-border;
-          }
+          @include tableDd;
         }
       }
       // ↓↓　-------ページによって異なる------- ↓↓
@@ -160,22 +161,19 @@ body {
           column-gap: 20px;
           .work {
             dt {
-              text-align: center;
+              @include tableDt;
             }
           }
           .work-hours-and-process {
             dl {
+              @include tableDl;
               grid-template-columns: 70% 30%;
               dt {
-                &:last-of-type{
-                  background-color: #DDD;
+                &:last-of-type {
+                  background-color: #ddd;
                 }
               }
               dd {
-                text-align: right;
-                &:nth-of-type(1) {
-                  text-align: center;
-                }
                 &:last-of-type {
                   background-color: #ddd;
                 }

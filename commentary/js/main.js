@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   const mockImages = new MockDevices({
     "targetIdName" : TARGET_ID_NAME,
-    "DeviceImageFile" : DEVICE_IMAGE_FILE
+    "deviceImageFile" : DEVICE_IMAGE_FILE
   });
   mockImages.view();
 

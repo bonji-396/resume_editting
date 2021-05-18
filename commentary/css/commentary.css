@@ -64,6 +64,10 @@ body p {
   line-height: 1.5em;
 }
 
+body a:hover {
+  text-shadow: 0 0 10px orange;
+}
+
 body header {
   padding: 0 20px;
   display: flex;
@@ -135,10 +139,6 @@ body header nav ul a {
   line-height: 50px;
 }
 
-body header nav ul a:hover {
-  text-shadow: 0 0 10px orange;
-}
-
 body main p {
   margin-left: 1em;
   line-height: 2em;
@@ -162,7 +162,7 @@ body main .container section {
 
 body main .container h1 {
   margin-top: 50px;
-  padding: 40px;
+  padding: 40px 0;
   text-align: center;
   font-size: 48px;
 }
@@ -170,13 +170,18 @@ body main .container h1 {
 body main .container h2 {
   margin: 50px 0;
   padding: 6px;
-  border-bottom: 2px solid #ddd;
+  border-top: 2px solid #ddd;
+  border-left: 8px solid #ddd;
 }
 
 body main .container h3 {
   margin: 20px 0;
   padding: 4px;
   border-bottom: 1px solid #ddd;
+}
+
+body main .container h4 {
+  margin: 1em;
 }
 
 body main .container ul li {
@@ -188,6 +193,7 @@ body main .container dl {
   border: 1px solid #333;
   display: grid;
   grid-template-columns: 40% 60%;
+  margin: 1em;
 }
 
 body main .container dl dt {
@@ -235,23 +241,31 @@ body main .container #discription .work-content-boxs {
 }
 
 body main .container #discription .work-content-boxs .work dt {
-  text-align: center;
+  padding: 6px;
+  border-bottom: 1px solid #333;
+  line-height: 21px;
+}
+
+body main .container #discription .work-content-boxs .work dt:first-of-type {
+  background-color: #666;
+  color: #fff;
+}
+
+body main .container #discription .work-content-boxs .work dt:last-of-type {
+  border-bottom: 0;
 }
 
 body main .container #discription .work-content-boxs .work-hours-and-process dl {
+  width: 100%;
+  border: 1px solid #333;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  margin: 1em;
   grid-template-columns: 70% 30%;
 }
 
 body main .container #discription .work-content-boxs .work-hours-and-process dl dt:last-of-type {
-  background-color: #DDD;
-}
-
-body main .container #discription .work-content-boxs .work-hours-and-process dl dd {
-  text-align: right;
-}
-
-body main .container #discription .work-content-boxs .work-hours-and-process dl dd:nth-of-type(1) {
-  text-align: center;
+  background-color: #ddd;
 }
 
 body main .container #discription .work-content-boxs .work-hours-and-process dl dd:last-of-type {
