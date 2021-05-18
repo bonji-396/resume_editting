@@ -137,6 +137,7 @@ class ResumeEditor {
 
     // htmlを複製
     const outputBody = document.querySelector('html').cloneNode(true);
+    // console.log(outputBody);
     /* タイトルを変えて、余分な要素を削除 */
     outputBody.querySelector('header').remove();
     outputBody.querySelector('footer').remove();
@@ -267,7 +268,7 @@ class InputFields extends UserInterfase {
   ------------------------------------------------------ */
   deleteTheEditabilityAttribute(){
     this.selfElement.forEach(inputField=>{
-      inputField.removeAttribute(contentEditable);
+      inputField.removeAttribute('contentEditable');
     });
   } 
   /* ---------------------------------------------------
