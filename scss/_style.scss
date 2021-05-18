@@ -213,6 +213,7 @@ main {
       width: $page-width;
       grid-template-columns: $page-width;
     }
+    // 左のマージンを-にして左枠線から左位置を始める
     @include media-middle-screen-break {
       transform: translate(-$side-margin, 0);
     }

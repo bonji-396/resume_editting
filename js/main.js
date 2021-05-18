@@ -134,7 +134,8 @@ class ResumeEditor {
     this.eittingSwitchButton.selfElement.checked = false;
     this.inputFields.deleteTheEditabilityAttribute(); //　属性自体削除
     this.idPhoto.toDisable();
-
+    // スマートフォンなど横幅が狭い場合、CSSで左枠から表示をスタートさせているため
+    document.querySelector('.resume').style.transform = 'translate(0, 0)';
     // htmlを複製
     const outputBody = document.querySelector('html').cloneNode(true);
     // console.log(outputBody);
