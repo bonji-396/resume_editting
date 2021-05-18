@@ -235,6 +235,11 @@ body main .container ol li {
   line-height: 1.8em;
 }
 
+body main .container img {
+  width: 100%;
+  margin: 0 2em;
+}
+
 body main .container #visual-box {
   position: relative;
   width: 100%;
