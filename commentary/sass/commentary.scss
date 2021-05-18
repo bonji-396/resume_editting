@@ -92,9 +92,6 @@ body {
       line-height: 2em;
       text-indent: 1em;
     }
-    ul {
-      margin: 1em;
-    }
     .container {
       max-width: 960px;
       margin: 0 auto;
@@ -127,6 +124,9 @@ body {
         margin: 1em;
       }
       ul {
+        margin{
+          left: 1em;
+        }
         li {
           line-height: 1.8em;
         }
@@ -138,6 +138,14 @@ body {
         }
         dd {
           @include tableDd;
+        }
+      }
+      ol {
+        margin{
+          left: 1em;
+        }
+        li{
+          line-height: 1.8em;
         }
       }
       // ↓↓　-------ページによって異なる------- ↓↓

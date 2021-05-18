@@ -145,10 +145,6 @@ body main p {
   text-indent: 1em;
 }
 
-body main ul {
-  margin: 1em;
-}
-
 body main .container {
   max-width: 960px;
   margin: 0 auto;
@@ -182,6 +178,10 @@ body main .container h3 {
 
 body main .container h4 {
   margin: 1em;
+}
+
+body main .container ul margin {
+  left: 1em;
 }
 
 body main .container ul li {
@@ -225,6 +225,14 @@ body main .container dl dd:first-of-type {
 
 body main .container dl dd:last-of-type {
   border-bottom: 0;
+}
+
+body main .container ol margin {
+  left: 1em;
+}
+
+body main .container ol li {
+  line-height: 1.8em;
 }
 
 body main .container #visual-box {
