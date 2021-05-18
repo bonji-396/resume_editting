@@ -8,7 +8,7 @@ HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロント�
 
 ※ ただし、インポート、HTML出力、印刷・PDF印刷したデータの管理はご自身でしっかり行って下さい。
 
-![resume](https://user-images.githubusercontent.com/71716610/118402393-bb685200-b6a4-11eb-95d1-8fe5f3008cc8.gif)
+![pc_screenshot](https://user-images.githubusercontent.com/71716610/118611467-d5667980-b7f7-11eb-8b9f-3659b8083f53.gif)
 
 
 ## バージョン履歴
