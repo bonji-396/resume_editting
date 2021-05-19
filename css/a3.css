@@ -427,6 +427,7 @@ main .resume .left-page .id-photo label input {
 main .resume .left-page .id-photo label img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 main .resume .left-page .id-photo label img[src=""] {
