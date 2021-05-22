@@ -32,7 +32,6 @@ HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロント�
 下記ページにアクセスすれば利用できます。
 
 - [提供ページ](https://www.mikuro.works/portfolio/works/resume_editting/)
-- [説明ページ](https://www.mikuro.works/portfolio/works/resume_editting/commentary)
 - [GitHub](https://github.com/bonji-396/resume_editting)
 
 ## 特徴と機能
@@ -111,4 +110,6 @@ localStorageでも良かったんですが、扱うデータが個人情報な�
 ### 機能強化
 - エクスポートファイル暗号化/インポートファイル複合化
 
-
+### IT環境のフォロー
+- 利用者がPCやプリンターを使えない環境にいる場合をどうするか？
+  - スマートフォン対応と、コンビニ印刷が最も有力候補となるが、どう対応するべきか・・・ 
