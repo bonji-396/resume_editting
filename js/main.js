@@ -654,8 +654,10 @@ class ExportButton extends ButtonUI {
     }
 
     /* jsonテキストファイルとして保存
+    TODO: ソートする必要があるか？（一旦 for (let key in list)する必要あるが）
     -------------------------------- */
-    const jsonStr = JSON.stringify(list);
+    // const jsonStr = JSON.stringify(list);
+    const jsonStr = JSON.stringify(list, null, 2); // JSONファイルの可読性向上
     const blob = flg
       ? new Blob([jsonStr],{type: 'text/plain'}) // utf-8テキスト
       : new Blob([jsonStr],{type: 'application/json'}); // json

@@ -84,14 +84,12 @@ class MockDevices {
   adjustTheSizeAndPositionOfTheImages(){
     // .device要素の表示幅を取得（imgはフルードのため親要素を参照）
     const width = window.getComputedStyle(this.targetElement).getPropertyValue('width') || this.devices[0].deviceImageElement.width ;
-    console.log(window.getComputedStyle(this.targetElement).getPropertyValue('width'));
     // 実寸幅取得
     const naturalWidth = this.devices[0].deviceImageElement.naturalWidth;
     const naturalHeight = this.devices[0].deviceImageElement.naturalHeight;
 
     // 横表示比率
     const displayWidthRatio = parseInt(width) / naturalWidth; // ゼロ Infinity
-    console.log('displayWidthRatio:', displayWidthRatio, 'parseInt(width)', parseInt(width), '/ naturalWidth', naturalWidth);
     // スクリーン画像位置・縮尺の補正値(px)
     const correctionValue = 1;
 
@@ -155,7 +153,6 @@ class Device {
   //（※　基画像から縦横比率を算出して、比率の縦横の短い方を基準にサイズを決定するべき）
   /* 画像のサイズ調整 */
   scaleAdjustment(displayWidthRatio, correctionValue) {
-    console.log(displayWidthRatio, correctionValue);
     // 横表示比率を基にして、各画像の表示サイズを算出して指定する
     this.deviceImageSet.style.width =
       displayWidthRatio * this.deviceInfo.expansionRate * 
@@ -171,8 +168,6 @@ class Device {
       displayWidthRatio * this.deviceInfo.expansionRate *
         (this.deviceInfo.naturalScreenCoordinates.YEnd -
           this.deviceInfo.naturalScreenCoordinates.YStart) + correctionValue + 'px';
-    console.log(this.deviceImageSet.style.width, this.deviceImageSet.style.height,
-       this.screenImageElement.style.width, this.screenImageElement.style.height);
   }
   /* 画像の位置調整 */
   positioning(displayWidthRatio, correctionValue) {
