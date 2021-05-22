@@ -32,7 +32,6 @@ HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロント�
 下記ページにアクセスすれば利用できます。
 
 - [提供ページ](https://www.mikuro.works/portfolio/works/resume_editting/)
-- [説明ページ](https://www.mikuro.works/portfolio/works/resume_editting/commentary)
 - [GitHub](https://github.com/bonji-396/resume_editting)
 
 ## 特徴と機能
