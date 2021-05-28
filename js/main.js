@@ -44,7 +44,6 @@ class ResumeEditor {
     this.outputButton = new HTMLOutputButton(()=>{this.output()});
     this.helpButton = new HelpButton(()=>{this.help()});
     // ウィンドウを閉じる、リロードするときに、確認メッセージを行う
-    //（リロードするときに表示したくなく、今回は使っていない。初心者メモ）
     // window.addEventListener('beforeunload', (event)=>{this.close(event)});
     
     // 初期化
@@ -115,8 +114,8 @@ class ResumeEditor {
       // リロードした時、上記のSaveで整合性を保つ。サイズまでリセットするなら以下が必要
       // this.resumeStyleSheet.load(this.selectPaperSizeDropDownList.load());
 
-      // サーバとのやりとりが必要な場合は、内容がをクリアしても同Sesson扱いとなるケースとなるため、
-      // window.location.reload()を最後に行った方が良いかもしれない。
+      // サーバとのやりとりが必要な場合は、内容をクリアしても同session扱いとなるケースとなるため、
+      // window.location.reload()を最後に行った方が良いかもしれない。submitの挙動次第
 
     }
   }
@@ -130,16 +129,19 @@ class ResumeEditor {
     履歴書をHTML出力
   ------------------------------------------------------ */
   output() {
-    // 編集不可にする
+    /*
+      編集不可にする
+    -------------------------------- */
     this.eittingSwitchButton.selfElement.checked = false;
     this.inputFields.deleteTheEditabilityAttribute(); //　属性自体削除
     this.idPhoto.toDisable();
-    // スマートフォンなど横幅が狭い場合、CSSで左枠から表示をスタートさせているため
+    // スマートフォンなど横幅が狭い場合、CSSで左枠から表示をスタートさせているためスタート位置を戻す
     document.querySelector('.resume').style.transform = 'translate(0, 0)';
     // htmlを複製
     const outputBody = document.querySelector('html').cloneNode(true);
-    // console.log(outputBody);
-    /* タイトルを変えて、余分な要素を削除 */
+    /*
+      タイトルを変えて、余分な要素を削除
+    -------------------------------- */
     outputBody.querySelector('header').remove();
     outputBody.querySelector('footer').remove();
     outputBody.querySelector('title').innerText = '履歴書';
@@ -147,8 +149,9 @@ class ResumeEditor {
     // 
     outputBody.querySelector('.resume').style.margin = 0;
     outputBody.querySelector('.resume').style.border = 0;
-    
-    /* スタイルシートをHTMLファイルへ埋め込む */
+    /*
+      スタイルシートをHTMLファイルへ埋め込む
+    -------------------------------- */
     const linkstyle = document.getElementById('combines-styles');
     let cssStr = '';
     // CSSStyleSheet.rules
@@ -159,7 +162,9 @@ class ResumeEditor {
     const styleTag = document.createElement('style');
     styleTag.textContent = cssStr;
     outputBody.querySelector('head').appendChild(styleTag);
-    /* ファイル出力 */
+    /*
+      ファイル出力
+    -------------------------------- */
     const outStr = outputBody.outerHTML.replace( /<!--[\s\S]*?-->/g , '' ); // コメント削除
     const blob =  new Blob([outStr],{type: 'text/html'}); // HTMLテキスト
     const link = document.createElement('a'); // ダミーリンク
@@ -302,7 +307,9 @@ class InputFields extends UserInterfase {
    SessionStorageデータを読み込み、入力編集領域反映する
   ------------------------------------------------------ */
   load() {
-
+    /*
+      SessionStorageデータを読み込み、各nputFieldに反映する
+    -------------------------------- */
     this.selfElement.forEach(inputField=>{
       // IDと一致するキーが存在した場合に値を読み込む
       if (sessionStorage.getItem(inputField.id)) {
@@ -311,7 +318,9 @@ class InputFields extends UserInterfase {
         inputField.innerHTML = '';
       }
     });
-
+    /*
+      削除式選択の文言の場合を考慮
+    -------------------------------- */
     const haveContent = (idName, content)=>{
       if(!sessionStorage.getItem(idName)) {
         document.getElementById(idName).innerText = content;
@@ -320,7 +329,9 @@ class InputFields extends UserInterfase {
     haveContent('gender', '男・女')
     haveContent('marital-status', '有・無')
     haveContent('obligation-to-support-spouse', '有・無')
-
+    /*
+      揃え状態設定を読み込んで再現
+    -------------------------------- */
     const applyTextAlign = (direction)=>{
 
       if (sessionStorage.getItem(direction)) {
@@ -332,7 +343,6 @@ class InputFields extends UserInterfase {
       }
 
     }
-
     applyTextAlign('left');
     applyTextAlign('center');
     applyTextAlign('right');
