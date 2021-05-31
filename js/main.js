@@ -225,8 +225,9 @@ class UserInterfase {
 }
 /* -------------------------------------------------------------------------
   入力編集領域UI（InputFields） 
+  TODO: 起動時に生成したオブジェクトのため、用紙サイズを変更しても要素自身のサイズが変更されない。
   TODO: 入力内容精査
-  TDOD: 制作日時を自動反映
+  TODO: 制作日時を自動反映
   　例；リロード時に本日日付と制作日付が異なる場合、更新するか確認する。
 ---------------------------------------------------------------------------- */
 class InputFields extends UserInterfase {
@@ -236,7 +237,17 @@ class InputFields extends UserInterfase {
     // 全入力欄にイベント処理を付与
     this.selfElement.forEach(inputField=>{
       // input時に自動保存
-      inputField.addEventListener('input', (event)=>{this.autoSave(event)});
+      inputField.addEventListener('input', (event)=>{
+        this.autoSave(event);
+        // お試しコード（フォントサイズの変更（蘭あふれした場合のケース））//////
+        console.log('inputField clientWidth', inputField.clientWidth);
+        const compStyles = window.getComputedStyle(inputField);
+        console.log('width: ', compStyles.getPropertyValue('width'));
+        console.log('font-size: ', compStyles.getPropertyValue('font-size'));
+
+        //////////////
+
+      });
       // フォーカス時に全選択
       inputField.addEventListener('focus',()=>{
         document.execCommand('focus',false,null);
@@ -291,17 +302,26 @@ class InputFields extends UserInterfase {
   　 入力編集領域の編集領域の改行可否 
   ------------------------------------------------------ */
   supression() {
-    this.selfElement.forEach(inputField=>{
-      // 複数行編集欄以外
-      if(!inputField.classList.contains('multiple-lines')) {
-        inputField.addEventListener('keydown', (event)=>{
-          /* 改行をさせない */
+    for (let i = 0; i < this.selfElement.length; i++) {
+      const item = this.selfElement.item(i);
+      if(!item.classList.contains('multiple-lines')) {
+        console.log(item);
+        item.addEventListener('keydown', (event)=>{
+          /* 入力が確定しておりエンターの場合は、改行をさせずに次の入力欄へフォーカスを移動する
+          -------------------------- */
           if(!event.isComposing && event.key === 'Enter') {
+            // ここに入ることはないが念の為
+            if(i+1 == this.selfElement.length) {
+              this.selfElement.item(0).focus();
+            } else {
+              this.selfElement.item(i+1).focus();
+            }
+            console.log(i,this.selfElement.item(i+1));
             return false; // 何もしない
           }
         });  
       }
-    });
+    }
   }
   /* ---------------------------------------------------
    SessionStorageデータを読み込み、入力編集領域反映する
