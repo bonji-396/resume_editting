@@ -228,6 +228,7 @@ main {
           display: none; // 改行すると<div><br></div>が生成されるので非表示にする
         }
         &.multiple-lines {
+          line-height: 1.4em;
           br {
             white-space:normal;
             display: inline;

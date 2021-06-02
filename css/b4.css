@@ -348,6 +348,10 @@ main .resume .page .input-field br {
   display: none;
 }
 
+main .resume .page .input-field.multiple-lines {
+  line-height: 1.4em;
+}
+
 main .resume .page .input-field.multiple-lines br {
   white-space: normal;
   display: inline;
