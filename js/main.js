@@ -240,10 +240,10 @@ class InputFields extends UserInterfase {
       inputField.addEventListener('input', (event)=>{
         this.autoSave(event);
         // お試しコード（フォントサイズの変更（蘭あふれした場合のケース））//////
-        console.log('inputField clientWidth', inputField.clientWidth);
+        // console.log('inputField clientWidth', inputField.clientWidth);
         const compStyles = window.getComputedStyle(inputField);
-        console.log('width: ', compStyles.getPropertyValue('width'));
-        console.log('font-size: ', compStyles.getPropertyValue('font-size'));
+        // console.log('width: ', compStyles.getPropertyValue('width'));
+        // console.log('font-size: ', compStyles.getPropertyValue('font-size'));
 
         //////////////
 
@@ -305,7 +305,7 @@ class InputFields extends UserInterfase {
     for (let i = 0; i < this.selfElement.length; i++) {
       const item = this.selfElement.item(i);
       if(!item.classList.contains('multiple-lines')) {
-        console.log(item);
+        // console.log(item);
         item.addEventListener('keydown', (event)=>{
           /* 入力が確定しておりエンターの場合は、改行をさせずに次の入力欄へフォーカスを移動する
           -------------------------- */
