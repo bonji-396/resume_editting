@@ -35,6 +35,9 @@ HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロント�
 - [提供ページ](https://www.mikuro.works/portfolio/works/resume_editting/)
 - [GitHub](https://github.com/bonji-396/resume_editting)
 
+ちなみに、提供ページはAmazon S3の静的ウェブサイトホスティングを利用しています。
+
+
 ## 特徴と機能
 
 - 履歴書（JIS規格）見た目のままで編集できます
