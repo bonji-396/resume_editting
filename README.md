@@ -1,6 +1,8 @@
 JavaScriptを学び、初めてのオープンサービスでした。
 一旦プライベートアーカイブにしたのものですが、ソースなど今見るととても恥ずかしいですが、記念に残しておきたいと思います。
 
+- [こちらで提供してます|Github Pages](https://bonji-396.github.io/resume_editting/)
+
 # Resume Editor
 履歴書作成ウェブアプリです。
 HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロントエンドのみで終息」します。
@@ -36,7 +38,6 @@ HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロント�
 下記ページにアクセスすれば利用できます。
 
 - [提供 github pages](https://bonji-396.github.io/resume_editting/)
-
 
 以前はAmazon S3の静的ウェブサイトホスティングを利用していました。
 
