@@ -35,9 +35,10 @@ HTML、CSS（SCSS）、JavaScriptのみで構成されていて「フロント�
 ## 概要
 下記ページにアクセスすれば利用できます。
 
-- ~~[提供ページ](https://www.mikuro.works/portfolio/works/resume_editting/)~~
+- [提供 github pages](https://bonji-396.github.io/resume_editting/)
 
-~~ちなみに、提供ページはAmazon S3の静的ウェブサイトホスティングを利用しています。~~
+
+以前はAmazon S3の静的ウェブサイトホスティングを利用していました。
 
 
 ## 特徴と機能
