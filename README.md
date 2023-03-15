@@ -1,7 +1,7 @@
 JavaScriptを学び、初めてのオープンサービスでした。
 一旦プライベートアーカイブにしたのものですが、ソースなど今見るととても恥ずかしいですが、記念に残しておきたいと思います。
 
-- [こちらで提供してます|Github Pages](https://bonji-396.github.io/resume_editting/)
+- [こちらで提供してます Github Pages](https://bonji-396.github.io/resume_editting/)
 
 # Resume Editor
 履歴書作成ウェブアプリです。
